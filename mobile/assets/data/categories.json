@@ -1,0 +1,32 @@
+{
+  "menu": [
+    "Cocktails",
+    "Beer",
+    "Wine",
+    "Spirits",
+    "Food"
+  ],
+  "spirits": [
+    "Whisky",
+    "Vodka",
+    "Gin",
+    "Rum",
+    "Tequila",
+    "Rakia",
+    "Mastika",
+    "Liqueurs",
+    "Brandy"
+  ],
+  "food": [
+    "Salads",
+    "Starters",
+    "Main Courses",
+    "Desserts"
+  ],
+  "events": [
+    "Quiz",
+    "Brunch",
+    "Live Music",
+    "Themed"
+  ]
+}

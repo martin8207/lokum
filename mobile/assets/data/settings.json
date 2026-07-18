@@ -1,0 +1,12 @@
+{
+  "defaultLanguage": "bg",
+  "supportedLanguages": [
+    "bg",
+    "en"
+  ],
+  "defaultCurrency": "EUR",
+  "secondaryCurrency": "BGN",
+  "showPricesInBothCurrencies": true,
+  "theme": "dark",
+  "version": "1.0.0"
+}
