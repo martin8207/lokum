@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: Text(
           'LOKUM',
-          style: TextStyle(fontSize: 36,fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
         ),
       ),
     );
