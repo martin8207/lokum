@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Git
+.git
+.gitignore
+
+# Environment
+.env
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+.idea/

@@ -15,3 +15,13 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
+
+# Prisma
+prisma/dev.db
+
+
+/src/generated/prisma
