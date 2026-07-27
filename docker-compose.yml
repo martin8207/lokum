@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:17
+
+    container_name: lokum-postgres
+
+    environment:
+      POSTGRES_DB: lokum
+      POSTGRES_USER: lokum
+      POSTGRES_PASSWORD: lokum123
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    restart: unless-stopped
+
+  lokum-server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+
+    container_name: lokum-server
+
+    ports:
+      - "3000:3000"
+
+    env_file:
+      - ./server/.env
+
+    depends_on:
+      - postgres
+
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id        String  @id
+  nameBg    String
+  nameEn    String
+  sortOrder Int     @default(0)
+  active    Boolean @default(true)
+
+  subcategories Subcategory[]
+  products      Product[]
+}
+
+model Subcategory {
+  id String @id
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  nameBg String
+  nameEn String
+
+  sortOrder Int     @default(0)
+  active    Boolean @default(true)
+
+  products Product[]
+}
+
+model Product {
+  id String @id
+
+  categoryId String
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  subcategoryId String
+  subcategory   Subcategory @relation(fields: [subcategoryId], references: [id])
+
+  brand   String?
+  variant String?
+
+  nameBg String
+  nameEn String?
+
+  descriptionBg String?
+  descriptionEn String?
+
+  priceEur Decimal?
+
+  quantity Float?
+  unit     String?
+
+  image String?
+
+  featured      Boolean @default(false)
+  isNew         Boolean @default(false)
+  isRecommended Boolean @default(false)
+  available     Boolean @default(true)
+
+  tags      String?
+  allergens String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
