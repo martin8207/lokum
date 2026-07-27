@@ -6,10 +6,13 @@ version: 1.0.0+1
 environment:
   sdk: ^3.12.2
 dependencies:
+  excel: ^4.0.6
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
   google_fonts: ^6.3.2
+  url_launcher: ^6.3.1
+  shared_preferences: ^2.3.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -18,13 +21,17 @@ flutter:
   uses-material-design: true
   assets:
     - assets/backgrounds/
-    - assets/beer/
-    - assets/cocktails/
     - assets/data/
-    - assets/events/
-    - assets/food/
     - assets/icons/
     - assets/logos/
+    - assets/beer/
+    - assets/beer/glarus/
+    - assets/cocktails/
+    - assets/events/
+    - assets/events/brunch/
+    - assets/events/quiz/
+    - assets/food/
+    - assets/food/brunch/
     - assets/spirits/
     - assets/videos/
     - assets/wine/

@@ -1,0 +1,79 @@
+/// Централни константи за пътища до assets + лек, self-contained
+/// избор на език (BG/EN), споделен между всички menu страници.
+///
+/// Ако проектът вече има собствено решение за смяна на език (Provider,
+/// Riverpod, BLoC и т.н.), просто заменете `AppLanguage` по-долу с него —
+/// всички widget-и тук четат езика само през `AppLanguage.instance`.
+library;
+
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart' show AssetManifest, rootBundle;
+import '../shared/models/product.dart';
+
+class AssetPaths {
+  AssetPaths._();
+
+  /// Логото на бара, показвано след сканиране на QR код.
+  static const String logo = 'assets/logos/logo.jpg';
+
+  /// Генерираният от tools/excel_to_json.py каталог с продукти.
+  static const String menuJson = 'assets/data/menu.json';
+
+  /// Директория с продуктови снимки (bundled в приложението).
+  /// Очакван формат на файловете: `product.image`, напр. "glarus_500.webp".
+  static const String productImagesDir = 'assets/images/products';
+
+  /// Placeholder, показван когато продуктова снимка липсва/не се зарежда.
+  static const String placeholderImage = 'assets/images/placeholder.png';
+
+  /// Пълен път до снимката на даден продукт. Ако `fileName` вече е път
+  /// (напр. "beer/glarus/pale_ale.jpg", зададен ръчно в excel-а), се ползва
+  /// директно спрямо `assets/`. Иначе се очаква плосък файл в
+  /// [productImagesDir], по конвенция `product.id` + ".webp".
+  static String productImage(String fileName) {
+    if (fileName.contains('/')) return 'assets/$fileName';
+    return '$productImagesDir/$fileName';
+  }
+
+  /// Пълен път до снимка на събитие (постер/галерия), зададена в
+  /// `events.json` спрямо `assets/`, напр. "events/brunch/brunch.jpg".
+  static String eventImage(String relativePath) => 'assets/$relativePath';
+}
+
+/// Дали даден asset е реално bundle-нат в приложението. Използва се, за да
+/// не показваме/отваряме снимка за артикули, които все още нямат такава —
+/// повечето продукти в менюто засега са само текст, без снимка.
+///
+/// Трябва да се зареди веднъж в main() чрез [ensureLoaded], преди runApp().
+class BundledAssets {
+  BundledAssets._();
+
+  static Set<String>? _keys;
+
+  static Future<void> ensureLoaded() async {
+    if (_keys != null) return;
+    final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+    _keys = manifest.listAssets().toSet();
+  }
+
+  /// Дали `path` е наличен като bundled asset. Връща false, докато
+  /// [ensureLoaded] все още не е приключил.
+  static bool has(String path) => _keys?.contains(path) ?? false;
+}
+
+/// Много лек, глобален избор на език. Задайте стойността на екрана за
+/// избор на език (EN/БГ) след сканиране на QR кода:
+///
+/// ```dart
+/// AppLanguage.instance.value = AppLang.bg;
+/// ```
+///
+/// Всички menu widget-и слушат тази стойност чрез `ValueListenableBuilder`
+/// и се обновяват автоматично при смяна на езика.
+class AppLanguage {
+  AppLanguage._();
+
+  static final ValueNotifier<AppLang> instance = ValueNotifier<AppLang>(
+    AppLang.bg,
+  );
+}

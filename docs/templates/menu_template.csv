@@ -1,0 +1,4 @@
+id,category,subcategory,sortOrder,available,featured,name_bg,name_en,description_bg,description_en,price,currency,volume,image,allergens,tags
+1,cocktails,signature,1,TRUE,TRUE,Blue Margarita,Blue Margarita,"Текила, трипъл сек, синьо кюрасао, сок от лайм","Tequila, triple sec, blue curaçao, lime juice",8.90,BGN,150 ml,assets/cocktails/blue_margarita.jpg,,signature;summer
+2,beer,draft,1,TRUE,TRUE,Glarus IPA,Glarus IPA,"Българска крафт IPA","Bulgarian Craft IPA",6.50,BGN,500 ml,assets/beer/glarus_ipa.jpg,gluten,craft
+3,food,burgers,1,TRUE,TRUE,Lokum Burger,Lokum Burger,"Телешко, чедър, бекон, сос Lokum","Beef, cheddar, bacon, Lokum sauce",14.90,BGN,450 g,assets/food/lokum_burger.jpg,"gluten;milk",chef

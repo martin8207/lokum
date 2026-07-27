@@ -1,0 +1,29 @@
+{
+  "app": {
+    "name": "Lokum",
+    "version": "1.0.0",
+    "language": "bg",
+    "supportedLanguages": [
+      "bg",
+      "en"
+    ]
+  },
+  "restaurant": {
+    "name": "Lokum",
+    "slogan": "riffs & drinks",
+    "city": "Шумен",
+    "address": "",
+    "phone": "",
+    "email": "",
+    "website": "",
+    "facebook": "",
+    "instagram": ""
+  },
+  "theme": {
+    "mode": "dark",
+    "primaryColor": "#D9A441",
+    "backgroundColor": "#161616",
+    "cardColor": "#222222",
+    "accentColor": "#7B2CBF"
+  }
+}

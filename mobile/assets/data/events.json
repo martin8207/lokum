@@ -1,4 +1,27 @@
 {
-  "upcoming": [],
+  "upcoming": [
+    {
+      "id": "sunday-brunch",
+      "titleBg": "Неделен Брънч",
+      "titleEn": "Sunday Brunch",
+      "descriptionBg": "Пухкави бухтички, сандвич със сьомга, качамак и още — всяка неделя от 11:00 до 16:00.",
+      "descriptionEn": "Fluffy fritters, salmon sandwich, polenta and more — every Sunday from 11:00 to 16:00.",
+      "posterImage": "events/brunch/brunch.jpg",
+      "recurringWeekday": 7,
+      "recurringStart": "11:00",
+      "recurringEnd": "16:00"
+    },
+    {
+      "id": "monday-quiz",
+      "titleBg": "Локумна Викторина",
+      "titleEn": "Lokum Quiz Night",
+      "descriptionBg": "Съберете отбор и тествайте познанията си — всеки понеделник вечер от 19:30.",
+      "descriptionEn": "Grab a team and test your knowledge — every Monday evening from 19:30.",
+      "posterImage": "events/quiz/lokumna_viktorina.jpg",
+      "recurringWeekday": 1,
+      "recurringStart": "19:30",
+      "recurringEnd": "22:00"
+    }
+  ],
   "past": []
 }

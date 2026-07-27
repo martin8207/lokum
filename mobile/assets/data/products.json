@@ -1,0 +1,4082 @@
+[
+  {
+    "id": "kafe",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": null,
+    "variant": null,
+    "nameBg": "КАФЕ",
+    "nameEn": "Coffee",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 0.0,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "afogato",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": null,
+    "variant": null,
+    "nameBg": "АФОГАТО",
+    "nameEn": "Affogato",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 0.0,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "smetana",
+    "category": "drinks",
+    "subcategory": "other",
+    "brand": null,
+    "variant": null,
+    "nameBg": "СМЕТАНА",
+    "nameEn": "Cream",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 0.35,
+    "quantity": null,
+    "unit": null,
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "med",
+    "category": "drinks",
+    "subcategory": "other",
+    "brand": null,
+    "variant": null,
+    "nameBg": "МЕД",
+    "nameEn": "Honey",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 0.35,
+    "quantity": null,
+    "unit": null,
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "sirop_za_kafe",
+    "category": "drinks",
+    "subcategory": "other",
+    "brand": null,
+    "variant": null,
+    "nameBg": "СИРОП ЗА КАФЕ",
+    "nameEn": "Coffee Syrup",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 0.35,
+    "quantity": null,
+    "unit": null,
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "tekila_savoy_shot",
+    "category": "drinks",
+    "subcategory": "shots",
+    "brand": "savoy",
+    "variant": "tekila",
+    "nameBg": "ТЕКИЛА SAVOY",
+    "nameEn": "Tequila Savoy",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.0,
+    "quantity": 25.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,shot"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "mlechen_sos",
+    "category": "food",
+    "subcategory": "other",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Млечен сос",
+    "nameEn": "Cream Sauce",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.0,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,sauce"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "sos_barbekyu",
+    "category": "food",
+    "subcategory": "other",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Сос Барбекю",
+    "nameEn": "BBQ Sauce",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.0,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,sauce"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "sladko_ot_borovinki",
+    "category": "food",
+    "subcategory": "other",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Сладко от боровинки",
+    "nameEn": "Blueberry Jam",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.0,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,sauce"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "topka_sladoled",
+    "category": "food",
+    "subcategory": "desserts",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Топка сладолед",
+    "nameEn": "Scoop of Ice Cream",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.0,
+    "quantity": 70.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,dessert"
+    ],
+    "allergens": [
+      "7"
+    ]
+  },
+  {
+    "id": "bankya",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Bankya",
+    "variant": null,
+    "nameBg": "МИНЕРАЛНА ВОДА БАНКЯ",
+    "nameEn": "Bankya Mineral Water",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "uiski_savoy",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "savoy",
+    "variant": "uiski",
+    "nameBg": "УИСКИ SAVOY",
+    "nameEn": "Whisky Savoy",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.2,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "sirop_za_kashlitsa",
+    "category": "drinks",
+    "subcategory": "shots",
+    "brand": "za_kashlitsa",
+    "variant": "sirop",
+    "nameBg": "СИРОП ЗА КАШЛИЦА",
+    "nameEn": "Cough Syrup",
+    "descriptionBg": "ТЪМЕН РОМ, МЕНТА",
+    "descriptionEn": "dark rum, mint liqueur",
+    "priceEur": 1.2,
+    "quantity": 25.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,shot"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "gazirana_voda",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ГАЗИРАНА ВОДА",
+    "nameEn": "Sparkling Water",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.3,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "ayran",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": null,
+    "variant": null,
+    "nameBg": "АЙРЯН",
+    "nameEn": "Ayran",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.3,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "menta",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": null,
+    "variant": null,
+    "nameBg": "МЕНТА",
+    "nameEn": "Mint Liqueur (Menta)",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.45,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "bezkoefeinovo",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": null,
+    "variant": null,
+    "nameBg": "БЕЗКОФЕИНОВО КАФЕ",
+    "nameEn": "Decaffeinated Coffee",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.45,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "brendi_metaxa",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "metaxa",
+    "variant": "brendi",
+    "nameBg": "БРЕНДИ METAXA",
+    "nameEn": "Brandy Metaxa",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.5,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "tekila_sierra_shot",
+    "category": "drinks",
+    "subcategory": "shots",
+    "brand": "sierra",
+    "variant": "tekila",
+    "nameBg": "ТЕКИЛА SIERRA",
+    "nameEn": "Tequila Sierra",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.5,
+    "quantity": 25.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,shot"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "chay",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": "twinings",
+    "variant": null,
+    "nameBg": "ЧАЙ",
+    "nameEn": "Tea",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.5,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "vodka_savoy_silver",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "savoy_silver",
+    "variant": "vodka",
+    "nameBg": "ВОДКА SAVOY SILVER",
+    "nameEn": "Vodka Savoy Silver",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.55,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "dzhin_savoy",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "savoy",
+    "variant": "dzhin",
+    "nameBg": "ДЖИН SAVOY",
+    "nameEn": "Gin Savoy",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.55,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "dzhin_savoy_pink",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "savoy_pink",
+    "variant": "dzhin",
+    "nameBg": "ДЖИН SAVOY PINK",
+    "nameEn": "Gin Savoy Pink",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.55,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "rom_savoy",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "savoy",
+    "variant": "rom",
+    "nameBg": "РОМ SAVOY",
+    "nameEn": "Rum Savoy",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.55,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "rom_atlantic",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "atlantic",
+    "variant": "rom",
+    "nameBg": "РОМ ATLANTIC",
+    "nameEn": "Rum Atlantic",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.55,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "tekila_savoy",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "savoy",
+    "variant": "tekila",
+    "nameBg": "ТЕКИЛА SAVOY",
+    "nameEn": "Tequila Savoy",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.55,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "mastika",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": null,
+    "variant": null,
+    "nameBg": "МАСТИКА",
+    "nameEn": "Mastika",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.55,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "devin_1500",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Devin",
+    "variant": null,
+    "nameBg": "ИЗВОРНА ВОДА ДЕВИН",
+    "nameEn": "Devin Spring Water",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.55,
+    "quantity": 1500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "frappe_cherno",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ФРАПЕ ЧЕРНО",
+    "nameEn": "Black Frappe",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.8,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "cappy_orange",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Cappy",
+    "variant": "Orange",
+    "nameBg": "CAPPY ПОРТОКАЛ",
+    "nameEn": "Cappy Orange",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.9,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "cappy_apple",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Cappy",
+    "variant": "Apple",
+    "nameBg": "CAPPY ЯБЪЛКА",
+    "nameEn": "Cappy Apple",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.9,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "cappy_peach",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Cappy",
+    "variant": "Peach",
+    "nameBg": "CAPPY ПРАСКОВА",
+    "nameEn": "Cappy Peach",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.9,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "studenchay",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": null,
+    "variant": null,
+    "nameBg": "СТУДЕН ЧАЙ",
+    "nameEn": "Iced Tea",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.9,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "lava_lampa",
+    "category": "drinks",
+    "subcategory": "shots",
+    "brand": "lampa",
+    "variant": "lava",
+    "nameBg": "ЛАВА ЛАМПА",
+    "nameEn": "Lava Lamp",
+    "descriptionBg": "БЕЙЛИС, ЛИКЬОР ПРАСКОВА, ГРЕНАДИН",
+    "descriptionEn": "Baileys, peach liqueur, grenadine",
+    "priceEur": 2.0,
+    "quantity": 25.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,shot"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "viensko_kafe",
+    "category": "drinks",
+    "subcategory": "coffee",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ВИЕНСКО КАФЕ",
+    "nameEn": "Viennese Coffee",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.0,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "goresht_shokolad",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ГОРЕЩ ШОКОЛАД",
+    "nameEn": "Hot Chocolate",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.0,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "coca_cola",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Coca Cola",
+    "variant": "Classic",
+    "nameBg": "COCA COLA",
+    "nameEn": "Coca Cola",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "fanta",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Fanta",
+    "variant": "Orange",
+    "nameBg": "FANTA",
+    "nameEn": "Fanta",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "sprite",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Sprite",
+    "variant": "Lemon-Lime",
+    "nameBg": "SPRITE",
+    "nameEn": "Sprite",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "schweppes",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Schweppes",
+    "variant": "Tonic",
+    "nameBg": "SCHWEPPES",
+    "nameEn": "Schweppes Tonic",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "vodka_absolut",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "absolut",
+    "variant": "vodka",
+    "nameBg": "ВОДКА ABSOLUT",
+    "nameEn": "Vodka Absolut",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.05,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "kapuchino",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": null,
+    "variant": null,
+    "nameBg": "КАПУЧИНО",
+    "nameEn": "Cappuccino",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.1,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "mlyako_nes",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": "Nescafe",
+    "variant": null,
+    "nameBg": "МЛЯКО С НЕС КАФЕ",
+    "nameEn": "Milk with Nescafe",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.1,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "mlyako_kakao",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": null,
+    "variant": null,
+    "nameBg": "МЛЯКО С КАКАО",
+    "nameEn": "Milk with Cocoa",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.1,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "frappe_byalo",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ФРАПЕ БЯЛО",
+    "nameEn": "White Frappe",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.1,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "uiski_johnnie_walker",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "johnnie_walker",
+    "variant": "uiski",
+    "nameBg": "УИСКИ JOHNNIE WALKER",
+    "nameEn": "Whisky Johnnie Walker",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.3,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "vodka_finlandia",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "finlandia",
+    "variant": "vodka",
+    "nameBg": "ВОДКА FINLANDIA",
+    "nameEn": "Vodka Finlandia",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.3,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "vodka_russian_standard",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "russian_standard",
+    "variant": "vodka",
+    "nameBg": "ВОДКА RUSSIAN STANDARD",
+    "nameEn": "Vodka Russian Standard",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.3,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "dzhin_gordons",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "gordons",
+    "variant": "dzhin",
+    "nameBg": "ДЖИН GORDON*S",
+    "nameEn": "Gin Gordon's",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.3,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "rom_bacardi",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "bacardi",
+    "variant": "rom",
+    "nameBg": "РОМ BACARDI",
+    "nameEn": "Rum Bacardi",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.3,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "rakiya_troyanska_slivova_otlezhala",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "troyanska_slivova_otlezhala",
+    "variant": "rakiya",
+    "nameBg": "РАКИЯ ТРОЯНСКА СЛИВОВА ОТЛЕЖАЛA",
+    "nameEn": "Rakia Troyan Plum Brandy, Aged",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.3,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "aperol",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": null,
+    "variant": null,
+    "nameBg": "АПЕРОЛ",
+    "nameEn": "Aperol",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.3,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "likyor_jagermeister",
+    "category": "drinks",
+    "subcategory": "shots",
+    "brand": "jagermeister",
+    "variant": "likyor",
+    "nameBg": "ЛИКЬОР JAGERMEISTER",
+    "nameEn": "Liqueur Jägermeister",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.3,
+    "quantity": 25.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,shot"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "barban_jim_beam",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "jim_beam",
+    "variant": "barban",
+    "nameBg": "БЪРБЪН JIM BEAM",
+    "nameEn": "Bourbon Jim Beam",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.4,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "barban_four_roses",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "four_roses",
+    "variant": "barban",
+    "nameBg": "БЪРБЪН FOUR ROSES",
+    "nameEn": "Bourbon Four Roses",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.4,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "uiski_bushmills",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "bushmills",
+    "variant": "uiski",
+    "nameBg": "УИСКИ BUSHMILLS",
+    "nameEn": "Whisky Bushmills",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.4,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "uiski_jameson",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "jameson",
+    "variant": "uiski",
+    "nameBg": "УИСКИ JAMESON",
+    "nameEn": "Whisky Jameson",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.4,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "rom_captain_morgan",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "captain_morgan",
+    "variant": "rom",
+    "nameBg": "РОМ CAPTAIN MORGAN",
+    "nameEn": "Rum Captain Morgan",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.4,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "brendi_pliska",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "pliska",
+    "variant": "brendi",
+    "nameBg": "БРЕНДИ ПЛИСКА",
+    "nameEn": "Brandy Pliska",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.4,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "tekila_sierra",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "sierra",
+    "variant": "tekila",
+    "nameBg": "ТЕКИЛА SIERRA",
+    "nameEn": "Tequila Sierra",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.4,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "uzo",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "plumari",
+    "variant": "uzo",
+    "nameBg": "УЗО",
+    "nameEn": "Ouzo",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.4,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "rakiya_burgas_63",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "burgas_63",
+    "variant": "rakiya",
+    "nameBg": "РАКИЯ БУРГАС 63",
+    "nameEn": "Rakia Burgas 63",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.45,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "fastatsi",
+    "category": "food",
+    "subcategory": "alcoholic",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Фъстъци",
+    "nameEn": "Peanuts",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.5,
+    "quantity": 100.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,nuts"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "rom_malibu",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "malibu",
+    "variant": "rom",
+    "nameBg": "РОМ МАЛИБУ",
+    "nameEn": "Rum Malibu",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.55,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "likyor_baileys",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "baileys",
+    "variant": "likyor",
+    "nameBg": "ЛИКЬОР BAILEY*S",
+    "nameEn": "Liqueur Bailey's",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.6,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "dzhin_tanqueray",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "tanqueray",
+    "variant": "dzhin",
+    "nameBg": "ДЖИН TANQUERAY",
+    "nameEn": "Gin Tanqueray",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 2.7,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "absent",
+    "category": null,
+    "subcategory": "alcoholic",
+    "brand": null,
+    "variant": null,
+    "nameBg": "АБСЕНТ",
+    "nameEn": "Absinthe",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.0,
+    "quantity": 25.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,shot"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "stella_artois_500",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "stella_artois",
+    "variant": "pale_lager",
+    "nameBg": "STELLA ARTOIS 500ml",
+    "nameEn": "Stella Artois 500ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.0,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "staropramen_500",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "staropramen",
+    "variant": "pale_lager",
+    "nameBg": "STAROPRAMEN 500ml",
+    "nameEn": "Staropramen 500ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.0,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "heineken_00_330",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "heineken",
+    "variant": "drinks",
+    "nameBg": "HEINEKEN 0.0% Безалкохолна 330ml",
+    "nameEn": "Heineken 0.0% Non-alcoholic 330ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol,non-alcoholic"
+    ]
+  },
+  {
+    "id": "heineken_330",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "heineken",
+    "variant": "pale_lager",
+    "nameBg": "HEINEKEN 330ml",
+    "nameEn": "Heineken 330ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "draft_beer_500",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "nalivna",
+    "variant": "draft",
+    "nameBg": "Наливна бира 500ml",
+    "nameEn": "Draft beer 500ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.0,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "limonada",
+    "category": "drinks",
+    "subcategory": "soft_drinks",
+    "brand": "homemade",
+    "variant": "limonada",
+    "nameBg": "Лимонада",
+    "nameEn": "Lemonade",
+    "descriptionBg": "Бъз, лимон и др.",
+    "descriptionEn": "Elderflower, lemon, etc.",
+    "priceEur": 3.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,soft_drink"
+    ]
+  },
+  {
+    "id": "glarus_500",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "glarus",
+    "variant": "pale_lager",
+    "nameBg": "GLARUS 500ml",
+    "nameEn": "Glarus 500ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.1,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "brusketi_s_motsarela",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Брускети с моцарела",
+    "nameEn": "Bruschetta with Mozzarella",
+    "descriptionBg": "хляб, моцарела, маслини",
+    "descriptionEn": "bread, mozzarella, olives",
+    "priceEur": 3.3,
+    "quantity": 200.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "1,7"
+    ]
+  },
+  {
+    "id": "irlandsko_kafe",
+    "category": "drinks",
+    "subcategory": "hot_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Ирландско кафе",
+    "nameEn": "Irish Coffee",
+    "descriptionBg": "уиски, кафе, бита сметана",
+    "descriptionEn": "whisky, coffee, whipped cream",
+    "priceEur": 3.3,
+    "quantity": 150.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,hot_cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "frensko_kafe",
+    "category": "drinks",
+    "subcategory": "hot_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Френско кафе",
+    "nameEn": "French Coffee",
+    "descriptionBg": "бренди, кафе, бита сметана",
+    "descriptionEn": "brandy, coffee, whipped cream",
+    "priceEur": 3.3,
+    "quantity": 150.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,hot_cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "glarus_pale_ale",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "glarus",
+    "variant": "pale_ale",
+    "nameBg": "Бира Гларус Пейл Йейл",
+    "nameEn": "Beer Glarus Pale Ale",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.3,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "glarus_english_ale",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "glarus",
+    "variant": "english_ale",
+    "nameBg": "Бира Гларус Английски Йейл",
+    "nameEn": "Beer Glarus English Ale",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.3,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "glarus_signature_black_sea_ipa",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "glarus",
+    "variant": "black_sea_ipa",
+    "nameBg": "Бира Гларус Индийски Светъл Ейл",
+    "nameEn": "Beer Glarus Signature Black Sea IPA",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.3,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "glarus_signature_saison",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "glarus",
+    "variant": "signature_saison",
+    "nameBg": "Бира Гларус Белгийски Йейл",
+    "nameEn": "Beer Glarus Signature Saison",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.3,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "glarus_signature_squirrel_hop",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "glarus",
+    "variant": "signature_squirrel_hop",
+    "nameBg": "Бира Гларус Тъмен Йейл",
+    "nameEn": "Beer Glarus Signature Hazelnut Brown Ale",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.3,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "glarus_dubbel",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "glarus",
+    "variant": "dubbel",
+    "nameBg": "Бира Гларус Абтски Йейл",
+    "nameEn": "Beer Glarus Dubbel",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.3,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "glarus_porter",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "glarus",
+    "variant": "porter",
+    "nameBg": "Бира Гларус Тъмен Потър",
+    "nameEn": "Beer Glarus Porter",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.3,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "uiski_black_bush",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "black_bush",
+    "variant": "uiski",
+    "nameBg": "УИСКИ BLACK BUSH",
+    "nameEn": "Whisky Black Bush",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.4,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "bademi",
+    "category": "food",
+    "subcategory": "nuts",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Бадеми",
+    "nameEn": "Almonds",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.5,
+    "quantity": 70.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,nuts"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "kashu",
+    "category": "food",
+    "subcategory": "nuts",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Кашу",
+    "nameEn": "Cashews",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.5,
+    "quantity": 70.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,nuts"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "leshnitsi",
+    "category": "food",
+    "subcategory": "nuts",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Лешници",
+    "nameEn": "Hazelnuts",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.5,
+    "quantity": 70.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,nuts"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "trayfal",
+    "category": "food",
+    "subcategory": "desserts",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Трайфъл",
+    "nameEn": "Trifle",
+    "descriptionBg": "бисквити, масло, прясно мляко, плодове, ядки",
+    "descriptionEn": "biscuits, butter, fresh milk, fruits, nuts",
+    "priceEur": 3.5,
+    "quantity": 180.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,dessert"
+    ],
+    "allergens": [
+      "1,3,7,8"
+    ]
+  },
+  {
+    "id": "parzheni_kartofi",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Пържени картофи",
+    "nameEn": "Fried Potatoes",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.6,
+    "quantity": 300.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "uiski_jack_daniels",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "jack_daniels",
+    "variant": "uiski",
+    "nameBg": "УИСКИ JACK DANIEL*S",
+    "nameEn": "Whisky Jack Daniel's",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.6,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "beton",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Бетон",
+    "nameEn": "Beton (Concrete)",
+    "descriptionBg": "водка, ликьор портокал, сироп виолетка, сметана, гренадин",
+    "descriptionEn": "vodka, orange liqueur, violet syrup, cream, grenadine",
+    "priceEur": 3.6,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": [
+      "7"
+    ]
+  },
+  {
+    "id": "byal_shum",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Бял шум",
+    "nameEn": "White Noise",
+    "descriptionBg": "водка ванилия, мастика, сироп бъз, сок ананас, сок лимон",
+    "descriptionEn": "vanilla vodka, mastika, elderflower syrup, pineapple juice, lemon juice",
+    "priceEur": 3.6,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "bladi_meri",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Блъди Мери",
+    "nameEn": "Bloody Mary",
+    "descriptionBg": "водка, сок домат, сок лимон, табаско, сос уорчестър, подправки",
+    "descriptionEn": "vodka, tomato juice, lemon juice, tabasco, worcestershire sauce, spices",
+    "priceEur": 3.6,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": [
+      "1,9"
+    ]
+  },
+  {
+    "id": "v_dzhaza",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "В джаза",
+    "nameEn": "In the Jazz",
+    "descriptionBg": "джин, сироп бъз, сок лимон, газирана вода",
+    "descriptionEn": "gin, elderflower syrup, lemon juice, sparkling water",
+    "priceEur": 3.6,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "margarita",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Маргарита",
+    "nameEn": "Margarita",
+    "descriptionBg": "текила, ликьор портокал, сок лимон, захарен сироп",
+    "descriptionEn": "tequila, orange liqueur, lemon juice, sugar syrup",
+    "priceEur": 3.6,
+    "quantity": 150.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "yagodova_margarita",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Ягодова маргарита",
+    "nameEn": "Strawberry Margarita",
+    "descriptionBg": "текила, ликьор портокал, сироп ягода, сок лимон",
+    "descriptionEn": "tequila, orange liqueur, strawberry syrup, lemon juice",
+    "priceEur": 3.6,
+    "quantity": 150.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "tekila_sanrayz",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Текила Сънрайз",
+    "nameEn": "Tequila Sunrise",
+    "descriptionBg": "текила, ликьор портокал, сок портокал, сок лимон, гренадин",
+    "descriptionEn": "tequila, orange liqueur, orange juice, lemon juice, grenadine",
+    "priceEur": 3.6,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "kuba_libre",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Куба Либре",
+    "nameEn": "Cuba Libre",
+    "descriptionBg": "светъл ром, кока кола, сок лимон",
+    "descriptionEn": "white rum, Coca-Cola, lemon juice",
+    "priceEur": 3.6,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "mohito",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Мохито",
+    "nameEn": "Mojito",
+    "descriptionBg": "светъл ром, лайм, листа мента, кафява захар, газирана вода",
+    "descriptionEn": "white rum, lime, mint leaves, brown sugar, sparkling water",
+    "priceEur": 3.6,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "hyugo_shprits",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Хюго Шприц",
+    "nameEn": "Hugo Spritz",
+    "descriptionBg": "бяло вино, сироп бъз, газирана вода, мента, лимон",
+    "descriptionEn": "white wine, elderflower syrup, sparkling water, mint, lemon",
+    "priceEur": 3.6,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "sangriya_chervena",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Сангрия червена",
+    "nameEn": "Red Sangria",
+    "descriptionBg": "червено вино, плодове, бренди, газирана вода",
+    "descriptionEn": "red wine, fruits, brandy, sparkling water",
+    "priceEur": 3.6,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "sangriya_byala",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Сангрия бяла",
+    "nameEn": "White Sangria",
+    "descriptionBg": "бяло вино, ликьор портокал, газирана вода, плодове",
+    "descriptionEn": "white wine, orange liqueur, sparkling water, fruits",
+    "priceEur": 3.6,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "hrupkavi_tikvichki",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Хрупкави тиквички",
+    "nameEn": "Crispy Zucchini",
+    "descriptionBg": "тиквички, млечен сос, панировка",
+    "descriptionEn": "zucchini, cream sauce, breading",
+    "priceEur": 3.8,
+    "quantity": 300.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "1,3,7"
+    ]
+  },
+  {
+    "id": "kartofen_chips",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Картофен чипс",
+    "nameEn": "Potato Chips",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.8,
+    "quantity": 300.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "torta_lokum",
+    "category": "food",
+    "subcategory": "desserts",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Торта „Локум“",
+    "nameEn": "\"Lokum\" Cake",
+    "descriptionBg": "бисквити, маскарпоне, заквасена сметана, течен шоколад",
+    "descriptionEn": "biscuits, mascarpone, sour cream, liquid chocolate",
+    "priceEur": 3.8,
+    "quantity": 160.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,dessert"
+    ],
+    "allergens": [
+      "1,3,7,8"
+    ]
+  },
+  {
+    "id": "mimoza",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Мимоза",
+    "nameEn": "Mimosa",
+    "descriptionBg": "пенливо вино, сок портокал, гренадин",
+    "descriptionEn": "sparkling wine, orange juice, grenadine",
+    "priceEur": 3.8,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "mmmelba",
+    "category": "food",
+    "subcategory": "desserts",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Мммелба",
+    "nameEn": "Mmmelba",
+    "descriptionBg": "ванилов сладолед, пресни плодове, топинг ягода",
+    "descriptionEn": "vanilla ice cream, fresh fruits, strawberry topping",
+    "priceEur": 3.9,
+    "quantity": 270.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,dessert"
+    ],
+    "allergens": [
+      "1,3,7,8"
+    ]
+  },
+  {
+    "id": "pikantni_kartofi",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Пикантни картофи",
+    "nameEn": "Spicy Potatoes",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.0,
+    "quantity": 300.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "lokum",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Локум",
+    "nameEn": "Lokum (Turkish Delight)",
+    "descriptionBg": "водка, ликьор портокал, сироп роза, сироп кокос, сок ябълка, гренадин",
+    "descriptionEn": "vodka, orange liqueur, rose syrup, coconut syrup, apple juice, grenadine",
+    "priceEur": 4.0,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "seks_na_plazha",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Секс на плажа",
+    "nameEn": "Sex on the Beach",
+    "descriptionBg": "водка, ликьор праскова, ликьор портокал, сок портокал, сок лимон, гренадин",
+    "descriptionEn": "vodka, peach liqueur, orange liqueur, orange juice, lemon juice, grenadine",
+    "priceEur": 4.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "shtrudel",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Щрудел",
+    "nameEn": "Strudel",
+    "descriptionBg": "водка, сок зелена ябълка, водка ванилия, сок лимон, канела",
+    "descriptionEn": "vodka, green apple juice, vanilla vodka, lemon juice, cinnamon",
+    "priceEur": 4.0,
+    "quantity": 150.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "nudistki_plazh",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Нудистки плаж",
+    "nameEn": "Nudist Beach",
+    "descriptionBg": "водка, ром малибу, ликьор банан, ликьор портокал, сок ананас",
+    "descriptionEn": "vodka, Malibu rum, banana liqueur, orange liqueur, pineapple juice",
+    "priceEur": 4.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "hibiskus",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Хибискус",
+    "nameEn": "Hibiscus",
+    "descriptionBg": "водка, ликьор маракуя, сироп манго, сок портокал, гренадин",
+    "descriptionEn": "vodka, passion fruit liqueur, mango syrup, orange juice, grenadine",
+    "priceEur": 4.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "shtastliviya_papesh",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Щастливия пъпеш",
+    "nameEn": "Happy Melon",
+    "descriptionBg": "водка, ликьор пъпеш, ликьор портокал, сок ябълка",
+    "descriptionEn": "vodka, melon liqueur, orange liqueur, apple juice",
+    "priceEur": 4.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "abrakadabra",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Абракадабра",
+    "nameEn": "Abracadabra",
+    "descriptionBg": "тъмен ром, ликьор портокал, сироп кокос, сок ананас, сок лимон",
+    "descriptionEn": "dark rum, orange liqueur, coconut syrup, pineapple juice, lemon juice",
+    "priceEur": 4.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "aperol_shprits",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Аперол Шприц",
+    "nameEn": "Aperol Spritz",
+    "descriptionBg": "аперол, пенливо вино, газирана вода, резен портокал",
+    "descriptionEn": "Aperol, sparkling wine, sparkling water, orange slice",
+    "priceEur": 4.0,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "baunti",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Баунти",
+    "nameEn": "Bounty",
+    "descriptionBg": "бейлис, ром малибу, ликьор какао, прясно мляко",
+    "descriptionEn": "Baileys, Malibu rum, cacao liqueur, fresh milk",
+    "priceEur": 4.0,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": [
+      "7"
+    ]
+  },
+  {
+    "id": "kompot_ot_praskovi",
+    "category": "cocktails",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Компот от праскови",
+    "nameEn": "Peach Compote",
+    "descriptionBg": "бейлис, водка ванилия, ликьор праскова, сироп ягода, прясно мляко",
+    "descriptionEn": "Baileys, vanilla vodka, peach liqueur, strawberry syrup, fresh milk",
+    "priceEur": 4.0,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": [
+      "7"
+    ]
+  },
+  {
+    "id": "draft_glarus_330",
+    "category": "drinks",
+    "subcategory": "beer",
+    "brand": "nalivna_glarus",
+    "variant": "draft",
+    "nameBg": "Наливна бира GLARUS 330ml",
+    "nameEn": "Draft beer Glarus 330ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "wine_glass_chardonnay_200",
+    "category": "drinks",
+    "subcategory": "wine",
+    "brand": "cheval_de_catarzhina",
+    "variant": "chardonnay",
+    "nameBg": "Чаша вино Шардоне 200ml",
+    "nameEn": "Glass of wine Chardonnay 200ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.0,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "wine_glass_rose_200",
+    "category": "drinks",
+    "subcategory": "wine",
+    "brand": "cheval_de_catarzhina",
+    "variant": "rose",
+    "nameBg": "Чаша вино Розе 200ml",
+    "nameEn": "Glass of wine Rosé 200ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.0,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "wine_glass_merlot_200",
+    "category": "drinks",
+    "subcategory": "wine",
+    "brand": "cheval_de_catarzhina",
+    "variant": "merlot",
+    "nameBg": "Чаша вино Мерло 200ml",
+    "nameEn": "Glass of wine Merlot 200ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.0,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "mango_sunset",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "mango_sunset",
+    "nameBg": "Манго Сънсет",
+    "nameEn": "Mango Sunset",
+    "descriptionBg": "Сироп манго, портокалов сок, сода, лимон",
+    "descriptionEn": "Syrup mango, orange juice, soda, lemon",
+    "priceEur": 4.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,cocktail"
+    ]
+  },
+  {
+    "id": "fiji",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "fiji",
+    "nameBg": "Фиджи",
+    "nameEn": "Fiji",
+    "descriptionBg": "Сироп кокос, прясно мляко, ванилия, сладолед",
+    "descriptionEn": "Coconut syrup, fresh milk, vanilla, ice cream",
+    "priceEur": 4.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,cocktail"
+    ]
+  },
+  {
+    "id": "lokum_soft",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "lokum",
+    "nameBg": "Локум",
+    "nameEn": "Lokum",
+    "descriptionBg": "Сок лимон, сироп роза, сода, гренадин",
+    "descriptionEn": "Lemon juice, rose syrup, soda, grenadine",
+    "priceEur": 4.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,cocktail"
+    ]
+  },
+  {
+    "id": "tropikana",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "tropikana",
+    "nameBg": "Тропикана",
+    "nameEn": "Tropikana",
+    "descriptionBg": "Сироп манго, сироп кокос, сок ананас, сода",
+    "descriptionEn": "Mango syrup, coconut syrup, pineapple juice, soda",
+    "priceEur": 4.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,cocktail"
+    ]
+  },
+  {
+    "id": "vurtelezhka",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "vurtelezhka",
+    "nameBg": "Въртележка",
+    "nameEn": "Carousel",
+    "descriptionBg": "Портокалов сок, сироп ягода, сок лимон, гренадин",
+    "descriptionEn": "Orange juice, strawberry syrup, lemon juice, grenadine",
+    "priceEur": 4.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,cocktail"
+    ]
+  },
+  {
+    "id": "ice_nectar",
+    "category": "shakes",
+    "subcategory": "shakes",
+    "brand": "homemade",
+    "variant": "ice_nectar",
+    "nameBg": "Айс Нектар",
+    "nameEn": "Ice Nectar",
+    "descriptionBg": "Натурален сок, сладолед",
+    "descriptionEn": "Natural juice, ice cream",
+    "priceEur": 4.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,shake"
+    ]
+  },
+  {
+    "id": "milk_shake",
+    "category": "shakes",
+    "subcategory": "shakes",
+    "brand": "homemade",
+    "variant": "milk_shake",
+    "nameBg": "Млечен шейк",
+    "nameEn": "Milk Shake",
+    "descriptionBg": "Мляко, сладолед",
+    "descriptionEn": "Milk, ice cream",
+    "priceEur": 4.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,shake"
+    ]
+  },
+  {
+    "id": "parzheni_kartofi_sas_sirene",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Пържени картофи със сирене",
+    "nameEn": "Fried Potatoes with Cheese",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.1,
+    "quantity": 350.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "brusketi_s_proshuto",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Брускети с прошуто",
+    "nameEn": "Bruschetta with Prosciutto",
+    "descriptionBg": "хляб, крема сирене, домат, песто, балсамова редукция",
+    "descriptionEn": "bread, cream cheese, tomato, pesto, balsamic reduction",
+    "priceEur": 4.1,
+    "quantity": 260.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "1,7"
+    ]
+  },
+  {
+    "id": "shoko_shok",
+    "category": "food",
+    "subcategory": "desserts",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Шоко Шок",
+    "nameEn": "Choco Shock",
+    "descriptionBg": "шоколадов сладолед, банан, лешници, шоколадов топинг, вафлени рулца",
+    "descriptionEn": "chocolate ice cream, banana, hazelnuts, chocolate topping, wafer rolls",
+    "priceEur": 4.1,
+    "quantity": 270.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,dessert"
+    ],
+    "allergens": [
+      "1,3,7,8"
+    ]
+  },
+  {
+    "id": "sar_tikvenik",
+    "category": "drinks",
+    "subcategory": "alcoholic_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Сър Тиквеник",
+    "nameEn": "Sir Pumpkin Pie",
+    "descriptionBg": "бърбън, сироп тиква, ликьор куантро, сироп шафран, сок ябълка",
+    "descriptionEn": "bourbon, pumpkin syrup, Cointreau liqueur, saffron syrup, apple juice",
+    "priceEur": 4.1,
+    "quantity": 250.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "uiski_chivas",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "chivas",
+    "variant": "uiski",
+    "nameBg": "УИСКИ CHIVAS",
+    "nameEn": "Whisky Chivas",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.35,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "pepel_ot_rozi",
+    "category": "drinks",
+    "subcategory": "shots",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ПЕПЕЛ ОТ РОЗИ",
+    "nameEn": "Ashes of Roses",
+    "descriptionBg": "ВОДКА, ЛИКЬОР ПРАСКОВА, СИРОП РОЗА, СОК ЛИМОН, СОК АНАНАС, ГРЕНАДИН",
+    "descriptionEn": "vodka, peach liqueur, rose syrup, lemon juice, pineapple juice, grenadine",
+    "priceEur": 4.35,
+    "quantity": 300.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "sutlyash",
+    "category": "drinks",
+    "subcategory": "shots",
+    "brand": null,
+    "variant": null,
+    "nameBg": "СУТЛЯШ",
+    "nameEn": "Sutlyash (Rice Pudding)",
+    "descriptionBg": "БЯЛ РОМ, ВОДКА ВАНИЛИЯ, ЛИКЬОР КАКАО, ПРЯСНО МЛЯКО",
+    "descriptionEn": "white rum, vanilla vodka, cacao liqueur, fresh milk",
+    "priceEur": 4.35,
+    "quantity": 300.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "tropicheska_vlaga",
+    "category": "drinks",
+    "subcategory": "shots",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ТРОПИЧЕСКА ВЛАГА",
+    "nameEn": "Tropical Moisture",
+    "descriptionBg": "ВОДКА, СИНЬО КЮРАСО, ЛИКЬОР МАРАКУЯ, СИРОП МАНГО, СОК ПОРТОКАЛ, ЛИКЬОР ПОРТОКАЛ",
+    "descriptionEn": "vodka, blue curacao, passion fruit liqueur, mango syrup, orange juice, orange liqueur",
+    "priceEur": 4.4,
+    "quantity": 300.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "mehlem",
+    "category": "drinks",
+    "subcategory": "shots",
+    "brand": null,
+    "variant": null,
+    "nameBg": "МЕХЛЕМ",
+    "nameEn": "Balm",
+    "descriptionBg": "ВОДКА, ЛИКЬОР ПЪПЕШ, ЛИКЬОР КОКОС, СОК ЗЕЛЕНА ЯБЪЛКА",
+    "descriptionEn": "vodka, melon liqueur, coconut liqueur, green apple juice",
+    "priceEur": 4.4,
+    "quantity": 300.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "tortila_sandvich_s_pileshko",
+    "category": "food",
+    "subcategory": "sandwiches",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Тортила сандвич с пилешко",
+    "nameEn": "Tortilla Sandwich with Chicken",
+    "descriptionBg": "панирано пилешко филе, крема сирене, пържени картофи, айсберг, домат, млечен сос",
+    "descriptionEn": "breaded chicken fillet, cream cheese, french fries, iceberg lettuce, tomato, cream sauce",
+    "priceEur": 4.4,
+    "quantity": 300.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,sandwich"
+    ],
+    "allergens": [
+      "1,3,7"
+    ]
+  },
+  {
+    "id": "brendi_hennessy",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "hennessy",
+    "variant": "brendi",
+    "nameBg": "БРЕНДИ HENNESSY",
+    "nameEn": "Brandy Hennessy",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.55,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "patatas_bravas",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Пататас бравас",
+    "nameEn": "Patatas Bravas",
+    "descriptionBg": "пресни картофи, млечен сос, кетчуп",
+    "descriptionEn": "fresh potatoes, cream sauce, ketchup",
+    "priceEur": 4.6,
+    "quantity": 300.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "3,7"
+    ]
+  },
+  {
+    "id": "panirani_topeni_sirentsa_sas_sladko_ot_borovinki",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Панирани топени сиренца със сладко от боровинки",
+    "nameEn": "Breaded Melted Cheese with Blueberry Jam",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.9,
+    "quantity": 230.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "3,7"
+    ]
+  },
+  {
+    "id": "tortila_sandvich_sas_sirena",
+    "category": "food",
+    "subcategory": "sandwiches",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Тортила сандвич със сирена",
+    "nameEn": "Tortilla Sandwich with Cheeses",
+    "descriptionBg": "тортила, моцарела, чедър, крема сирене, сушен домат, маслини, айсберг, кетчуп, майонеза",
+    "descriptionEn": "tortilla, mozzarella, cheddar, cream cheese, sun-dried tomato, olives, iceberg lettuce, ketchup, mayonnaise",
+    "priceEur": 4.9,
+    "quantity": 280.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,sandwich"
+    ],
+    "allergens": [
+      "1,3,7"
+    ]
+  },
+  {
+    "id": "shake_shoko_cookie",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "shake_shoko_cookie",
+    "nameBg": "Шейк Шоко-Кукис",
+    "nameEn": "Shake Choco-Cookie",
+    "descriptionBg": "Сироп шоколад, бисквитка, мляко, сладолед",
+    "descriptionEn": "Chocolate syrup, biscuit, milk, ice cream",
+    "priceEur": 5.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,shake"
+    ]
+  },
+  {
+    "id": "chokofredo",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "chokofredo",
+    "nameBg": "Чокофредо",
+    "nameEn": "Chokofredo",
+    "descriptionBg": "Мляко, шоколад, сладолед",
+    "descriptionEn": "Milk, chocolate, ice cream",
+    "priceEur": 5.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,shake"
+    ]
+  },
+  {
+    "id": "borovinkov_oblak",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "borovinkov_oblak",
+    "nameBg": "Боровинков облак",
+    "nameEn": "Blueberry Cloud",
+    "descriptionBg": "Мляко, банан, боровинки",
+    "descriptionEn": "Milk, banana, blueberries",
+    "priceEur": 5.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,shake"
+    ]
+  },
+  {
+    "id": "memphis",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "memphis",
+    "nameBg": "Мемфис",
+    "nameEn": "Memphis",
+    "descriptionBg": "Банан, какао, мляко",
+    "descriptionEn": "Banana, cocoa, milk",
+    "priceEur": 5.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,shake"
+    ]
+  },
+  {
+    "id": "yagodov_gruuv",
+    "category": "drinks",
+    "subcategory": "non-alcoholic_cocktails_and_shakes",
+    "brand": "homemade",
+    "variant": "yagodov_gruuv",
+    "nameBg": "Ягодов Груув",
+    "nameEn": "Berry Groove",
+    "descriptionBg": "Ягоди, мляко, сладолед",
+    "descriptionEn": "Strawberries, milk, ice cream",
+    "priceEur": 5.0,
+    "quantity": 330.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "non-alcoholic,shake"
+    ]
+  },
+  {
+    "id": "panirani_kashkavalcheta",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Панирани кашкавалчета",
+    "nameEn": "Breaded Kashkaval Sticks",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 5.4,
+    "quantity": 220.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "3,7"
+    ]
+  },
+  {
+    "id": "hrupkavi_pileshki_filentsa_s_mlechen_sos",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Хрупкави пилешки филенца с млечен сос",
+    "nameEn": "Crispy Chicken Fillets with Cream Sauce",
+    "descriptionBg": "панирани пилешки филенца, кисело мляко, майонеза",
+    "descriptionEn": "breaded chicken fillets, yogurt, mayonnaise",
+    "priceEur": 5.6,
+    "quantity": 300.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "1,3,7"
+    ]
+  },
+  {
+    "id": "kashkavaleni_bonboni_malkiya_muk",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Кашкавалени бонбони „Малкия Мук“",
+    "nameEn": "\"Little Muk\" Kashkaval Bonbons",
+    "descriptionBg": "кашкавал, сушени плодове, орехи",
+    "descriptionEn": "kashkaval cheese, dried fruits, walnuts",
+    "priceEur": 6.0,
+    "quantity": 240.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "7,8"
+    ]
+  },
+  {
+    "id": "salata_buratina",
+    "category": "food",
+    "subcategory": "salads",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Салата Буратина",
+    "nameEn": "Burrata Salad",
+    "descriptionBg": "рукола, домат, бурата, нектарини, орехи, балсамова редукция",
+    "descriptionEn": "arugula, tomato, burrata, nectarines, walnuts, balsamic reduction",
+    "priceEur": 6.0,
+    "quantity": 330.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,salad"
+    ],
+    "allergens": [
+      "7,8"
+    ]
+  },
+  {
+    "id": "burger_lokum",
+    "category": "food",
+    "subcategory": "sandwiches",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Бургер Локум",
+    "nameEn": "Burger Lokum",
+    "descriptionBg": "телешко кюфте, чедър, бургер сос, айсберг, хлебче, пържени картофи",
+    "descriptionEn": "beef patty, cheddar, burger sauce, iceberg lettuce, bun, french fries",
+    "priceEur": 6.4,
+    "quantity": 400.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,sandwich"
+    ],
+    "allergens": [
+      "1,3,7"
+    ]
+  },
+  {
+    "id": "karotki",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Каротки",
+    "nameEn": "Carrot Croquettes",
+    "descriptionBg": "моркови, царевично брашно, лук, подправки",
+    "descriptionEn": "carrots, corn flour, onion, spices",
+    "priceEur": 6.5,
+    "quantity": 250.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "1,7"
+    ]
+  },
+  {
+    "id": "zelen_shum",
+    "category": "food",
+    "subcategory": "salads",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Зелен шум",
+    "nameEn": "Green Noise",
+    "descriptionBg": "айсберг, салата микс, чери домат, портокалови корички, орехи, прошуто, пармезан",
+    "descriptionEn": "iceberg lettuce, mixed greens, cherry tomatoes, orange zest, walnuts, prosciutto, parmesan",
+    "priceEur": 7.5,
+    "quantity": 330.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,salad"
+    ],
+    "allergens": [
+      "7,8,10"
+    ]
+  },
+  {
+    "id": "zapecheni_bekonovi_rulentsa",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Запечени беконови руленца",
+    "nameEn": "Baked Bacon Rolls",
+    "descriptionBg": "бекон, сушени фурми, крема сирене, орехи, мед",
+    "descriptionEn": "bacon, dried dates, cream cheese, walnuts, honey",
+    "priceEur": 7.9,
+    "quantity": 300.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "7,8"
+    ]
+  },
+  {
+    "id": "rulentsa_narniya",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Руленца Нарния",
+    "nameEn": "Narnia Rolls",
+    "descriptionBg": "хамон, сушен домат, моцарела, рукола, сос от нар",
+    "descriptionEn": "ham, sun-dried tomato, mozzarella, arugula, pomegranate sauce",
+    "priceEur": 9.5,
+    "quantity": 250.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "7"
+    ]
+  },
+  {
+    "id": "cheval_chardonnay_750",
+    "category": "drinks",
+    "subcategory": "wine",
+    "brand": "cheval_de_catarzhina",
+    "variant": "chardonnay",
+    "nameBg": "ШЕВАЛ ДЕ КАТАРЖИНА Шардоне 750ml",
+    "nameEn": "Cheval de Catarzhina Chardonnay 750ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 12.0,
+    "quantity": 750.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "cheval_rose_750",
+    "category": "drinks",
+    "subcategory": "wine",
+    "brand": "cheval_de_catarzhina",
+    "variant": "rose",
+    "nameBg": "ШЕВАЛ ДЕ КАТАРЖИНА Розе 750ml",
+    "nameEn": "Cheval de Catarzhina Rosé 750ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 12.0,
+    "quantity": 750.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "cheval_merlot_750",
+    "category": "drinks",
+    "subcategory": "wine",
+    "brand": "cheval_de_catarzhina",
+    "variant": "merlot",
+    "nameBg": "ШЕВАЛ ДЕ КАТАРЖИНА Мерло 750ml",
+    "nameEn": "Cheval de Catarzhina Merlot 750ml",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 12.0,
+    "quantity": 750.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": false,
+    "tags": [
+      "True"
+    ],
+    "allergens": [
+      "alcohol"
+    ]
+  },
+  {
+    "id": "brusketi_sas_syomga",
+    "category": "food",
+    "subcategory": "a_la_minute_dishes",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Брускети със сьомга",
+    "nameEn": "Bruschetta with Salmon",
+    "descriptionBg": "хляб, пушена сьомга, крема сирене, лук, кисела краставичка",
+    "descriptionEn": "bread, smoked salmon, cream cheese, onion, pickled cucumber",
+    "priceEur": null,
+    "quantity": 200.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,appetizer"
+    ],
+    "allergens": [
+      "1,4,7"
+    ]
+  },
+  {
+    "id": "vermut_martini",
+    "category": "drinks",
+    "subcategory": "alcoholic",
+    "brand": "martini",
+    "variant": "vermut",
+    "nameBg": "ВЕРМУТ MARTINI",
+    "nameEn": "Vermouth Martini",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": null,
+    "quantity": 50.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,spirit"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "big_mak_takos",
+    "category": "food",
+    "subcategory": "sandwiches",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Биг Мак Такос",
+    "nameEn": "Big Mac Tacos",
+    "descriptionBg": "тортила, кайма, чедър, кетчуп, майонеза, горчица, кисели краставички, айсберг",
+    "descriptionEn": "tortilla, ground beef, cheddar, ketchup, mayonnaise, mustard, pickles, iceberg lettuce",
+    "priceEur": null,
+    "quantity": 300.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,sandwich"
+    ],
+    "allergens": [
+      "1,3,7,10"
+    ]
+  },
+  {
+    "id": "tortila_sandvich_s_teleshko_kyufte",
+    "category": "food",
+    "subcategory": "sandwiches",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Тортила сандвич с телешко кюфте",
+    "nameEn": "Tortilla Sandwich with Beef Patty",
+    "descriptionBg": "тортила, чедър, айсберг, майонеза, кетчуп, горчица, кисели краставички",
+    "descriptionEn": "tortilla, cheddar, iceberg lettuce, mayonnaise, ketchup, mustard, pickles",
+    "priceEur": null,
+    "quantity": 280.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,sandwich"
+    ],
+    "allergens": [
+      "1,3,7,10"
+    ]
+  },
+  {
+    "id": "tortila_sandvich_s_riba_ton",
+    "category": "food",
+    "subcategory": "sandwiches",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Тортила сандвич с риба тон",
+    "nameEn": "Tortilla Sandwich with Tuna",
+    "descriptionBg": "тортила, риба тон, царевица, лук, млечен сос, горчица, айсберг",
+    "descriptionEn": "tortilla, tuna, corn, onion, cream sauce, mustard, iceberg lettuce",
+    "priceEur": null,
+    "quantity": 280.0,
+    "unit": "g",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "food,sandwich"
+    ],
+    "allergens": [
+      "1,3,4,7,10"
+    ]
+  },
+  {
+    "id": "beylis_kafe",
+    "category": "drinks",
+    "subcategory": "hot_cocktails",
+    "brand": null,
+    "variant": null,
+    "nameBg": "Бейлис кафе",
+    "nameEn": "Baileys Coffee",
+    "descriptionBg": "бейлис, кафе, бита сметана",
+    "descriptionEn": "Baileys, coffee, whipped cream",
+    "priceEur": 3.3,
+    "quantity": 150.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [
+      "alcohol,hot_cocktail"
+    ],
+    "allergens": []
+  },
+  {
+    "id": "late",
+    "category": "drinks",
+    "subcategory": "invigorating_drinks",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ЛАТЕ",
+    "nameEn": "Latte",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 3.1,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "chasha_mlyako",
+    "category": "drinks",
+    "subcategory": "other",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ЧАША МЛЯКО",
+    "nameEn": "Glass of Milk",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.8,
+    "quantity": null,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "kanichka_prysno_mlyko",
+    "category": "drinks",
+    "subcategory": "other",
+    "brand": null,
+    "variant": null,
+    "nameBg": "КАНИЧКА ПРЯСНО МЛЯКО",
+    "nameEn": "Jar of fresh milk",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 0.35,
+    "quantity": null,
+    "unit": null,
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "devin_500",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": "Devin",
+    "variant": null,
+    "nameBg": "ИЗВОРНА ВОДА ДЕВИН",
+    "nameEn": "Devin Spring Water",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 1.0,
+    "quantity": 500.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  },
+  {
+    "id": "fresh",
+    "category": "drinks",
+    "subcategory": "non-alcoholic",
+    "brand": null,
+    "variant": null,
+    "nameBg": "ФРЕШ",
+    "nameEn": "Fresh Juice",
+    "descriptionBg": null,
+    "descriptionEn": null,
+    "priceEur": 4.1,
+    "quantity": 200.0,
+    "unit": "ml",
+    "image": null,
+    "featured": false,
+    "isNew": false,
+    "isRecommended": false,
+    "available": true,
+    "tags": [],
+    "allergens": [
+      "drinks,drinks"
+    ]
+  }
+]
