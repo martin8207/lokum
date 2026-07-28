@@ -71,6 +71,10 @@ class MenuService {
     return null;
   }
 
+  /// Локализирано име на алерген по код, напр. "7" -> "Мляко" / "Milk".
+  String allergenName(String code, AppLang lang) =>
+      menu.allergenName(code, lang);
+
   /// Прост текстов търсач по локализирано име (case-insensitive).
   List<Product> searchProducts(String query, AppLang lang) {
     final q = query.trim().toLowerCase();

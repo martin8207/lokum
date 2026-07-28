@@ -40,8 +40,8 @@ CREATE TABLE "Product" (
     "isNew" BOOLEAN NOT NULL DEFAULT false,
     "isRecommended" BOOLEAN NOT NULL DEFAULT false,
     "available" BOOLEAN NOT NULL DEFAULT true,
-    "tags" TEXT,
-    "allergens" TEXT,
+    "tags" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+    "allergens" TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 

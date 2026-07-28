@@ -23,7 +23,7 @@ class Product {
   final String nameEn;
   final String? descriptionBg;
   final String? descriptionEn;
-  final double price;
+  final double priceEur;
   final double? quantity;
   final String? unit;
   final String image;
@@ -40,7 +40,7 @@ class Product {
     required this.subcategoryId,
     required this.nameBg,
     required this.nameEn,
-    required this.price,
+    required this.priceEur,
     required this.image,
     this.brand,
     this.variant,
@@ -66,12 +66,12 @@ class Product {
   }
 
   /// Форматирана цена, напр. "3.30 €".
-  String formattedPrice() => '${price.toStringAsFixed(2)} €';
+  String formattedPrice() => '${priceEur.toStringAsFixed(2)} €';
 
   /// Левова равностойност по фиксирания курс, напр. "6.46 лв.".
   /// Задължителна по закон като втора цена до края на периода на двойно
   /// обозначаване.
-  String formattedPriceBgn() => Currency.formattedBgn(price);
+  String formattedPriceBgn() => Currency.formattedBgn(priceEur);
 
   /// Порция/обем, напр. "500 ml" или "200 g". Null ако липсва.
   String? formattedQuantity() {
@@ -113,7 +113,7 @@ class Product {
       nameEn: json['nameEn'] as String? ?? '',
       descriptionBg: json['descriptionBg'] as String?,
       descriptionEn: json['descriptionEn'] as String?,
-      price: (json['price'] as num?)?.toDouble() ?? 0.0,
+      priceEur: (json['priceEur'] as num?)?.toDouble() ?? 0.0,
       quantity: (json['quantity'] as num?)?.toDouble(),
       unit: json['unit'] as String?,
       image: json['image'] as String? ?? '$id.webp',
@@ -194,26 +194,77 @@ class MenuCategory {
   }
 }
 
+/// Наименование на алерген (по числовия код от excel-а), за да не показваме
+/// голи числа на клиента. Идва от листа "allergens" в excel-а.
+class AllergenInfo {
+  final String id;
+  final String nameBg;
+  final String nameEn;
+  final String? descriptionBg;
+  final String? descriptionEn;
+
+  const AllergenInfo({
+    required this.id,
+    required this.nameBg,
+    required this.nameEn,
+    this.descriptionBg,
+    this.descriptionEn,
+  });
+
+  String name(AppLang lang) => lang == AppLang.bg ? nameBg : nameEn;
+
+  String? description(AppLang lang) {
+    final value = lang == AppLang.bg ? descriptionBg : descriptionEn;
+    return (value == null || value.isEmpty) ? null : value;
+  }
+
+  factory AllergenInfo.fromJson(Map<String, dynamic> json) {
+    final id = json['id'].toString();
+    return AllergenInfo(
+      id: id,
+      nameBg: json['nameBg'] as String? ?? id,
+      nameEn: json['nameEn'] as String? ?? id,
+      descriptionBg: json['descriptionBg'] as String?,
+      descriptionEn: json['descriptionEn'] as String?,
+    );
+  }
+}
+
 /// Целият, разпарснат menu.json.
 class Menu {
   final DateTime? generatedAt;
   final int productCount;
   final List<MenuCategory> categories;
+  final List<AllergenInfo> allergenLegend;
 
   const Menu({
     required this.categories,
     this.generatedAt,
     this.productCount = 0,
+    this.allergenLegend = const [],
   });
 
   factory Menu.fromJson(Map<String, dynamic> json) {
     final categoriesJson = (json['categories'] as List? ?? const []);
+    final allergenLegendJson = (json['allergenLegend'] as List? ?? const []);
     return Menu(
       generatedAt: DateTime.tryParse(json['generatedAt'] as String? ?? ''),
       productCount: json['productCount'] as int? ?? 0,
       categories: categoriesJson
           .map((e) => MenuCategory.fromJson(e as Map<String, dynamic>))
           .toList(),
+      allergenLegend: allergenLegendJson
+          .map((e) => AllergenInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
+  }
+
+  /// Локализирано име на алерген по неговия код, напр. "7" -> "Мляко".
+  /// Ако кодът липсва в легендата, връща самия код като fallback.
+  String allergenName(String code, AppLang lang) {
+    for (final a in allergenLegend) {
+      if (a.id == code) return a.name(lang);
+    }
+    return code;
   }
 }

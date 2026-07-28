@@ -8,7 +8,12 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-app.use("/health", healthRouter);
+// Caddy проксира /api/* тук с пълния префикс запазен (handle, не handle_path),
+// затова всички routes живеят под /api - виж root Caddyfile.
+const apiRouter = express.Router();
+apiRouter.use("/health", healthRouter);
+
+app.use("/api", apiRouter);
 
 app.listen(PORT, () => {
     console.log(`Lokum Server listening on port ${PORT}`);

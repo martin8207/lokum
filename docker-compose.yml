@@ -5,17 +5,16 @@ services:
     container_name: lokum-postgres
 
     environment:
-      POSTGRES_DB: lokum
-      POSTGRES_USER: lokum
-      POSTGRES_PASSWORD: lokum123
-
-    ports:
-      - "5432:5432"
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
     restart: unless-stopped
+    # Без публичен ports mapping - базата е достъпна само вътре в Docker мрежата.
+    # Ако ти трябва достъп освен за дебъг (напр. DBeaver), добави временно "5432:5432".
 
   lokum-server:
     build:
@@ -24,16 +23,75 @@ services:
 
     container_name: lokum-server
 
-    ports:
-      - "3000:3000"
+    environment:
+      # Построена от същите POSTGRES_* стойности по-горе - винаги в синхрон,
+      # без ръчно дублиране между .env файловете.
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
 
     env_file:
       - ./server/.env
+
+    volumes:
+      # Само за четене - позволява npm run seed да вижда винаги най-пресния
+      # menu.json (регенериран от tools/excel_to_json.py) без rebuild на образа.
+      - ./mobile/assets/data:/app/data:ro
 
     depends_on:
       - postgres
 
     restart: unless-stopped
+    # Без "ports" тук - Caddy е единствената входна точка освен.
+    # lokum-server е достъпен вътрешно през Docker DNS като "lokum-server:3000".
+
+  lokum-web:
+    build:
+      context: ./mobile
+      dockerfile: Dockerfile.web
+
+    container_name: lokum-web
+
+    restart: unless-stopped
+    # Flutter web build - изходът се копира в /srv вътре в тази стъпка (виж Dockerfile.web)
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: lokum-caddy
+
+    ports:
+      - "80:80"
+      - "443:443"
+
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
+    depends_on:
+      - lokum-server
+      - lokum-web
+
+    restart: unless-stopped
+
+  duckdns:
+    image: lscr.io/linuxserver/duckdns:latest
+    container_name: lokum-duckdns
+
+    env_file:
+      - .env   # <-- токенът се чете оттук (DUCKDNS_TOKEN=...), НЕ се пише директно тук
+
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Sofia
+      - SUBDOMAINS=lokum-shumen
+      - TOKEN=${DUCKDNS_TOKEN}
+      - LOG_FILE=false
+
+    restart: unless-stopped
+    # Този контейнер само обновява DuckDNS с текущия публичен IP на лаптопа на всеки 5 мин.
+    # Задължителен е, защото домашен/баращки интернет обикновено има динамичен IP.
 
 volumes:
   postgres_data:
+  caddy_data:
+  caddy_config:

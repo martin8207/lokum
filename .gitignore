@@ -1,0 +1,15 @@
+# --- Секрети (НИКОГА не се качват в git) ---
+.env
+.env.*
+!.env.example
+server/.env
+
+# --- Docker / данни ---
+postgres_data/
+
+# --- Flutter ---
+mobile/build/
+mobile/.dart_tool/
+
+# --- Node ---
+server/node_modules/

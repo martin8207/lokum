@@ -1,0 +1,13 @@
+lokum-shumen.duckdns.org {
+    # API заявките отиват към бекенда
+    handle /api/* {
+        reverse_proxy lokum-server:3000
+    }
+
+    # Всичко останало сервира Flutter web build-а
+    handle {
+        reverse_proxy lokum-web:80
+    }
+
+    encode gzip
+}

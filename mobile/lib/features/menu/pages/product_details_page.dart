@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/asset_paths.dart';
 import '../../../core/constants/schedule.dart';
+import '../../../core/services/menu_service.dart';
 import '../../../shared/models/product.dart';
 import '../../../shared/widgets/theme_toggle.dart';
 import '../widgets/schedule_banner.dart';
@@ -225,7 +226,11 @@ class ProductDetailsPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 6),
                 Text(
-                  product.allergens.join(', '),
+                  product.allergens
+                      .map(
+                        (code) => MenuService.instance.allergenName(code, lang),
+                      )
+                      .join(', '),
                   style: theme.textTheme.bodyMedium?.copyWith(
                     color: theme.hintColor,
                   ),

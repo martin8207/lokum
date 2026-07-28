@@ -215,7 +215,7 @@ def build_menu(df: pd.DataFrame) -> tuple[dict, list[str]]:
             "nameEn": clean_str(row.get("nameEn")) or product_id,
             "descriptionBg": clean_str(row.get("descriptionBg")),
             "descriptionEn": clean_str(row.get("descriptionEn")),
-            "price": clean_float(row.get("priceEur")) or 0.0,
+            "priceEur": clean_float(row.get("priceEur")) or 0.0,
             "quantity": clean_float(row.get("quantity")),
             "unit": clean_str(row.get("unit")),
             "image": image,
@@ -274,6 +274,29 @@ def build_menu(df: pd.DataFrame) -> tuple[dict, list[str]]:
     return menu, warnings
 
 
+def build_allergen_legend(input_path: Path) -> list[dict]:
+    """Чете листа 'allergens' (ако съществува) – id -> nameBg/nameEn/description,
+    за да може приложението да показва имена на алергени, не голи числа."""
+    try:
+        df = pd.read_excel(input_path, sheet_name="allergens")
+    except ValueError:
+        return []
+
+    legend = []
+    for _, row in df.iterrows():
+        raw_id = clean_str(row.get("id"))
+        if not raw_id:
+            continue
+        legend.append({
+            "id": raw_id,
+            "nameBg": clean_str(row.get("name_bg")) or raw_id,
+            "nameEn": clean_str(row.get("name_en")) or raw_id,
+            "descriptionBg": clean_str(row.get("opisanie")),
+            "descriptionEn": clean_str(row.get("description")),
+        })
+    return legend
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -295,12 +318,14 @@ def main() -> int:
 
     df = pd.read_excel(input_path)
     menu, warnings = build_menu(df)
+    menu["allergenLegend"] = build_allergen_legend(input_path)
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(menu, ensure_ascii=False, indent=2), encoding="utf-8")
 
     print(f"✅ Записани {menu['productCount']} продукта в {output_path}")
     print(f"✅ Категории: {[c['id'] for c in menu['categories']]}")
+    print(f"✅ Алергени в легендата: {len(menu['allergenLegend'])}")
 
     if warnings:
         print(f"\n⚠️  {len(warnings)} предупреждения за данните в excel-а:")
