@@ -91,6 +91,14 @@ services:
     # Този контейнер само обновява DuckDNS с текущия публичен IP на лаптопа на всеки 5 мин.
     # Задължителен е, защото домашен/баращки интернет обикновено има динамичен IP.
 
+networks:
+  default:
+    enable_ipv6: true
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+        - subnet: fd00:dead:beef::/48
+
 volumes:
   postgres_data:
   caddy_data:
