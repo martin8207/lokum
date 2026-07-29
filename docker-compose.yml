@@ -50,6 +50,13 @@ services:
 
     container_name: lokum-web
 
+    ports:
+      - "8080:80"
+      # Публикуван на хоста самостоятелно (в допълнение на Caddy), за да може
+      # Tailscale Funnel да сочи директно към nginx, без да минава през
+      # host-based routing-а на Caddy (който в момента разпознава само
+      # lokum-shumen.duckdns.org).
+
     restart: unless-stopped
     # Flutter web build - изходът се копира в /srv вътре в тази стъпка (виж Dockerfile.web)
 
