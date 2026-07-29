@@ -66,7 +66,12 @@ services:
 
     ports:
       - "80:80"
-      - "443:443"
+      # "443:443" временно спрян - Tailscale Funnel вече държи 443 на хоста
+      # (нужен му е за собствения HTTPS listener). Docker не може да bind-не
+      # 0.0.0.0:443 успоредно с вече заета конкретна IP на същия порт.
+      # Ако искаме двата пътя (DuckDNS+Caddy HTTPS И Tailscale Funnel) да
+      # работят едновременно, ще трябва Caddy да се bind-не към конкретен
+      # интерфейс/IP вместо 0.0.0.0 - оставено за по-late, ако потрябва.
 
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
