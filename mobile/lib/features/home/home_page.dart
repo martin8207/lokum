@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                               height: 130,
                               width: 220,
                               child: Image.asset(
-                                AssetPaths.logo,
+                                AssetPaths.logoFor(Theme.of(context).brightness),
                                 fit: BoxFit.cover,
                                 alignment: Alignment.topCenter,
                                 errorBuilder: (context, error, stackTrace) =>

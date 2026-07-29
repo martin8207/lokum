@@ -13,8 +13,15 @@ import '../shared/models/product.dart';
 class AssetPaths {
   AssetPaths._();
 
-  /// Логото на бара, показвано след сканиране на QR код.
-  static const String logo = 'assets/logos/logo.jpg';
+  /// Логото на бара за тъмна тема, показвано след сканиране на QR код.
+  static const String logoDark = 'assets/logos/logo.jpg';
+
+  /// Логото на бара за светла тема (отделен файл, четим на светъл фон).
+  static const String logoLight = 'assets/logos/lokum_light_logo.png';
+
+  /// Правилното лого според текущата тема.
+  static String logoFor(Brightness brightness) =>
+      brightness == Brightness.light ? logoLight : logoDark;
 
   /// Генерираният от tools/excel_to_json.py каталог с продукти.
   static const String menuJson = 'assets/data/menu.json';

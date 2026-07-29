@@ -45,9 +45,10 @@ class ProductDetailsPage extends StatelessWidget {
               if (hasImage)
                 // Снимката е ляво подравнена, със заоблени краища,
                 // `BoxFit.cover` (запълва изцяло, без празно поле) —
-                // височината ѝ следва текста вдясно (IntrinsicHeight +
-                // stretch), така че долният ѝ ръб да стига до последния ред
-                // на описанието.
+                // височината ѝ следва краткия инфо-блок вдясно (име/модел/
+                // количество/цена, IntrinsicHeight + stretch). Описанието
+                // умишлено НЕ е тук - показва се отделно под hero-реда, за
+                // да не се разтяга снимката неестествено при дълъг текст.
                 IntrinsicHeight(
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -105,13 +106,6 @@ class ProductDetailsPage extends StatelessWidget {
                                 color: theme.hintColor,
                               ),
                             ),
-                            if (description != null) ...[
-                              const SizedBox(height: 10),
-                              Text(
-                                description,
-                                style: theme.textTheme.bodyMedium,
-                              ),
-                            ],
                           ],
                         ),
                       ),
@@ -205,7 +199,7 @@ class ProductDetailsPage extends StatelessWidget {
                   ],
                 ),
               ],
-              if (!hasImage && description != null) ...[
+              if (description != null) ...[
                 const SizedBox(height: 20),
                 Text(
                   lang == AppLang.bg ? 'Съставки' : 'Ingredients',

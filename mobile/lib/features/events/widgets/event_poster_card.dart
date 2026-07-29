@@ -4,8 +4,8 @@ import '../../../core/asset_paths.dart';
 import '../../../shared/models/event.dart';
 import '../../../shared/models/product.dart';
 
-/// Постер-плочка за предстоящо събитие: снимка на цяла ширина с
-/// градиент, заглавие и дата отгоре.
+/// Постер-плочка за предстоящо събитие: снимка отгоре, заглавие/дата/
+/// описание в четим текстов блок под нея (не върху снимката).
 class EventPosterCard extends StatelessWidget {
   final BarEvent event;
   final AppLang lang;
@@ -24,84 +24,85 @@ class EventPosterCard extends StatelessWidget {
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
-      child: AspectRatio(
-        aspectRatio: 3 / 4,
-        child: Stack(
-          fit: StackFit.expand,
+      child: ColoredBox(
+        color: theme.colorScheme.surfaceContainerHighest,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (hasPoster)
-              Image.asset(posterPath, fit: BoxFit.cover)
-            else
-              Container(
-                color: theme.colorScheme.surfaceContainerHighest,
-                child: Icon(Icons.event, size: 56, color: theme.hintColor),
-              ),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.transparent,
-                    Colors.black.withValues(alpha: 0.85),
-                  ],
-                  stops: const [0.4, 1],
-                ),
+            Expanded(
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  if (hasPoster)
+                    Image.asset(posterPath, fit: BoxFit.cover)
+                  else
+                    Container(
+                      color: theme.colorScheme.surfaceContainerHighest,
+                      child: Icon(
+                        Icons.event,
+                        size: 56,
+                        color: theme.hintColor,
+                      ),
+                    ),
+                  if (event.isHappeningNow)
+                    Positioned(
+                      top: 12,
+                      right: 12,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 5,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF3DBE6C),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          lang == AppLang.bg ? 'СЕГА' : 'NOW',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: 0.5,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ),
-            if (event.isHappeningNow)
-              Positioned(
-                top: 12,
-                right: 12,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 10,
-                    vertical: 5,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF3DBE6C),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Text(
-                    lang == AppLang.bg ? 'СЕГА' : 'NOW',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 0.5,
-                    ),
-                  ),
-                ),
-              ),
-            Positioned(
-              left: 16,
-              right: 16,
-              bottom: 16,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     event.title(lang),
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      color: Colors.white,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: theme.textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   if (date != null) ...[
-                    const SizedBox(height: 4),
-                    Text(date, style: const TextStyle(color: Colors.white70)),
+                    const SizedBox(height: 2),
+                    Text(
+                      date,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodySmall?.copyWith(
+                        color: theme.hintColor,
+                      ),
+                    ),
                   ],
                   if (description != null) ...[
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 4),
                     Text(
                       description,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Colors.white70,
-                        fontSize: 13,
-                      ),
+                      style: theme.textTheme.bodySmall,
                     ),
                   ],
                 ],

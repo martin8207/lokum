@@ -38,7 +38,7 @@ class LanguageSelectPage extends StatelessWidget {
                           height: 170,
                           width: 280,
                           child: Image.asset(
-                            AssetPaths.logo,
+                            AssetPaths.logoFor(Theme.of(context).brightness),
                             fit: BoxFit.cover,
                             alignment: Alignment.topCenter,
                             errorBuilder: (context, error, stackTrace) =>
