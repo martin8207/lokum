@@ -114,10 +114,11 @@ class _AboutPageState extends State<AboutPage> {
                             ),
                           ),
                         ],
-                        if (venue.city.isNotEmpty) ...[
+                        if (venue.address(lang).isNotEmpty) ...[
                           const SizedBox(height: 4),
                           Text(
-                            venue.city,
+                            venue.address(lang),
+                            textAlign: TextAlign.center,
                             style: theme.textTheme.bodySmall?.copyWith(
                               color: colors.textMuted,
                             ),
@@ -179,6 +180,42 @@ class _AboutPageState extends State<AboutPage> {
                           ],
                         ),
                       ),
+                    ),
+                  ],
+                  if (BundledAssets.has(AssetPaths.menuQr)) ...[
+                    const SizedBox(height: 32),
+                    Text(
+                      lang == AppLang.bg ? 'Сподели менюто' : 'Share the menu',
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    const SizedBox(height: 12),
+                    Center(
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: colors.surface,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: colors.border),
+                        ),
+                        child: Image.asset(
+                          AssetPaths.menuQr,
+                          width: 180,
+                          height: 180,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(
+                      lang == AppLang.bg
+                          ? 'Сканирай, за да отвориш менюто на своя телефон'
+                          : 'Scan to open the menu on your phone',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: colors.textMuted,
+                      ),
+                      textAlign: TextAlign.center,
                     ),
                   ],
                 ],

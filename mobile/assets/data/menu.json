@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-28T05:49:06.304079+00:00",
+  "generatedAt": "2026-07-30T05:24:00.444379+00:00",
   "productCount": 178,
   "categories": [
     {
@@ -512,7 +512,7 @@
               "priceEur": 6.5,
               "quantity": 250.0,
               "unit": "g",
-              "image": "karotki.webp",
+              "image": "food/mains/kartoki.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -566,7 +566,7 @@
               "priceEur": 9.5,
               "quantity": 250.0,
               "unit": "g",
-              "image": "rulentsa_narniya.webp",
+              "image": "food/mains/rolca_narnia.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -596,7 +596,7 @@
               "featured": false,
               "isNew": false,
               "isRecommended": false,
-              "available": true,
+              "available": false,
               "tags": [
                 "food",
                 "appetizer"
@@ -745,7 +745,7 @@
               "priceEur": 6.4,
               "quantity": 400.0,
               "unit": "g",
-              "image": "burger_lokum.webp",
+              "image": "food/burgers/burger_lokum.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -777,7 +777,7 @@
               "featured": false,
               "isNew": false,
               "isRecommended": false,
-              "available": true,
+              "available": false,
               "tags": [
                 "food",
                 "sandwich"
@@ -806,7 +806,7 @@
               "featured": false,
               "isNew": false,
               "isRecommended": false,
-              "available": true,
+              "available": false,
               "tags": [
                 "food",
                 "sandwich"
@@ -835,7 +835,7 @@
               "featured": false,
               "isNew": false,
               "isRecommended": false,
-              "available": true,
+              "available": false,
               "tags": [
                 "food",
                 "sandwich"
@@ -1451,7 +1451,7 @@
               "priceEur": 3.6,
               "quantity": 200.0,
               "unit": "ml",
-              "image": "sangriya_chervena.webp",
+              "image": "cocktails/sangria.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -1475,7 +1475,7 @@
               "priceEur": 3.6,
               "quantity": 200.0,
               "unit": "ml",
-              "image": "sangriya_byala.webp",
+              "image": "cocktails/sangria.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -1767,7 +1767,7 @@
               "priceEur": 4.1,
               "quantity": 250.0,
               "unit": "ml",
-              "image": "sar_tikvenik.webp",
+              "image": "cocktails/sar_tikvenik.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -2014,7 +2014,7 @@
               "priceEur": 5.0,
               "quantity": 330.0,
               "unit": "ml",
-              "image": "borovinkov_oblak.webp",
+              "image": "cocktails/borovinkov_oblak.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -3788,7 +3788,7 @@
               "featured": false,
               "isNew": false,
               "isRecommended": false,
-              "available": true,
+              "available": false,
               "tags": [
                 "alcohol",
                 "alcoholic"
@@ -4239,7 +4239,7 @@
               "nameEn": "Draft beer Glarus 330ml",
               "descriptionBg": null,
               "descriptionEn": null,
-              "priceEur": 4.0,
+              "priceEur": 2.3,
               "quantity": 330.0,
               "unit": "ml",
               "image": "draft_glarus_330.webp",

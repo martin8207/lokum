@@ -1,0 +1,13 @@
+{
+  "name": "lokum-tools",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Root-level помощни скриптове за проекта (извън server/ и mobile/).",
+  "scripts": {
+    "generate-qr": "node scripts/generate-qr.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "qrcode": "^1.5.4"
+  }
+}

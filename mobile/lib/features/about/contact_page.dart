@@ -81,13 +81,10 @@ class _ContactPageState extends State<ContactPage> {
                     onTap: () =>
                         _launch(Uri(scheme: 'mailto', path: venue.email)),
                   ),
-                if (venue.address.isNotEmpty || venue.city.isNotEmpty)
+                if (venue.address(lang).isNotEmpty)
                   _ContactTile(
                     icon: Icons.location_on_outlined,
-                    label: [
-                      venue.address,
-                      venue.city,
-                    ].where((s) => s.isNotEmpty).join(', '),
+                    label: venue.address(lang),
                     colors: colors,
                     onTap: (venue.latitude != 0 || venue.longitude != 0)
                         ? () => _launch(

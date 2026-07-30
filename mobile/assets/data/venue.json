@@ -1,9 +1,9 @@
 {
   "name": "Lokum",
   "description": "",
-  "address": "",
-  "city": "",
-  "phone": "",
+  "addressBg": "България, Шумен, Ул. Лайош Кошут 1",
+  "addressEn": "Bulgaria, Shumen Center, ul. \"Lajos Kossuth\" 1",
+  "phone": "089 615 5141",
   "email": "",
   "website": "",
   "facebook": "",

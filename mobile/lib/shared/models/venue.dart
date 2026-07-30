@@ -1,3 +1,5 @@
+import 'product.dart' show AppLang;
+
 /// Данни за бара – взети от `venue.json` (адрес, контакти, работно време),
 /// допълнени от `config.json` (слоган, град) там, където `venue.json` е празен.
 class WorkingHours {
@@ -46,8 +48,8 @@ class VenueInfo {
   final String name;
   final String slogan;
   final String description;
-  final String address;
-  final String city;
+  final String addressBg;
+  final String addressEn;
   final String phone;
   final String email;
   final String website;
@@ -61,8 +63,8 @@ class VenueInfo {
     this.name = 'Lokum',
     this.slogan = '',
     this.description = '',
-    this.address = '',
-    this.city = '',
+    this.addressBg = '',
+    this.addressEn = '',
     this.phone = '',
     this.email = '',
     this.website = '',
@@ -92,11 +94,8 @@ class VenueInfo {
       name: pick(venueJson['name'] as String?, restaurant['name'] as String?),
       slogan: restaurant['slogan'] as String? ?? '',
       description: venueJson['description'] as String? ?? '',
-      address: pick(
-        venueJson['address'] as String?,
-        restaurant['address'] as String?,
-      ),
-      city: pick(venueJson['city'] as String?, restaurant['city'] as String?),
+      addressBg: venueJson['addressBg'] as String? ?? '',
+      addressEn: venueJson['addressEn'] as String? ?? '',
       phone: pick(
         venueJson['phone'] as String?,
         restaurant['phone'] as String?,
@@ -124,4 +123,6 @@ class VenueInfo {
       longitude: (location['longitude'] as num?)?.toDouble() ?? 0,
     );
   }
+
+  String address(AppLang lang) => lang == AppLang.bg ? addressBg : addressEn;
 }

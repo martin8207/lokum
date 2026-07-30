@@ -26,6 +26,9 @@ class AssetPaths {
   /// Генерираният от tools/excel_to_json.py каталог с продукти.
   static const String menuJson = 'assets/data/menu.json';
 
+  /// QR код към публичния адрес на апа, генериран от scripts/generate-qr.js.
+  static const String menuQr = 'assets/qr/menu-qr.png';
+
   /// Директория с продуктови снимки (bundled в приложението).
   /// Очакван формат на файловете: `product.image`, напр. "glarus_500.webp".
   static const String productImagesDir = 'assets/images/products';

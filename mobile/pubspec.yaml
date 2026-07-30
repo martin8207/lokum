@@ -24,6 +24,7 @@ flutter:
     - assets/data/
     - assets/icons/
     - assets/logos/
+    - assets/qr/
     - assets/beer/
     - assets/beer/glarus/
     - assets/cocktails/
@@ -32,6 +33,8 @@ flutter:
     - assets/events/quiz/
     - assets/food/
     - assets/food/brunch/
+    - assets/food/mains/
+    - assets/food/burgers/
     - assets/spirits/
     - assets/videos/
     - assets/wine/

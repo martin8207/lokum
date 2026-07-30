@@ -13,3 +13,7 @@ mobile/.dart_tool/
 
 # --- Node ---
 server/node_modules/
+node_modules/
+
+# --- Excel lock files (създават се докато файлът е отворен) ---
+database/excel/~$*.xlsx
