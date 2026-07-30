@@ -169,6 +169,13 @@ ThemeData _buildTheme(LokumColors colors, Brightness brightness) {
     textTheme: GoogleFonts.nunitoTextTheme(
       Typography.material2021().black,
     ).apply(bodyColor: colors.textMain, displayColor: colors.textMain),
+    // Изрично зададен, за да съвпада сигурно с шрифта на менюто/продуктовите
+    // карти (Nunito, от textTheme по-горе) - без да разчитаме на default
+    // изведеното от Material за табовете.
+    tabBarTheme: TabBarThemeData(
+      labelStyle: GoogleFonts.nunito(fontWeight: FontWeight.w700),
+      unselectedLabelStyle: GoogleFonts.nunito(fontWeight: FontWeight.w600),
+    ),
     hintColor: colors.textMuted,
     useMaterial3: true,
     extensions: [colors],

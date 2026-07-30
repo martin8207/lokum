@@ -8,22 +8,43 @@ class BarEvent {
   final String id;
   final String titleBg;
   final String titleEn;
+
+  /// Кратък текст за картата в списъка - трябва да се събира на един ред
+  /// без изрязване (напр. "Всяка понеделник вечер"). Пълното описание
+  /// излиза само в detail екрана, никога на картата.
+  final String? cardSubtitleBg;
+  final String? cardSubtitleEn;
+
   final String? descriptionBg;
   final String? descriptionEn;
+
+  /// Телефон за връзка/записвания, показван като tappable `tel:` линк в
+  /// detail екрана.
+  final String? phone;
+
   final DateTime? date;
   final WeeklySchedule? recurring;
   final String? posterImage;
+
+  /// По-голямо лого/изображение на самото събитие, показвано в detail
+  /// екрана (отделно от [posterImage], който е за картата в списъка).
+  final String? logoImage;
+
   final List<String> galleryImages;
 
   const BarEvent({
     required this.id,
     required this.titleBg,
     required this.titleEn,
+    this.cardSubtitleBg,
+    this.cardSubtitleEn,
     this.descriptionBg,
     this.descriptionEn,
+    this.phone,
     this.date,
     this.recurring,
     this.posterImage,
+    this.logoImage,
     this.galleryImages = const [],
   });
 
@@ -32,6 +53,14 @@ class BarEvent {
   String? description(AppLang lang) {
     final value = lang == AppLang.bg ? descriptionBg : descriptionEn;
     return (value == null || value.isEmpty) ? null : value;
+  }
+
+  /// Кратък subtitle за картата - fallback към [description] само ако
+  /// изрично зададен cardSubtitle липсва, за съвместимост със стари данни.
+  String? cardSubtitle(AppLang lang) {
+    final value = lang == AppLang.bg ? cardSubtitleBg : cardSubtitleEn;
+    if (value != null && value.isNotEmpty) return value;
+    return description(lang);
   }
 
   /// За повтарящи се събития: дали точно сега се провежда.
@@ -85,16 +114,28 @@ class BarEvent {
     return null;
   }
 
+  /// Кратка дата без час, за архивните карти (напр. "25 юли 2026").
+  String? formattedDateShort(AppLang lang) {
+    final d = date;
+    if (d == null) return null;
+    final months = lang == AppLang.bg ? _monthsBg : _monthsEn;
+    return '${d.day} ${months[d.month - 1]} ${d.year}';
+  }
+
   factory BarEvent.fromJson(Map<String, dynamic> json) {
     return BarEvent(
       id: json['id'] as String,
       titleBg: json['titleBg'] as String? ?? '',
       titleEn: json['titleEn'] as String? ?? '',
+      cardSubtitleBg: json['cardSubtitleBg'] as String?,
+      cardSubtitleEn: json['cardSubtitleEn'] as String?,
       descriptionBg: json['descriptionBg'] as String?,
       descriptionEn: json['descriptionEn'] as String?,
+      phone: json['phone'] as String?,
       date: DateTime.tryParse(json['date'] as String? ?? ''),
       recurring: _recurringFromJson(json),
       posterImage: json['posterImage'] as String?,
+      logoImage: json['logoImage'] as String?,
       galleryImages:
           (json['galleryImages'] as List?)?.map((e) => e.toString()).toList() ??
           const [],

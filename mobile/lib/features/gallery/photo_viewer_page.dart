@@ -35,6 +35,20 @@ class _PhotoViewerPageState extends State<PhotoViewerPage> {
     super.dispose();
   }
 
+  void _goToPrevious() {
+    _controller.previousPage(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeOut,
+    );
+  }
+
+  void _goToNext() {
+    _controller.nextPage(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeOut,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +110,61 @@ class _PhotoViewerPageState extends State<PhotoViewerPage> {
               ),
             ),
           ),
+          if (widget.images.length > 1) ...[
+            Positioned(
+              left: 4,
+              top: 0,
+              bottom: 0,
+              child: Center(
+                child: _NavArrowButton(
+                  icon: Icons.chevron_left,
+                  onPressed: _index > 0 ? _goToPrevious : null,
+                ),
+              ),
+            ),
+            Positioned(
+              right: 4,
+              top: 0,
+              bottom: 0,
+              child: Center(
+                child: _NavArrowButton(
+                  icon: Icons.chevron_right,
+                  onPressed: _index < widget.images.length - 1
+                      ? _goToNext
+                      : null,
+                ),
+              ),
+            ),
+          ],
         ],
+      ),
+    );
+  }
+}
+
+/// Кръгла полупрозрачна стрелка за пред/назад в галерията. `onPressed: null`
+/// я показва избледняла и неактивна (на първата/последната снимка).
+class _NavArrowButton extends StatelessWidget {
+  final IconData icon;
+  final VoidCallback? onPressed;
+
+  const _NavArrowButton({required this.icon, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    final enabled = onPressed != null;
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.black45,
+        shape: BoxShape.circle,
+      ),
+      child: IconButton(
+        icon: Icon(
+          icon,
+          color: enabled ? Colors.white : Colors.white30,
+          size: 32,
+        ),
+        onPressed: onPressed,
       ),
     );
   }

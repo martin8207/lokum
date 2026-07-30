@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../app/app_theme.dart';
 import '../../core/asset_paths.dart';
@@ -6,6 +7,36 @@ import '../../core/services/venue_service.dart';
 import '../../shared/models/product.dart';
 import '../../shared/models/venue.dart';
 import '../../shared/widgets/theme_toggle.dart';
+
+/// Отваря Facebook страницата на бара - през нативното приложение, ако е
+/// инсталирано, иначе fallback към браузъра.
+Future<void> _openFacebookPage() async {
+  const pageId = '61574669643238';
+  const webUrl = 'https://www.facebook.com/profile.php?id=$pageId';
+  final fbAppUrl = Uri.parse('fb://page/$pageId');
+  final fallbackUrl = Uri.parse(webUrl);
+
+  if (await canLaunchUrl(fbAppUrl)) {
+    await launchUrl(fbAppUrl);
+  } else {
+    await launchUrl(fallbackUrl, mode: LaunchMode.externalApplication);
+  }
+}
+
+/// Отваря Instagram профила на бара - през нативното приложение, ако е
+/// инсталирано, иначе fallback към браузъра.
+Future<void> _openInstagramPage() async {
+  const username = 'lokum.riffsndrinks';
+  const webUrl = 'https://www.instagram.com/$username';
+  final igAppUrl = Uri.parse('instagram://user?username=$username');
+  final fallbackUrl = Uri.parse(webUrl);
+
+  if (await canLaunchUrl(igAppUrl)) {
+    await launchUrl(igAppUrl);
+  } else {
+    await launchUrl(fallbackUrl, mode: LaunchMode.externalApplication);
+  }
+}
 
 /// Раздел "За Lokum": описание на бара и работно време.
 class AboutPage extends StatefulWidget {
@@ -124,6 +155,27 @@ class _AboutPageState extends State<AboutPage> {
                             ),
                           ),
                         ],
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            _SocialButton(
+                              logoPath: AssetPaths.facebookLogo,
+                              fallbackIcon: Icons.facebook,
+                              fallbackColor: const Color(0xFF1877F2),
+                              tooltip: 'Facebook',
+                              onTap: _openFacebookPage,
+                            ),
+                            const SizedBox(width: 16),
+                            _SocialButton(
+                              logoPath: AssetPaths.instagramLogo,
+                              fallbackIcon: Icons.camera_alt,
+                              fallbackColor: const Color(0xFFE1306C),
+                              tooltip: 'Instagram',
+                              onTap: _openInstagramPage,
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),
@@ -224,6 +276,41 @@ class _AboutPageState extends State<AboutPage> {
           ),
         );
       },
+    );
+  }
+}
+
+/// Бутон за социална мрежа: показва истинското цветно лого (bundled asset),
+/// ако е налично, иначе избледнява до Material икона в приблизителния
+/// брандов цвят - докато реалният файл бъде добавен в assets/icons/.
+class _SocialButton extends StatelessWidget {
+  final String logoPath;
+  final IconData fallbackIcon;
+  final Color fallbackColor;
+  final String tooltip;
+  final VoidCallback onTap;
+
+  const _SocialButton({
+    required this.logoPath,
+    required this.fallbackIcon,
+    required this.fallbackColor,
+    required this.tooltip,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final hasLogo = BundledAssets.has(logoPath);
+    return IconButton(
+      onPressed: onTap,
+      tooltip: tooltip,
+      iconSize: 36,
+      icon: hasLogo
+          ? ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(logoPath, width: 36, height: 36),
+            )
+          : Icon(fallbackIcon, color: fallbackColor),
     );
   }
 }

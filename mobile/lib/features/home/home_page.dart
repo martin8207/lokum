@@ -195,7 +195,12 @@ class HomePage extends StatelessWidget {
         leading: Icon(icon, color: colors.accent),
         title: Text(
           title,
-          style: TextStyle(fontSize: 18, color: colors.textMain),
+          // Изрично взето от textTheme (Nunito), за да съвпада сигурно с
+          // шрифта на менюто/продуктовите карти.
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            fontSize: 18,
+            color: colors.textMain,
+          ),
         ),
         trailing: Icon(Icons.chevron_right, color: colors.textMuted),
         onTap: onTap,

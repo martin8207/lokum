@@ -4,6 +4,8 @@
       "id": "sunday-brunch",
       "titleBg": "Неделен Брънч",
       "titleEn": "Sunday Brunch",
+      "cardSubtitleBg": "Брънч всяка неделя 11:00 до 16:00",
+      "cardSubtitleEn": "Brunch every Sunday 11:00 to 16:00",
       "descriptionBg": "Пухкави бухтички, сандвич със сьомга, качамак и още — всяка неделя от 11:00 до 16:00.",
       "descriptionEn": "Fluffy fritters, salmon sandwich, polenta and more — every Sunday from 11:00 to 16:00.",
       "posterImage": "events/brunch/brunch.jpg",
@@ -15,13 +17,92 @@
       "id": "monday-quiz",
       "titleBg": "Локумна Викторина",
       "titleEn": "Lokum Quiz Night",
-      "descriptionBg": "Съберете отбор и тествайте познанията си — всеки понеделник вечер от 19:30.",
-      "descriptionEn": "Grab a team and test your knowledge — every Monday evening from 19:30.",
+      "cardSubtitleBg": "Всяка понеделник вечер",
+      "cardSubtitleEn": "Every Monday evening",
+      "descriptionBg": "Всяка лятна понеделник вечер се събираме в Бар Локум за игра на въпроси и отговори, доза смях и добро настроение. Пък току виж научим и нещо ново.\nДобре дошли в ЛокУмната ВИКторина Лято 2026!",
+      "descriptionEn": "Every summer Monday evening we gather at Bar Lokum for a game of questions and answers, a dose of laughter and good vibes. And who knows, we might even learn something new.\nWelcome to Lokum Quiz Night — Summer 2026!",
+      "phone": "089 615 5141",
       "posterImage": "events/quiz/lokumna_viktorina.jpg",
+      "logoImage": "events/quiz/FB_IMG_1785125521594.jpg",
       "recurringWeekday": 1,
       "recurringStart": "19:30",
       "recurringEnd": "22:00"
     }
   ],
-  "past": []
+  "past": [
+    {
+      "id": "dnd-vit",
+      "titleBg": "Dnd и VIT",
+      "titleEn": "Dnd and VIT",
+      "date": "2026-07-25T00:00:00",
+      "logoImage": "events/archive/dnd-vit/DnD_VIT.jpeg",
+      "galleryImages": [
+        "events/archive/dnd-vit/DnD_VIT_1.jpeg",
+        "events/archive/dnd-vit/DnD_VIT_2.jpeg",
+        "events/archive/dnd-vit/DnD_VIT_3.jpeg",
+        "events/archive/dnd-vit/DnD_VIT_4.jpeg",
+        "events/archive/dnd-vit/DnD_VIT_5.jpeg",
+        "events/archive/dnd-vit/DnD_VIT_6.jpeg",
+        "events/archive/dnd-vit/DnD_VIT_7.jpeg",
+        "events/archive/dnd-vit/DnD_VIT_8.jpeg",
+        "events/archive/dnd-vit/DnD_VIT_9.jpeg"
+      ]
+    },
+    {
+      "id": "deestoned",
+      "titleBg": "DeeStoned",
+      "titleEn": "DeeStoned",
+      "date": "2026-07-17T00:00:00",
+      "logoImage": "events/archive/deestoned/DeeStoned.jpeg",
+      "galleryImages": [
+        "events/archive/deestoned/DeeStoned_1.jpeg",
+        "events/archive/deestoned/DeeStoned_2.jpeg",
+        "events/archive/deestoned/DeeStoned_3.jpeg"
+      ]
+    },
+    {
+      "id": "bgz",
+      "titleBg": "BGz",
+      "titleEn": "BGz",
+      "date": "2026-07-03T00:00:00",
+      "logoImage": "events/archive/bgz/BGz.jpeg",
+      "galleryImages": [
+        "events/archive/bgz/BGz_1.jpeg",
+        "events/archive/bgz/BGz_2.jpeg",
+        "events/archive/bgz/BGz_3.jpeg",
+        "events/archive/bgz/BGz_4.jpeg",
+        "events/archive/bgz/BGz_5.jpeg",
+        "events/archive/bgz/BGz_6.jpeg"
+      ]
+    },
+    {
+      "id": "lutenitsa-ltnc",
+      "titleBg": "Лютеница / LTNC",
+      "titleEn": "Lutenitsa / LTNC",
+      "date": "2026-06-26T00:00:00",
+      "logoImage": "events/archive/lutenitsa-ltnc/ltnc.jpeg",
+      "galleryImages": [
+        "events/archive/lutenitsa-ltnc/ltnc_1.jpeg",
+        "events/archive/lutenitsa-ltnc/ltnc_2.jpg",
+        "events/archive/lutenitsa-ltnc/ltnc_3.jpg",
+        "events/archive/lutenitsa-ltnc/ltnc_4.jpg",
+        "events/archive/lutenitsa-ltnc/ltnc_5.jpg",
+        "events/archive/lutenitsa-ltnc/ltnc_6.jpg"
+      ]
+    },
+    {
+      "id": "mgw-acoustic",
+      "titleBg": "M. G. W. Acoustic",
+      "titleEn": "M. G. W. Acoustic",
+      "date": "2026-06-19T00:00:00",
+      "logoImage": "events/archive/mgw-acoustic/MGW.jpeg",
+      "galleryImages": [
+        "events/archive/mgw-acoustic/MGW_1.jpeg",
+        "events/archive/mgw-acoustic/MGW_2.jpeg",
+        "events/archive/mgw-acoustic/MGW_3.jpeg",
+        "events/archive/mgw-acoustic/MGW_4.jpeg",
+        "events/archive/mgw-acoustic/MGW_5.jpeg"
+      ]
+    }
+  ]
 }

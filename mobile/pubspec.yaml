@@ -31,6 +31,11 @@ flutter:
     - assets/events/
     - assets/events/brunch/
     - assets/events/quiz/
+    - assets/events/archive/dnd-vit/
+    - assets/events/archive/deestoned/
+    - assets/events/archive/bgz/
+    - assets/events/archive/lutenitsa-ltnc/
+    - assets/events/archive/mgw-acoustic/
     - assets/food/
     - assets/food/brunch/
     - assets/food/mains/

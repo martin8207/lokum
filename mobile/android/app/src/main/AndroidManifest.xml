@@ -41,5 +41,11 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
+        <!-- Позволява canLaunchUrl("fb://...") да работи на Android 11+
+             (package visibility) - виж about_page.dart _openFacebookPage. -->
+        <package android:name="com.facebook.katana" />
+        <!-- Позволява canLaunchUrl("instagram://...") да работи на Android 11+
+             - виж about_page.dart _openInstagramPage. -->
+        <package android:name="com.instagram.android" />
     </queries>
 </manifest>

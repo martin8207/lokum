@@ -29,6 +29,11 @@ class AssetPaths {
   /// QR код към публичния адрес на апа, генериран от scripts/generate-qr.js.
   static const String menuQr = 'assets/qr/menu-qr.png';
 
+  /// Оригинални цветни лога на социалните мрежи (не Material икони - за да
+  /// пазим истинските брандови цветове/градиент, особено на Instagram).
+  static const String facebookLogo = 'assets/icons/facebook.webp';
+  static const String instagramLogo = 'assets/icons/instagram.webp';
+
   /// Директория с продуктови снимки (bundled в приложението).
   /// Очакван формат на файловете: `product.image`, напр. "glarus_500.webp".
   static const String productImagesDir = 'assets/images/products';

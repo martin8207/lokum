@@ -5,8 +5,10 @@ import '../../../core/services/events_service.dart';
 import '../../../shared/models/event.dart';
 import '../../../shared/models/product.dart';
 import '../../../shared/widgets/theme_toggle.dart';
+import '../widgets/archive_event_card.dart';
 import '../widgets/event_poster_card.dart';
-import '../widgets/past_event_section.dart';
+import 'archive_event_detail_page.dart';
+import 'event_detail_page.dart';
 
 /// Раздел "Събития": предстоящи (постери) и минали (галерия със снимки).
 class EventsPage extends StatefulWidget {
@@ -109,8 +111,17 @@ class _UpcomingTab extends StatelessWidget {
         crossAxisSpacing: 16,
         childAspectRatio: 0.62,
       ),
-      itemBuilder: (context, index) =>
-          EventPosterCard(event: events[index], lang: lang),
+      itemBuilder: (context, index) => EventPosterCard(
+        event: events[index],
+        lang: lang,
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => EventDetailPage(event: events[index]),
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -131,11 +142,30 @@ class _PastTab extends StatelessWidget {
             : 'No past events yet.',
       );
     }
+    // Задължително сортиране по дата, най-скорошното най-отгоре - независимо
+    // от реда в events.json.
+    final sorted = [...events]..sort((a, b) {
+      final aDate = a.date;
+      final bDate = b.date;
+      if (aDate == null && bDate == null) return 0;
+      if (aDate == null) return 1;
+      if (bDate == null) return -1;
+      return bDate.compareTo(aDate);
+    });
     return ListView.builder(
       padding: const EdgeInsets.all(16),
-      itemCount: events.length,
-      itemBuilder: (context, index) =>
-          PastEventSection(event: events[index], lang: lang),
+      itemCount: sorted.length,
+      itemBuilder: (context, index) => ArchiveEventCard(
+        event: sorted[index],
+        lang: lang,
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (_) => ArchiveEventDetailPage(event: sorted[index]),
+            ),
+          );
+        },
+      ),
     );
   }
 }
