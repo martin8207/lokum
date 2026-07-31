@@ -27,6 +27,7 @@ class ProductDetailsPage extends StatelessWidget {
         final model = product.formattedModel();
         final imagePath = AssetPaths.productImage(product.image);
         final hasImage = BundledAssets.has(imagePath);
+        final isFoodPhoto = hasImage && product.categoryId == 'food';
         final schedule = ProductAvailability.scheduleFor(product);
 
         return Scaffold(
@@ -42,7 +43,59 @@ class ProductDetailsPage extends StatelessWidget {
           body: ListView(
             padding: const EdgeInsets.all(20),
             children: [
-              if (hasImage)
+              if (isFoodPhoto) ...[
+                // "Нещо за хапване": квадратна (4:4) снимка на цяла ширина
+                // отгоре, текстът пада под нея - виж
+                // lokum-detail-page-demo.html.
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.asset(imagePath, fit: BoxFit.cover),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  product.name(lang),
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                if (model != null) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    model.toUpperCase(),
+                    style: theme.textTheme.labelLarge?.copyWith(
+                      color: colors.accent,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
+                ],
+                if (quantity != null) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    quantity,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.hintColor,
+                    ),
+                  ),
+                ],
+                const SizedBox(height: 10),
+                Text(
+                  product.formattedPrice(),
+                  style: theme.textTheme.titleLarge?.copyWith(
+                    color: theme.colorScheme.primary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  product.formattedPriceBgn(),
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.hintColor,
+                  ),
+                ),
+              ] else if (hasImage)
                 // Снимката е ляво подравнена, със заоблени краища,
                 // `BoxFit.cover` (запълва изцяло, без празно поле) —
                 // височината ѝ следва краткия инфо-блок вдясно (име/модел/

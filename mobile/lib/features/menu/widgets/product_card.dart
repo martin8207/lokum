@@ -25,23 +25,34 @@ class ProductCard extends StatelessWidget {
         final imagePath = AssetPaths.productImage(product.image);
         final hasImage = BundledAssets.has(imagePath);
         final offeredNow = ProductAvailability.isOfferedNow(product);
-        return Opacity(
-          opacity: product.available && offeredNow ? 1 : 0.5,
-          child: hasImage
-              ? _PhotoProductCard(
-                  product: product,
-                  lang: lang,
-                  imagePath: imagePath,
-                  colors: colors,
-                  onTap: product.available ? onTap : null,
-                )
-              : _PlainProductCard(
-                  product: product,
-                  lang: lang,
-                  colors: colors,
-                  onTap: product.available ? onTap : null,
-                ),
-        );
+        Widget card;
+        if (!hasImage) {
+          card = _PlainProductCard(
+            product: product,
+            lang: lang,
+            colors: colors,
+            onTap: product.available ? onTap : null,
+          );
+        } else if (product.categoryId == 'food') {
+          // "Нещо за хапване": квадратна (4:4) снимка отгоре, лилаво/бяло
+          // поле с име/грамаж/цена отдолу - виж lokum-food-card-44-45.html.
+          card = _FoodPhotoCard(
+            product: product,
+            lang: lang,
+            imagePath: imagePath,
+            colors: colors,
+            onTap: product.available ? onTap : null,
+          );
+        } else {
+          card = _PhotoProductCard(
+            product: product,
+            lang: lang,
+            imagePath: imagePath,
+            colors: colors,
+            onTap: product.available ? onTap : null,
+          );
+        }
+        return Opacity(opacity: product.available && offeredNow ? 1 : 0.5, child: card);
       },
     );
   }
@@ -101,8 +112,9 @@ class _PlainProductCard extends StatelessWidget {
   }
 }
 
-/// Разширена карта за продукт С реална снимка: снимката е вляво, цяла (без
-/// изрязване), информацията е вдясно — марка / стил / описание / цена.
+/// Разширена карта за продукт С реална снимка (напитки/коктейли): снимката
+/// запълва изцяло лявата част на картата, ръб до ръб (`BoxFit.cover`, без
+/// padding/рамка) - информацията е вдясно.
 class _PhotoProductCard extends StatelessWidget {
   final Product product;
   final AppLang lang;
@@ -134,71 +146,165 @@ class _PhotoProductCard extends StatelessWidget {
         hoverColor: colors.hoverOnMenuCard,
         splashColor: colors.splashOnMenuCard,
         highlightColor: colors.hoverOnMenuCard,
-        borderRadius: BorderRadius.circular(16),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
+        child: IntrinsicHeight(
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Снимка: `contain`, не `cover` — цялата бутилка/чаша се вижда.
-              Container(
-                width: 84,
-                height: 120,
-                decoration: BoxDecoration(
-                  color: colors.menuCardText.withValues(alpha: 0.08),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                padding: const EdgeInsets.all(6),
-                child: Image.asset(imagePath, fit: BoxFit.contain),
+              SizedBox(
+                width: 100,
+                child: Image.asset(imagePath, fit: BoxFit.cover),
               ),
-              const SizedBox(width: 14),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      product.name(lang),
-                      style: TextStyle(
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              product.name(lang),
+                              style: TextStyle(
+                                fontSize: 19,
+                                fontWeight: FontWeight.bold,
+                                color: colors.menuCardText,
+                              ),
+                            ),
+                            if (quantity != null) ...[
+                              const SizedBox(height: 2),
+                              Text(
+                                quantity.toUpperCase(),
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 0.5,
+                                  color: colors.menuCardText.withValues(
+                                    alpha: 0.85,
+                                  ),
+                                ),
+                              ),
+                            ],
+                            if (description != null) ...[
+                              const SizedBox(height: 6),
+                              Text(
+                                description,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: colors.menuCardText.withValues(
+                                    alpha: 0.65,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      _PriceColumn(
+                        product: product,
+                        lang: lang,
                         color: colors.menuCardText,
                       ),
-                    ),
-                    if (quantity != null) ...[
-                      const SizedBox(height: 2),
-                      Text(
-                        quantity.toUpperCase(),
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: 0.5,
-                          color: colors.menuCardText.withValues(alpha: 0.85),
-                        ),
-                      ),
                     ],
-                    if (description != null) ...[
-                      const SizedBox(height: 6),
-                      Text(
-                        description,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: 13,
-                          color: colors.menuCardText.withValues(alpha: 0.65),
-                        ),
-                      ),
-                    ],
-                  ],
+                  ),
                 ),
-              ),
-              const SizedBox(width: 8),
-              _PriceColumn(
-                product: product,
-                lang: lang,
-                color: colors.menuCardText,
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Карта за продукт от "Нещо за хапване" с реална снимка: квадратна (4:4)
+/// снимка на цяла ширина отгоре, поле с име/грамаж/цена отдолу - виж
+/// lokum-food-card-44-45.html.
+class _FoodPhotoCard extends StatelessWidget {
+  final Product product;
+  final AppLang lang;
+  final String imagePath;
+  final LokumColors colors;
+  final VoidCallback? onTap;
+
+  const _FoodPhotoCard({
+    required this.product,
+    required this.lang,
+    required this.imagePath,
+    required this.colors,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final quantity = product.formattedQuantity();
+
+    return Card(
+      elevation: 0,
+      color: colors.menuCardBackground,
+      clipBehavior: Clip.antiAlias,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      child: InkWell(
+        onTap: onTap,
+        hoverColor: colors.hoverOnMenuCard,
+        splashColor: colors.splashOnMenuCard,
+        highlightColor: colors.hoverOnMenuCard,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AspectRatio(
+              aspectRatio: 1,
+              child: Image.asset(imagePath, fit: BoxFit.cover),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          product.name(lang),
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold,
+                            color: colors.menuCardText,
+                          ),
+                        ),
+                        if (quantity != null) ...[
+                          const SizedBox(height: 2),
+                          Text(
+                            quantity.toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 0.5,
+                              color: colors.menuCardText.withValues(
+                                alpha: 0.85,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  _PriceColumn(
+                    product: product,
+                    lang: lang,
+                    color: colors.menuCardText,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

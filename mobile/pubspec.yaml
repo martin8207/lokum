@@ -36,6 +36,8 @@ flutter:
     - assets/events/archive/bgz/
     - assets/events/archive/lutenitsa-ltnc/
     - assets/events/archive/mgw-acoustic/
+    - assets/events/archive/acoustic_adventures_part1/
+    - assets/events/archive/acoustic_adventures_part2/
     - assets/food/
     - assets/food/brunch/
     - assets/food/mains/

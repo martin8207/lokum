@@ -24,10 +24,13 @@ class ProductListPage extends StatelessWidget {
     return ValueListenableBuilder<AppLang>(
       valueListenable: AppLanguage.instance,
       builder: (context, lang, _) {
-        // Продукти със снимка първи, после по азбучен ред на текущия избран
-        // език - независимо от реда им в Excel-а, автоматично за всеки нов
-        // продукт.
+        // Ред: Featured (напр. Гларус) първи, после наличните преди
+        // изчерпаните, после със снимка преди тези без, после азбучно на
+        // текущия избран език - независимо от реда им в Excel-а, автоматично
+        // за всеки нов продукт.
         final products = [...subcategory.products]..sort((a, b) {
+          if (a.featured != b.featured) return a.featured ? -1 : 1;
+          if (a.available != b.available) return a.available ? -1 : 1;
           final aHasImage = BundledAssets.has(AssetPaths.productImage(a.image));
           final bHasImage = BundledAssets.has(AssetPaths.productImage(b.image));
           if (aHasImage != bHasImage) return aHasImage ? -1 : 1;

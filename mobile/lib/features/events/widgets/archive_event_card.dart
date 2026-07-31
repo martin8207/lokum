@@ -31,27 +31,60 @@ class ArchiveEventCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: ListTile(
-        leading: hasLogo
-            ? ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  logoPath,
-                  width: 48,
-                  height: 48,
-                  fit: BoxFit.cover,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            children: [
+              hasLogo
+                  ? ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        logoPath,
+                        width: 72,
+                        height: 72,
+                        fit: BoxFit.cover,
+                      ),
+                    )
+                  : Container(
+                      width: 72,
+                      height: 72,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary.withValues(
+                          alpha: 0.1,
+                        ),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Icon(
+                        Icons.event_note,
+                        color: theme.colorScheme.primary,
+                        size: 32,
+                      ),
+                    ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      event.title(lang),
+                      style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    if (date != null) ...[
+                      const SizedBox(height: 4),
+                      Text(date, style: theme.textTheme.bodyMedium),
+                    ],
+                  ],
                 ),
-              )
-            : Icon(Icons.event_note, color: theme.colorScheme.primary),
-        title: Text(
-          event.title(lang),
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
+              ),
+              const Icon(Icons.chevron_right),
+            ],
           ),
         ),
-        subtitle: date == null ? null : Text(date),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: onTap,
       ),
     );
   }

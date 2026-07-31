@@ -39,6 +39,11 @@ class LokumColors extends ThemeExtension<LokumColors> {
   final Color textMuted;
   final Color border;
 
+  /// Текст/икони върху "менюто" картите (категории/подкатегории/продукти).
+  /// Отделно поле, не изчислено от [background] — в light режим жълто на
+  /// жълт фон-тон беше трудно четимо, затова тук е изрично бяло.
+  final Color menuCardText;
+
   const LokumColors({
     required this.background,
     required this.backgroundGradientEnd,
@@ -48,6 +53,7 @@ class LokumColors extends ThemeExtension<LokumColors> {
     required this.textMain,
     required this.textMuted,
     required this.border,
+    required this.menuCardText,
   });
 
   LinearGradient get backgroundGradient => LinearGradient(
@@ -56,12 +62,10 @@ class LokumColors extends ThemeExtension<LokumColors> {
     colors: [background, backgroundGradientEnd],
   );
 
-  /// Фон/текст на "менюто" (категории/подкатегории/продукти): по спецификация
-  /// фонът е [accent], текстът е [background] — в dark режим това е
-  /// познатото златно поле с тъмно лилав текст; в light режим е лилаво поле
-  /// с жълт текст.
+  /// Фон на "менюто" (категории/подкатегории/продукти) - в dark режим това е
+  /// познатото златно поле, в light режим е лилаво поле. Текстът върху него
+  /// е [menuCardText] (виж полето по-горе).
   Color get menuCardBackground => accent;
-  Color get menuCardText => background;
 
   /// Hover/press фейд за редовете с фон [surface] (начален екран, контакти).
   Color get hoverOnSurface => textMain.withValues(alpha: 0.06);
@@ -81,6 +85,7 @@ class LokumColors extends ThemeExtension<LokumColors> {
     textMain: Color(0xFF241A3D),
     textMuted: Color(0xFF6B5A85),
     border: Color(0x264C1D7C),
+    menuCardText: Color(0xFFFFFFFF),
   );
 
   static const dark = LokumColors(
@@ -92,6 +97,7 @@ class LokumColors extends ThemeExtension<LokumColors> {
     textMain: Color(0xFFF0E9FF),
     textMuted: Color(0xFFB3A3D9),
     border: Color(0x33E3B23C),
+    menuCardText: Color(0xFF17102B),
   );
 
   @override
@@ -104,6 +110,7 @@ class LokumColors extends ThemeExtension<LokumColors> {
     Color? textMain,
     Color? textMuted,
     Color? border,
+    Color? menuCardText,
   }) {
     return LokumColors(
       background: background ?? this.background,
@@ -115,6 +122,7 @@ class LokumColors extends ThemeExtension<LokumColors> {
       textMain: textMain ?? this.textMain,
       textMuted: textMuted ?? this.textMuted,
       border: border ?? this.border,
+      menuCardText: menuCardText ?? this.menuCardText,
     );
   }
 
@@ -134,6 +142,7 @@ class LokumColors extends ThemeExtension<LokumColors> {
       textMain: Color.lerp(textMain, other.textMain, t)!,
       textMuted: Color.lerp(textMuted, other.textMuted, t)!,
       border: Color.lerp(border, other.border, t)!,
+      menuCardText: Color.lerp(menuCardText, other.menuCardText, t)!,
     );
   }
 }

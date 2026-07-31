@@ -32,8 +32,8 @@
   "past": [
     {
       "id": "dnd-vit",
-      "titleBg": "Dnd и VIT",
-      "titleEn": "Dnd and VIT",
+      "titleBg": "DnD и VIT",
+      "titleEn": "DnD and VIT",
       "date": "2026-07-25T00:00:00",
       "logoImage": "events/archive/dnd-vit/DnD_VIT.jpeg",
       "galleryImages": [
@@ -89,6 +89,22 @@
         "events/archive/lutenitsa-ltnc/ltnc_5.jpg",
         "events/archive/lutenitsa-ltnc/ltnc_6.jpg"
       ]
+    },
+    {
+      "id": "acoustic_adventures_part2",
+      "titleBg": "Acoustic Adventures with Anni2 #2",
+      "titleEn": "Acoustic Adventures with Anni2 #2",
+      "date": "2026-06-12T00:00:00",
+      "logoImage": "events/archive/acoustic_adventures_part2/acoustic_adventures_part2.jpeg",
+      "galleryImages": []
+    },
+    {
+      "id": "acoustic_adventures_part1",
+      "titleBg": "Acoustic Adventures with Anni2 #1",
+      "titleEn": "Acoustic Adventures with Anni2 #1",
+      "date": "2026-05-15T00:00:00",
+      "logoImage": "events/archive/acoustic_adventures_part1/acoustic_adventures_part1.jpg",
+      "galleryImages": []
     },
     {
       "id": "mgw-acoustic",
