@@ -104,7 +104,10 @@
       "titleEn": "Acoustic Adventures with Anni2 #1",
       "date": "2026-05-15T00:00:00",
       "logoImage": "events/archive/acoustic_adventures_part1/acoustic_adventures_part1.jpg",
-      "galleryImages": []
+      "galleryImages": [
+        "events/archive/acoustic_adventures_part1/acoustic_adventures_part1_1.jpg",
+        "events/archive/acoustic_adventures_part1/acoustic_adventures_part1_2.jpg"
+      ]
     },
     {
       "id": "mgw-acoustic",
@@ -119,6 +122,85 @@
         "events/archive/mgw-acoustic/MGW_4.jpeg",
         "events/archive/mgw-acoustic/MGW_5.jpeg"
       ]
+    },
+    {
+      "id": "Y2K",
+      "titleBg": "Y2K",
+      "titleEn": "Y2K",
+      "date": "2026-05-01T00:00:00",
+      "descriptionBg": "Парти с DJ LIL'DOB - Alternative, Nu Metal, Hard Core, Hip Hop, Funk 2000' era Bangers",
+      "descriptionEn": "Party with DJ LIL'DOB - Alternative, Nu Metal, Hard Core, Hip Hop, Funk 2000's era bangers",
+      "logoImage": "events/archive/Y2K/Y2K.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "BG_Alternative_with_Simo",
+      "titleBg": "БГ Алтернатива със Симо",
+      "titleEn": "BG Alternative with Simo",
+      "date": "2026-04-11T00:00:00",
+      "descriptionBg": "Българската алтернативна музика със Симо",
+      "descriptionEn": "Bulgarian alternative music with Simo",
+      "logoImage": "events/archive/BG_Alternative_with_Simo/BG_Alternative.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "blue_lamp",
+      "titleBg": "Синя Лампа",
+      "titleEn": "Blue Lamp",
+      "date": "2026-04-10T00:00:00",
+      "descriptionBg": "СИНЯ ЛАМПА ВЕЛИК REUNION Парти с DJ LIL'DOB",
+      "descriptionEn": "BLUE LAMP grand REUNION party with DJ LIL'DOB",
+      "logoImage": "events/archive/blue_lamp/blue_lamp_reunion.jpg",
+      "galleryImages": ["events/archive/blue_lamp/blue_lamp_reunion_1.jpg"]
+    },
+    {
+      "id": "teleport_to_90s",
+      "titleBg": "Телепорт към 90-те",
+      "titleEn": "Teleport to the 90s",
+      "date": "2026-03-06T00:00:00",
+      "descriptionBg": "Музикален телепорт обратно в 90те Парти с DJ LIL'DOB",
+      "descriptionEn": "A musical teleport back to the 90s, party with DJ LIL'DOB",
+      "logoImage": "events/archive/teleport_to_90s/teleport_to_90s.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "children_of_the_korn",
+      "titleBg": "Children of the KoЯn",
+      "titleEn": "Children of the KoЯn",
+      "date": "2026-02-28T00:00:00",
+      "descriptionBg": "Children of the KoЯn Парти с DJ LIL'DOB",
+      "descriptionEn": "Children of the KoЯn party with DJ LIL'DOB",
+      "logoImage": "events/archive/children_of_the_korn/children_of_the_korn.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "maramalad",
+      "titleBg": "Мармалад",
+      "titleEn": "Marmalade",
+      "date": "2026-02-14T00:00:00",
+      "descriptionBg": "Мармалад - Специялно парти за деня на влюбените",
+      "descriptionEn": "Marmalade - a special Valentine's Day party",
+      "logoImage": "events/archive/maramalad/maramalad.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "vinyl_punk_rock_night",
+      "titleBg": "Винил Пънк Рок Нощ",
+      "titleEn": "Vinyl Punk Rock Night",
+      "date": "2026-02-06T00:00:00",
+      "descriptionBg": "Винил парти. Пънк на грамофон. Дрънк на китара",
+      "descriptionEn": "Vinyl party. Punk on the turntable. Drunk on guitar.",
+      "logoImage": "events/archive/vinyl_punk_rock_night/vinyl_punk_rock_night.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "end_of_year_2025",
+      "titleBg": "Краят на 2025",
+      "titleEn": "End of Year 2025",
+      "date": "2025-12-31T00:00:00",
+      "logoImage": "events/archive/end_of_year_2025/end_of_year_2025.jpg",
+      "galleryImages": [],
+      "squareCard": true
     }
   ]
 }

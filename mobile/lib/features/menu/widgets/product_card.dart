@@ -175,7 +175,7 @@ class _PhotoProductCard extends StatelessWidget {
                             if (quantity != null) ...[
                               const SizedBox(height: 2),
                               Text(
-                                quantity.toUpperCase(),
+                                quantity,
                                 style: TextStyle(
                                   fontSize: 13,
                                   fontWeight: FontWeight.w700,
@@ -281,7 +281,7 @@ class _FoodPhotoCard extends StatelessWidget {
                         if (quantity != null) ...[
                           const SizedBox(height: 2),
                           Text(
-                            quantity.toUpperCase(),
+                            quantity,
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w700,

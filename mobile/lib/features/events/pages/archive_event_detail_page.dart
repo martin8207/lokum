@@ -20,6 +20,7 @@ class ArchiveEventDetailPage extends StatelessWidget {
       builder: (context, lang, _) {
         final theme = Theme.of(context);
         final date = event.formattedDateShort(lang);
+        final description = event.description(lang);
         final logoPath = event.logoImage == null
             ? null
             : AssetPaths.eventImage(event.logoImage!);
@@ -66,6 +67,10 @@ class ArchiveEventDetailPage extends StatelessWidget {
                     color: theme.hintColor,
                   ),
                 ),
+              ],
+              if (description != null) ...[
+                const SizedBox(height: 12),
+                Text(description, style: theme.textTheme.bodyLarge),
               ],
               const SizedBox(height: 20),
               if (photos.isEmpty)

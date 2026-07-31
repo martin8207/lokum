@@ -32,6 +32,11 @@ class BarEvent {
 
   final List<String> galleryImages;
 
+  /// Само за архивни събития: показва картата като квадратно изображение
+  /// (като "Нещо за хапване" картите), без текстов ред до нея - за събития
+  /// без отделно описание, само снимка.
+  final bool squareCard;
+
   const BarEvent({
     required this.id,
     required this.titleBg,
@@ -46,6 +51,7 @@ class BarEvent {
     this.posterImage,
     this.logoImage,
     this.galleryImages = const [],
+    this.squareCard = false,
   });
 
   String title(AppLang lang) => lang == AppLang.bg ? titleBg : titleEn;
@@ -139,6 +145,7 @@ class BarEvent {
       galleryImages:
           (json['galleryImages'] as List?)?.map((e) => e.toString()).toList() ??
           const [],
+      squareCard: json['squareCard'] as bool? ?? false,
     );
   }
 
