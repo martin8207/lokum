@@ -10,7 +10,13 @@
 Изисква: pip install Pillow --break-system-packages
 """
 import os
+import sys
 from PIL import Image
+
+# Windows конзолата понякога е с cp1252 по подразбиране, което гърми на
+# кирилица в print() - пусни hook-а (или скрипта) тихо и стабилно.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 ASSETS_DIR = "mobile/assets"
 MAX_DIM = 1080          # достатъчно за телефонен екран, дори при zoom
@@ -30,7 +36,23 @@ def optimize_image(path):
         ratio = MAX_DIM / max(w, h)
         img = img.resize((int(w * ratio), int(h * ratio)), Image.LANCZOS)
 
-    img.convert("RGB").save(path, "JPEG", quality=JPEG_QUALITY, optimize=True)
+    # Реална прозрачност, не просто RGBA режим - много "PNG" файлове от
+    # телефони/редактори имат алфа канал, който е 100% непрозрачен
+    # (стойност 255 навсякъде). Такива компресират много по-добре като
+    # JPEG, без никаква видима разлика.
+    has_alpha = False
+    if img.mode in ("RGBA", "LA", "PA"):
+        has_alpha = img.getchannel("A").getextrema()[0] < 255
+    elif "transparency" in img.info:
+        has_alpha = True
+
+    if has_alpha:
+        # PNG с прозрачност (напр. изрязани снимки на бутилки) - пази се като
+        # PNG, за да не изчезне прозрачния фон. `convert("RGB")` + JPEG щеше
+        # тихо да го запълни с плътен цвят.
+        img.convert("RGBA").save(path, "PNG", optimize=True)
+    else:
+        img.convert("RGB").save(path, "JPEG", quality=JPEG_QUALITY, optimize=True)
     new_size = os.path.getsize(path)
 
     saved_pct = 100 * (1 - new_size / orig_size)

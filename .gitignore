@@ -17,3 +17,7 @@ node_modules/
 
 # --- Excel lock files (създават се докато файлът е отворен) ---
 database/excel/~$*.xlsx
+
+# --- Python ---
+__pycache__/
+*.pyc

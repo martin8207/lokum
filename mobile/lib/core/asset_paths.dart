@@ -17,7 +17,7 @@ class AssetPaths {
   static const String logoDark = 'assets/logos/logo.jpg';
 
   /// Логото на бара за светла тема (отделен файл, четим на светъл фон).
-  static const String logoLight = 'assets/logos/lokum_light_logo.png';
+  static const String logoLight = 'assets/logos/lokum_light_logo.jpg';
 
   /// Правилното лого според текущата тема.
   static String logoFor(Brightness brightness) =>

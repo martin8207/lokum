@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T11:25:34.321610+00:00",
+  "generatedAt": "2026-08-01T17:11:22.120592+00:00",
   "productCount": 177,
   "categories": [
     {
@@ -4104,7 +4104,7 @@
               "priceEur": 3.3,
               "quantity": 500.0,
               "unit": "ml",
-              "image": "beer/glarus/signature.jpg",
+              "image": "beer/glarus/black_sea_ipa.jpg",
               "featured": true,
               "isNew": false,
               "isRecommended": false,
@@ -4127,7 +4127,7 @@
               "priceEur": 3.3,
               "quantity": 500.0,
               "unit": "ml",
-              "image": "glarus_signature_saison.webp",
+              "image": "beer/glarus/belgian_ale.jpg",
               "featured": true,
               "isNew": false,
               "isRecommended": false,
