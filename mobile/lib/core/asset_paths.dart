@@ -34,6 +34,12 @@ class AssetPaths {
   static const String facebookLogo = 'assets/icons/facebook.webp';
   static const String instagramLogo = 'assets/icons/instagram.webp';
 
+  /// По желание: фонова снимка (напр. за промотирано събитие) на екрана за
+  /// избор на език и началния екран - виж [FeaturedBackground]. Ако файлът
+  /// липсва, страниците изглеждат както обичайно (без фон).
+  static const String featuredBackground =
+      'assets/campaign/featured_background.jpg';
+
   /// Директория с продуктови снимки (bundled в приложението).
   /// Очакван формат на файловете: `product.image`, напр. "glarus_500.webp".
   static const String productImagesDir = 'assets/images/products';

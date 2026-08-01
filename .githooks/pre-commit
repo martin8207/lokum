@@ -1,0 +1,12 @@
+#!/bin/bash
+# Pre-commit hook: автоматично оптимизира снимките в mobile/assets/
+# преди всеки commit, за да не влизат тежки некомпресирани снимки в git history.
+
+echo "Running image optimization..."
+python3 scripts/optimize-images.py
+
+# Ако скриптът е променил файлове (компресирал ги), добави ги обратно в staging
+git add mobile/assets/
+
+echo "Image optimization done."
+exit 0

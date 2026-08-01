@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
 import '../../core/asset_paths.dart';
 import '../../shared/models/product.dart';
+import '../../shared/widgets/featured_background.dart';
 import '../home/home_page.dart';
 
 /// Първият екран след сканиране на QR кода: лого на бара и избор на език.
@@ -22,82 +23,87 @@ class LanguageSelectPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.colors;
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(24),
-          child: Column(
-            children: [
-              Expanded(
-                child: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: SizedBox(
-                          height: 170,
-                          width: 280,
-                          child: Image.asset(
-                            AssetPaths.logoFor(Theme.of(context).brightness),
-                            fit: BoxFit.cover,
-                            alignment: Alignment.topCenter,
-                            errorBuilder: (context, error, stackTrace) =>
-                                Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.local_bar,
-                                      size: 72,
-                                      color: colors.accent,
-                                    ),
-                                    const SizedBox(height: 12),
-                                    Text(
-                                      'LOKUM',
-                                      style: brandTextStyle(
+      body: FeaturedBackground(
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              children: [
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: SizedBox(
+                            height: 170,
+                            width: 280,
+                            child: Image.asset(
+                              AssetPaths.logoFor(Theme.of(context).brightness),
+                              fit: BoxFit.cover,
+                              alignment: Alignment.topCenter,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.local_bar,
+                                        size: 72,
                                         color: colors.accent,
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.w700,
-                                      ).copyWith(letterSpacing: 4),
-                                    ),
-                                  ],
-                                ),
+                                      ),
+                                      const SizedBox(height: 12),
+                                      Text(
+                                        'LOKUM',
+                                        style: brandTextStyle(
+                                          color: colors.accent,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.w700,
+                                        ).copyWith(letterSpacing: 4),
+                                      ),
+                                    ],
+                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 12),
-                      Text(
-                        'riffs & drinks',
-                        style: TextStyle(
-                          color: colors.textMuted,
-                          fontSize: 14,
-                          fontStyle: FontStyle.italic,
+                        const SizedBox(height: 12),
+                        Text(
+                          'riffs & drinks',
+                          style: TextStyle(
+                            color: colors.textMuted,
+                            fontSize: 14,
+                            fontStyle: FontStyle.italic,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 48),
-                      Text(
-                        'Изберете език  ·  Choose your language',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(color: colors.textMuted, fontSize: 15),
-                      ),
-                      const SizedBox(height: 20),
-                      _LanguageButton(
-                        flag: '🇧🇬',
-                        label: 'БЪЛГАРСКИ',
-                        onTap: () => _selectLanguage(context, AppLang.bg),
-                      ),
-                      const SizedBox(height: 14),
-                      _LanguageButton(
-                        flag: '🇬🇧',
-                        label: 'ENGLISH',
-                        onTap: () => _selectLanguage(context, AppLang.en),
-                      ),
-                    ],
+                        const SizedBox(height: 48),
+                        Text(
+                          'Изберете език  ·  Choose your language',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: colors.textMuted,
+                            fontSize: 15,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        _LanguageButton(
+                          flag: '🇧🇬',
+                          label: 'БЪЛГАРСКИ',
+                          onTap: () => _selectLanguage(context, AppLang.bg),
+                        ),
+                        const SizedBox(height: 14),
+                        _LanguageButton(
+                          flag: '🇬🇧',
+                          label: 'ENGLISH',
+                          onTap: () => _selectLanguage(context, AppLang.en),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const _CreditsFooter(),
-            ],
+                const _CreditsFooter(),
+              ],
+            ),
           ),
         ),
       ),
