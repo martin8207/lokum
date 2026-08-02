@@ -1,12 +1,17 @@
 #!/bin/bash
-# Pre-commit hook: автоматично оптимизира снимките в mobile/assets/
-# преди всеки commit, за да не влизат тежки некомпресирани снимки в git history.
+# Pre-commit hook: автоматично (1) синхронизира събитията - мести изтекли
+# предстоящи в архива, напасва галерийните снимки по файловете в папките,
+# и (2) оптимизира снимките в mobile/assets/, преди всеки commit.
+
+echo "Syncing events (archive expired, sync gallery images)..."
+python3 scripts/sync-events.py
 
 echo "Running image optimization..."
 python3 scripts/optimize-images.py
 
-# Ако скриптът е променил файлове (компресирал ги), добави ги обратно в staging
-git add mobile/assets/
+# Ако скриптовете са променили файлове (местене/компресия), добави ги
+# обратно в staging.
+git add mobile/assets/ mobile/pubspec.yaml
 
-echo "Image optimization done."
+echo "Event sync + image optimization done."
 exit 0

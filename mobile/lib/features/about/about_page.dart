@@ -6,6 +6,7 @@ import '../../core/asset_paths.dart';
 import '../../core/services/venue_service.dart';
 import '../../shared/models/product.dart';
 import '../../shared/models/venue.dart';
+import '../../shared/widgets/social_button.dart';
 import '../../shared/widgets/theme_toggle.dart';
 
 /// Отваря Facebook страницата на бара - през нативното приложение, ако е
@@ -159,7 +160,7 @@ class _AboutPageState extends State<AboutPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            _SocialButton(
+                            SocialButton(
                               logoPath: AssetPaths.facebookLogo,
                               fallbackIcon: Icons.facebook,
                               fallbackColor: const Color(0xFF1877F2),
@@ -167,7 +168,7 @@ class _AboutPageState extends State<AboutPage> {
                               onTap: _openFacebookPage,
                             ),
                             const SizedBox(width: 16),
-                            _SocialButton(
+                            SocialButton(
                               logoPath: AssetPaths.instagramLogo,
                               fallbackIcon: Icons.camera_alt,
                               fallbackColor: const Color(0xFFE1306C),
@@ -276,41 +277,6 @@ class _AboutPageState extends State<AboutPage> {
           ),
         );
       },
-    );
-  }
-}
-
-/// Бутон за социална мрежа: показва истинското цветно лого (bundled asset),
-/// ако е налично, иначе избледнява до Material икона в приблизителния
-/// брандов цвят - докато реалният файл бъде добавен в assets/icons/.
-class _SocialButton extends StatelessWidget {
-  final String logoPath;
-  final IconData fallbackIcon;
-  final Color fallbackColor;
-  final String tooltip;
-  final VoidCallback onTap;
-
-  const _SocialButton({
-    required this.logoPath,
-    required this.fallbackIcon,
-    required this.fallbackColor,
-    required this.tooltip,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final hasLogo = BundledAssets.has(logoPath);
-    return IconButton(
-      onPressed: onTap,
-      tooltip: tooltip,
-      iconSize: 36,
-      icon: hasLogo
-          ? ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: Image.asset(logoPath, width: 36, height: 36),
-            )
-          : Icon(fallbackIcon, color: fallbackColor),
     );
   }
 }

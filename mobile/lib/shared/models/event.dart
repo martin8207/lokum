@@ -32,10 +32,25 @@ class BarEvent {
 
   final List<String> galleryImages;
 
+  /// Линкове към социални мрежи/платформи за слушане - показват се като
+  /// tappable икони в detail екрана (само тези, които са зададени).
+  final String? instagramUrl;
+  final String? facebookUrl;
+  final String? tiktokUrl;
+  final String? youtubeUrl;
+  final String? spotifyUrl;
+  final String? appleMusicUrl;
+
   /// Само за архивни събития: показва картата като квадратно изображение
   /// (като "Нещо за хапване" картите), без текстов ред до нея - за събития
   /// без отделно описание, само снимка.
   final bool squareCard;
+
+  /// Само за предстоящи събития: показва картата на цяла ширина (2x по-
+  /// широка от стандартните карти в 2-колонния grid), с целия постер
+  /// видим (без изрязване) - за специални концерти/събития, които трябва
+  /// да се набиват на очи. Виж [FeaturedEventCard].
+  final bool featured;
 
   const BarEvent({
     required this.id,
@@ -51,7 +66,14 @@ class BarEvent {
     this.posterImage,
     this.logoImage,
     this.galleryImages = const [],
+    this.instagramUrl,
+    this.facebookUrl,
+    this.tiktokUrl,
+    this.youtubeUrl,
+    this.spotifyUrl,
+    this.appleMusicUrl,
     this.squareCard = false,
+    this.featured = false,
   });
 
   String title(AppLang lang) => lang == AppLang.bg ? titleBg : titleEn;
@@ -145,7 +167,14 @@ class BarEvent {
       galleryImages:
           (json['galleryImages'] as List?)?.map((e) => e.toString()).toList() ??
           const [],
+      instagramUrl: json['instagramUrl'] as String?,
+      facebookUrl: json['facebookUrl'] as String?,
+      tiktokUrl: json['tiktokUrl'] as String?,
+      youtubeUrl: json['youtubeUrl'] as String?,
+      spotifyUrl: json['spotifyUrl'] as String?,
+      appleMusicUrl: json['appleMusicUrl'] as String?,
       squareCard: json['squareCard'] as bool? ?? false,
+      featured: json['featured'] as bool? ?? false,
     );
   }
 

@@ -7,6 +7,7 @@ import '../../../shared/models/product.dart';
 import '../../../shared/widgets/theme_toggle.dart';
 import '../widgets/archive_event_card.dart';
 import '../widgets/event_poster_card.dart';
+import '../widgets/featured_event_card.dart';
 import 'archive_event_detail_page.dart';
 import 'event_detail_page.dart';
 
@@ -102,26 +103,44 @@ class _UpcomingTab extends StatelessWidget {
             : 'No upcoming events right now.\nStay tuned!',
       );
     }
-    return GridView.builder(
+    final featured = events.where((e) => e.featured).toList();
+    final regular = events.where((e) => !e.featured).toList();
+
+    void openDetail(BarEvent event) {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => EventDetailPage(event: event)),
+      );
+    }
+
+    return ListView(
       padding: const EdgeInsets.all(16),
-      itemCount: events.length,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        mainAxisSpacing: 16,
-        crossAxisSpacing: 16,
-        childAspectRatio: 0.62,
-      ),
-      itemBuilder: (context, index) => EventPosterCard(
-        event: events[index],
-        lang: lang,
-        onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => EventDetailPage(event: events[index]),
+      children: [
+        for (final event in featured) ...[
+          FeaturedEventCard(
+            event: event,
+            lang: lang,
+            onTap: () => openDetail(event),
+          ),
+          const SizedBox(height: 16),
+        ],
+        if (regular.isNotEmpty)
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: regular.length,
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 16,
+              childAspectRatio: 0.62,
             ),
-          );
-        },
-      ),
+            itemBuilder: (context, index) => EventPosterCard(
+              event: regular[index],
+              lang: lang,
+              onTap: () => openDetail(regular[index]),
+            ),
+          ),
+      ],
     );
   }
 }

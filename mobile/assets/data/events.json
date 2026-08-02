@@ -1,6 +1,25 @@
 {
   "upcoming": [
     {
+      "id": "greesh-live",
+      "titleBg": "GREESH",
+      "titleEn": "GREESH",
+      "cardSubtitleBg": "GREESH LIVE @ BAR LOKUM | Шумен | 23.08.2026",
+      "cardSubtitleEn": "GREESH LIVE @ BAR LOKUM | Shumen | 23.08.2026",
+      "descriptionBg": "📅 Дата: 23.08.2026\n📍 Място: Бар Локум, Шумен\n⏰ Час: 20:00\n🎫 Вход: Свободен\n\nГръндж-Фънк вълната ще залее Шумен за първи път.\nGREESH ще са на гребена на лайфа и ще се разбият в бар Локум.\nЕклектичната група ще направи тази неделна вечер малко по-цветна, много по-шумна и силно запомняща се.\nВземете си дъските, ще е як трип.\n\nБандата ще свири в трио състав:\n🎙️ Гриша Георгиев (Greesh) - вокал, китара, бас\n🎷 Галатея Мутафова - баритон саксофон, синт, вокал\n🥁 Никола Джоков (Nixon) - барабани, синт, вокал\n\nЕла да се запознаеш с музикантите и да станеш част от нашето общество.\n\n⚡️ Последвайте групата и я чуйте:",
+      "descriptionEn": "📅 Date: August 23, 2026\n📍 Venue: Lokum Bar, Shumen\n⏰ Time: 8:00 PM\n🎫 Admission: Free\n\nThe Grunge-Funk wave is hitting Shumen for the very first time.\nGREESH will be riding the wave straight into Lokum Bar. This eclectic trio is about to make your Sunday night brighter, louder, and absolutely unforgettable.\nGrab your boards—it's going to be one hell of a ride.\n\nThe band will perform as a power trio:\n🎙️ Grisha Georgiev (Greesh) – vocals, guitar, bass\n🎷 Galathea Mutafova – baritone saxophone, synthesizer, vocals\n🥁 Nikola Dzhokov (Nixon) – drums, synthesizer, vocals\n\nCome meet the musicians and become part of our community.\n\n⚡️ Follow the band and listen here:",
+      "date": "2026-08-23T20:00:00",
+      "posterImage": "events/live/greesh_23072026.jpg",
+      "logoImage": "events/live/greesh_23072026.jpg",
+      "instagramUrl": "https://www.instagram.com/greeshband/",
+      "facebookUrl": "https://www.facebook.com/multigreesh/",
+      "tiktokUrl": "https://www.tiktok.com/@greeshband",
+      "youtubeUrl": "https://www.youtube.com/channel/UCtDBssCx83IPRPU1Y0b0wdw",
+      "spotifyUrl": "https://open.spotify.com/artist/475RQilICMxfPiwn6DcEvE",
+      "appleMusicUrl": "https://music.apple.com/us/artist/greesh/507343826",
+      "featured": true
+    },
+    {
       "id": "sunday-brunch",
       "titleBg": "Неделен Брънч",
       "titleEn": "Sunday Brunch",
@@ -35,17 +54,17 @@
       "titleBg": "DnD и VIT",
       "titleEn": "DnD and VIT",
       "date": "2026-07-25T00:00:00",
-      "logoImage": "events/archive/dnd-vit/DnD_VIT.jpeg",
+      "logoImage": "events/archive/DnD_VIT/DnD_VIT.jpeg",
       "galleryImages": [
-        "events/archive/dnd-vit/DnD_VIT_1.jpeg",
-        "events/archive/dnd-vit/DnD_VIT_2.jpeg",
-        "events/archive/dnd-vit/DnD_VIT_3.jpeg",
-        "events/archive/dnd-vit/DnD_VIT_4.jpeg",
-        "events/archive/dnd-vit/DnD_VIT_5.jpeg",
-        "events/archive/dnd-vit/DnD_VIT_6.jpeg",
-        "events/archive/dnd-vit/DnD_VIT_7.jpeg",
-        "events/archive/dnd-vit/DnD_VIT_8.jpeg",
-        "events/archive/dnd-vit/DnD_VIT_9.jpeg"
+        "events/archive/DnD_VIT/DnD_VIT_1.jpeg",
+        "events/archive/DnD_VIT/DnD_VIT_2.jpeg",
+        "events/archive/DnD_VIT/DnD_VIT_3.jpeg",
+        "events/archive/DnD_VIT/DnD_VIT_4.jpeg",
+        "events/archive/DnD_VIT/DnD_VIT_5.jpeg",
+        "events/archive/DnD_VIT/DnD_VIT_6.jpeg",
+        "events/archive/DnD_VIT/DnD_VIT_7.jpeg",
+        "events/archive/DnD_VIT/DnD_VIT_8.jpeg",
+        "events/archive/DnD_VIT/DnD_VIT_9.jpeg"
       ]
     },
     {
@@ -80,14 +99,14 @@
       "titleBg": "Лютеница / LTNC",
       "titleEn": "Lutenitsa / LTNC",
       "date": "2026-06-26T00:00:00",
-      "logoImage": "events/archive/lutenitsa-ltnc/ltnc.jpeg",
+      "logoImage": "events/archive/ltnc/ltnc.jpeg",
       "galleryImages": [
-        "events/archive/lutenitsa-ltnc/ltnc_1.jpeg",
-        "events/archive/lutenitsa-ltnc/ltnc_2.jpg",
-        "events/archive/lutenitsa-ltnc/ltnc_3.jpg",
-        "events/archive/lutenitsa-ltnc/ltnc_4.jpg",
-        "events/archive/lutenitsa-ltnc/ltnc_5.jpg",
-        "events/archive/lutenitsa-ltnc/ltnc_6.jpg"
+        "events/archive/ltnc/ltnc_1.jpeg",
+        "events/archive/ltnc/ltnc_2.jpg",
+        "events/archive/ltnc/ltnc_3.jpg",
+        "events/archive/ltnc/ltnc_4.jpg",
+        "events/archive/ltnc/ltnc_5.jpg",
+        "events/archive/ltnc/ltnc_6.jpg"
       ]
     },
     {
@@ -114,13 +133,13 @@
       "titleBg": "M. G. W. Acoustic",
       "titleEn": "M. G. W. Acoustic",
       "date": "2026-06-19T00:00:00",
-      "logoImage": "events/archive/mgw-acoustic/MGW.jpeg",
+      "logoImage": "events/archive/MGW/MGW.jpeg",
       "galleryImages": [
-        "events/archive/mgw-acoustic/MGW_1.jpeg",
-        "events/archive/mgw-acoustic/MGW_2.jpeg",
-        "events/archive/mgw-acoustic/MGW_3.jpeg",
-        "events/archive/mgw-acoustic/MGW_4.jpeg",
-        "events/archive/mgw-acoustic/MGW_5.jpeg"
+        "events/archive/MGW/MGW_1.jpeg",
+        "events/archive/MGW/MGW_2.jpeg",
+        "events/archive/MGW/MGW_3.jpeg",
+        "events/archive/MGW/MGW_4.jpeg",
+        "events/archive/MGW/MGW_5.jpeg"
       ]
     },
     {
@@ -150,8 +169,10 @@
       "date": "2026-04-10T00:00:00",
       "descriptionBg": "СИНЯ ЛАМПА ВЕЛИК REUNION Парти с DJ LIL'DOB",
       "descriptionEn": "BLUE LAMP grand REUNION party with DJ LIL'DOB",
-      "logoImage": "events/archive/blue_lamp/blue_lamp_reunion.jpg",
-      "galleryImages": ["events/archive/blue_lamp/blue_lamp_reunion_1.jpg"]
+      "logoImage": "events/archive/blue_lamp_reunion/blue_lamp_reunion.jpg",
+      "galleryImages": [
+        "events/archive/blue_lamp_reunion/blue_lamp_reunion_1.jpg"
+      ]
     },
     {
       "id": "teleport_to_90s",
@@ -201,6 +222,14 @@
       "logoImage": "events/archive/end_of_year_2025/end_of_year_2025.jpg",
       "galleryImages": [],
       "squareCard": true
+    },
+    {
+      "id": "luta_kuhnya",
+      "titleBg": "Лютата Кухня",
+      "titleEn": "The Spicy Kitchen",
+      "date": "2025-11-14T00:00:00",
+      "logoImage": "events/archive/luta_kuhnya/luta_kuhnya.jpg",
+      "galleryImages": []
     }
   ]
 }

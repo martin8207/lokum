@@ -31,21 +31,23 @@ flutter:
     - assets/events/
     - assets/events/brunch/
     - assets/events/quiz/
-    - assets/events/archive/dnd-vit/
+    - assets/events/live/
+    - assets/events/archive/DnD_VIT/
     - assets/events/archive/deestoned/
     - assets/events/archive/bgz/
-    - assets/events/archive/lutenitsa-ltnc/
-    - assets/events/archive/mgw-acoustic/
+    - assets/events/archive/ltnc/
+    - assets/events/archive/MGW/
     - assets/events/archive/acoustic_adventures_part1/
     - assets/events/archive/acoustic_adventures_part2/
     - assets/events/archive/Y2K/
     - assets/events/archive/BG_Alternative_with_Simo/
-    - assets/events/archive/blue_lamp/
+    - assets/events/archive/blue_lamp_reunion/
     - assets/events/archive/teleport_to_90s/
     - assets/events/archive/children_of_the_korn/
     - assets/events/archive/maramalad/
     - assets/events/archive/vinyl_punk_rock_night/
     - assets/events/archive/end_of_year_2025/
+    - assets/events/archive/luta_kuhnya/
     - assets/food/
     - assets/food/brunch/
     - assets/food/mains/

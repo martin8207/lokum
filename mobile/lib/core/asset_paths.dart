@@ -33,6 +33,10 @@ class AssetPaths {
   /// пазим истинските брандови цветове/градиент, особено на Instagram).
   static const String facebookLogo = 'assets/icons/facebook.webp';
   static const String instagramLogo = 'assets/icons/instagram.webp';
+  static const String tiktokLogo = 'assets/icons/tiktok.webp';
+  static const String youtubeLogo = 'assets/icons/youtube.webp';
+  static const String spotifyLogo = 'assets/icons/spotify.webp';
+  static const String appleMusicLogo = 'assets/icons/applemusic.webp';
 
   /// По желание: фонова снимка (напр. за промотирано събитие) на екрана за
   /// избор на език и началния екран - виж [FeaturedBackground]. Ако файлът
