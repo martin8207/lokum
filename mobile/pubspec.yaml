@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
-  google_fonts: ^6.3.2
   url_launcher: ^6.3.1
   shared_preferences: ^2.3.3
 dev_dependencies:
@@ -54,3 +53,24 @@ flutter:
     - assets/spirits/
     - assets/videos/
     - assets/wine/
+  fonts:
+    # Локални копия на Nunito/Unbounded (пълна кирилица) - НЕ през google_fonts
+    # пакета, който тегли шрифтовете от мрежата при първо зареждане. Ако
+    # телефонът е с слаб/никакъв сигнал при сканиране на QR кода, runtime
+    # fetch-ът се проваля и цялото приложение пада на празен бял екран.
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Nunito-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Nunito-ExtraBold.ttf
+          weight: 800
+    - family: Unbounded
+      fonts:
+        - asset: assets/fonts/Unbounded-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Unbounded-Bold.ttf
+          weight: 700

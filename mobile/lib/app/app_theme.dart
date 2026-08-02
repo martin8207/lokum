@@ -5,18 +5,19 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Display шрифт за заглавия/лого-моменти (страница-заглавия, думата
 /// LOKUM) — по-характерен, близък по дух до "разтопените" букви на логото.
-/// Поддържа кирилица и латиница.
+/// Поддържа кирилица и латиница. Вграден локално (assets/fonts/) - НЕ през
+/// google_fonts пакета, за да не зависи от мрежа при първо зареждане.
 TextStyle brandTextStyle({
   required Color color,
   double fontSize = 20,
   FontWeight fontWeight = FontWeight.w600,
 }) {
-  return GoogleFonts.unbounded(
+  return TextStyle(
+    fontFamily: 'Unbounded',
     color: color,
     fontSize: fontSize,
     fontWeight: fontWeight,
@@ -174,16 +175,26 @@ ThemeData _buildTheme(LokumColors colors, Brightness brightness) {
     ),
     // Nunito — заоблен, четим, пълна поддръжка на кирилица и латиница;
     // близък по дух до "bubbly" усещането на логото, но четим и в дълъг текст
-    // (описания на продукти, работно време и т.н.).
-    textTheme: GoogleFonts.nunitoTextTheme(
-      Typography.material2021().black,
-    ).apply(bodyColor: colors.textMain, displayColor: colors.textMain),
+    // (описания на продукти, работно време и т.н.). Вграден локално
+    // (assets/fonts/), не през google_fonts - виж бележката при
+    // [brandTextStyle].
+    textTheme: Typography.material2021().black.apply(
+      fontFamily: 'Nunito',
+      bodyColor: colors.textMain,
+      displayColor: colors.textMain,
+    ),
     // Изрично зададен, за да съвпада сигурно с шрифта на менюто/продуктовите
     // карти (Nunito, от textTheme по-горе) - без да разчитаме на default
     // изведеното от Material за табовете.
     tabBarTheme: TabBarThemeData(
-      labelStyle: GoogleFonts.nunito(fontWeight: FontWeight.w700),
-      unselectedLabelStyle: GoogleFonts.nunito(fontWeight: FontWeight.w600),
+      labelStyle: const TextStyle(
+        fontFamily: 'Nunito',
+        fontWeight: FontWeight.w700,
+      ),
+      unselectedLabelStyle: const TextStyle(
+        fontFamily: 'Nunito',
+        fontWeight: FontWeight.w600,
+      ),
     ),
     hintColor: colors.textMuted,
     useMaterial3: true,
