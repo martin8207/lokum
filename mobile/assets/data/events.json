@@ -1,6 +1,18 @@
 {
   "upcoming": [
     {
+      "id": "dj-party-nick-vernon-astrolog",
+      "titleBg": "DJ Party",
+      "titleEn": "DJ Party",
+      "cardSubtitleBg": "DJ PARTY | NICK VERNON & ASTRO.LOG | 07.08.2026",
+      "cardSubtitleEn": "DJ PARTY | NICK VERNON & ASTRO.LOG | 07.08.2026",
+      "date": "2026-08-07T21:00:00",
+      "posterImage": "events/live/dj_parti_07082026.jpeg",
+      "logoImage": "events/live/dj_parti_07082026.jpeg",
+      "featured": true,
+      "featuredFixedHeight": true
+    },
+    {
       "id": "greesh-live",
       "titleBg": "GREESH",
       "titleEn": "GREESH",
@@ -199,7 +211,7 @@
       "titleBg": "Мармалад",
       "titleEn": "Marmalade",
       "date": "2026-02-14T00:00:00",
-      "descriptionBg": "Мармалад - Специялно парти за деня на влюбените",
+      "descriptionBg": "Мармалад - Специално парти за деня на влюбените",
       "descriptionEn": "Marmalade - a special Valentine's Day party",
       "logoImage": "events/archive/maramalad/maramalad.jpg",
       "galleryImages": []

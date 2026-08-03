@@ -52,6 +52,12 @@ class BarEvent {
   /// да се набиват на очи. Виж [FeaturedEventCard].
   final bool featured;
 
+  /// Само с [featured]: пази височината на картата колкото 2 стандартни
+  /// карти една до друга (вместо да варира по естествените пропорции на
+  /// постера) - полезно за квадратни/по-широки постери, за да не стане
+  /// картата неестествено висока/ниска.
+  final bool featuredFixedHeight;
+
   const BarEvent({
     required this.id,
     required this.titleBg,
@@ -74,6 +80,7 @@ class BarEvent {
     this.appleMusicUrl,
     this.squareCard = false,
     this.featured = false,
+    this.featuredFixedHeight = false,
   });
 
   String title(AppLang lang) => lang == AppLang.bg ? titleBg : titleEn;
@@ -175,6 +182,7 @@ class BarEvent {
       appleMusicUrl: json['appleMusicUrl'] as String?,
       squareCard: json['squareCard'] as bool? ?? false,
       featured: json['featured'] as bool? ?? false,
+      featuredFixedHeight: json['featuredFixedHeight'] as bool? ?? false,
     );
   }
 

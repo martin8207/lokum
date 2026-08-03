@@ -29,6 +29,18 @@ class FeaturedEventCard extends StatelessWidget {
         : AssetPaths.eventImage(event.posterImage!);
     final hasPoster = posterPath != null && BundledAssets.has(posterPath);
     final subtitle = event.cardSubtitle(lang);
+    // На колко от стандартните карти (0.62 childAspectRatio, вижте
+    // events_page.dart) отговаря един "ред" в 2-колонния grid - при
+    // event.featuredFixedHeight картата пази точно тази височина (колкото
+    // 2 стандартни карти една до друга), вместо да варира по снимката.
+    const standardRowAspectRatio = 2 * 0.62;
+
+    // `fill`, не `cover`/`contain` - при featuredFixedHeight искаме снимката
+    // да запълва цялата карта (и хоризонтално, и вертикално), без изрязване
+    // и без празни ленти - приема лека деформация на пропорциите.
+    final poster = hasPoster
+        ? Image.asset(posterPath, fit: BoxFit.fill)
+        : Icon(Icons.event, size: 56, color: theme.hintColor);
 
     return Card(
       clipBehavior: Clip.antiAlias,
@@ -38,23 +50,32 @@ class FeaturedEventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Без фиксиран aspect ratio - снимката пази естествените си
-            // пропорции на цяла ширина (без изрязване И без черни ленти).
-            hasPoster
-                ? Image.asset(
-                    posterPath,
-                    width: double.infinity,
-                    fit: BoxFit.fitWidth,
-                  )
-                : Container(
-                    height: 220,
-                    color: theme.colorScheme.surfaceContainerHighest,
-                    child: Icon(
-                      Icons.event,
-                      size: 56,
-                      color: theme.hintColor,
+            if (event.featuredFixedHeight)
+              AspectRatio(
+                aspectRatio: standardRowAspectRatio,
+                child: ColoredBox(
+                  color: theme.colorScheme.surfaceContainerHighest,
+                  child: poster,
+                ),
+              )
+            else
+              // Без фиксиран aspect ratio - снимката пази естествените си
+              // пропорции на цяла ширина (без изрязване И без черни ленти).
+              hasPoster
+                  ? Image.asset(
+                      posterPath,
+                      width: double.infinity,
+                      fit: BoxFit.fitWidth,
+                    )
+                  : Container(
+                      height: 220,
+                      color: theme.colorScheme.surfaceContainerHighest,
+                      child: Icon(
+                        Icons.event,
+                        size: 56,
+                        color: theme.hintColor,
+                      ),
                     ),
-                  ),
             if (subtitle != null)
               Padding(
                 padding: const EdgeInsets.symmetric(
