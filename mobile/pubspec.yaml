@@ -52,6 +52,7 @@ flutter:
     - assets/food/brunch/
     - assets/food/mains/
     - assets/food/burgers/
+    - assets/food/salads/
     - assets/spirits/
     - assets/videos/
     - assets/wine/

@@ -38,11 +38,14 @@ class AssetPaths {
   static const String spotifyLogo = 'assets/icons/spotify.webp';
   static const String appleMusicLogo = 'assets/icons/applemusic.webp';
 
-  /// По желание: фонова снимка (напр. за промотирано събитие) на екрана за
-  /// избор на език и началния екран - виж [FeaturedBackground]. Ако файлът
-  /// липсва, страниците изглеждат както обичайно (без фон).
-  static const String featuredBackground =
-      'assets/campaign/featured_background.jpg';
+  /// По желание: фонови снимки по разписание (напр. Брънч в неделя,
+  /// Викторина в понеделник) на екрана за избор на език и началния екран -
+  /// виж [FeaturedBackground]. Ако файлът липсва, страниците изглеждат
+  /// както обичайно (без фон).
+  static const String featuredBackgroundSunday =
+      'assets/campaign/featured_background_sunday.jpg';
+  static const String featuredBackgroundMonday =
+      'assets/campaign/featured_background_monday.jpg';
 
   /// Директория с продуктови снимки (bundled в приложението).
   /// Очакван формат на файловете: `product.image`, напр. "glarus_500.webp".

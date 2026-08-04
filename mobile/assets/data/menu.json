@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-02T10:48:25.433838+00:00",
+  "generatedAt": "2026-08-04T04:22:05.620184+00:00",
   "productCount": 181,
   "categories": [
     {
@@ -627,7 +627,7 @@
               "priceEur": 6.0,
               "quantity": 330.0,
               "unit": "g",
-              "image": "salata_buratina.webp",
+              "image": "food/salads/buratina.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -1802,7 +1802,7 @@
               "featured": false,
               "isNew": false,
               "isRecommended": false,
-              "available": true,
+              "available": false,
               "tags": [
                 "drinks",
                 "non-alcoholic_cocktails_and_shakes"
@@ -4081,7 +4081,7 @@
               "nameEn": "Heineken 0.0% Non-alcoholic 330ml",
               "descriptionBg": null,
               "descriptionEn": null,
-              "priceEur": 3.0,
+              "priceEur": 3.05,
               "quantity": 330.0,
               "unit": "ml",
               "image": "heineken_00_330.webp",
@@ -4343,7 +4343,7 @@
               "nameEn": "Glass of wine Chardonnay 200ml",
               "descriptionBg": null,
               "descriptionEn": null,
-              "priceEur": 4.0,
+              "priceEur": 3.6,
               "quantity": 200.0,
               "unit": "ml",
               "image": "wine_glass_chardonnay_200.webp",
@@ -4367,7 +4367,7 @@
               "nameEn": "Glass of wine Rosé 200ml",
               "descriptionBg": null,
               "descriptionEn": null,
-              "priceEur": 4.0,
+              "priceEur": 3.6,
               "quantity": 200.0,
               "unit": "ml",
               "image": "wine_glass_rose_200.webp",
@@ -4391,7 +4391,7 @@
               "nameEn": "Glass of wine Merlot 200ml",
               "descriptionBg": null,
               "descriptionEn": null,
-              "priceEur": 4.0,
+              "priceEur": 3.6,
               "quantity": 200.0,
               "unit": "ml",
               "image": "wine_glass_merlot_200.webp",
