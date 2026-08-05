@@ -13,15 +13,23 @@ import '../shared/models/product.dart';
 class AssetPaths {
   AssetPaths._();
 
-  /// Логото на бара за тъмна тема, показвано след сканиране на QR код.
+  /// Fallback логота (само по тема, без език) - използват се, докато
+  /// език-специфичните логота ([logoFor]) все още не са качени за даден
+  /// език (напр. EN версиите, докато не пристигнат).
   static const String logoDark = 'assets/logos/logo.jpg';
-
-  /// Логото на бара за светла тема (отделен файл, четим на светъл фон).
   static const String logoLight = 'assets/logos/lokum_light_logo.jpg';
 
-  /// Правилното лого според текущата тема.
-  static String logoFor(Brightness brightness) =>
-      brightness == Brightness.light ? logoLight : logoDark;
+  /// Правилното лого според текущата тема И избрания език, напр.
+  /// `lokum_dark_logo_bg.png` / `lokum_light_logo_en.png`. Ако
+  /// език-специфичният файл още не е качен, пада обратно към
+  /// [logoDark]/[logoLight].
+  static String logoFor(Brightness brightness, AppLang lang) {
+    final themeSlug = brightness == Brightness.light ? 'light' : 'dark';
+    final langSlug = lang == AppLang.bg ? 'bg' : 'en';
+    final specific = 'assets/logos/lokum_${themeSlug}_logo_$langSlug.png';
+    if (BundledAssets.has(specific)) return specific;
+    return brightness == Brightness.light ? logoLight : logoDark;
+  }
 
   /// Генерираният от tools/excel_to_json.py каталог с продукти.
   static const String menuJson = 'assets/data/menu.json';

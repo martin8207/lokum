@@ -25,85 +25,106 @@ class LanguageSelectPage extends StatelessWidget {
     return Scaffold(
       body: FeaturedBackground(
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: SizedBox(
-                            height: 170,
-                            width: 280,
-                            child: Image.asset(
-                              AssetPaths.logoFor(Theme.of(context).brightness),
-                              fit: BoxFit.cover,
-                              alignment: Alignment.topCenter,
-                              errorBuilder: (context, error, stackTrace) =>
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.local_bar,
-                                        size: 72,
-                                        color: colors.accent,
+          // LayoutBuilder + SingleChildScrollView + ConstrainedBox(minHeight)
+          // - центрира съдържанието, когато се събира на екрана (както
+          // преди), но скролва вместо да overflow-не, ако логото/съдържанието
+          // не се съберат (напр. при голямо лого или нисък екран).
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              // Ширина на логото като % от наличното място (не фиксирани
+              // пиксели) - на 360px телефон fixed 560px overflow-ваше
+              // хоризонтално. Височината следва реалния аспект на
+              // изрязаните лога (1080x645), за да няма нито overflow, нито
+              // разтягане/пилърбокс.
+              final logoWidth = (constraints.maxWidth * 0.75).clamp(
+                220.0,
+                340.0,
+              );
+              final logoHeight = logoWidth * 645 / 1080;
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: IntrinsicHeight(
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Center(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: SizedBox(
+                                      height: logoHeight,
+                                      width: logoWidth,
+                                      child: Image.asset(
+                                        AssetPaths.logoFor(
+                                          Theme.of(context).brightness,
+                                          AppLanguage.instance.value,
+                                        ),
+                                        fit: BoxFit.contain,
+                                        errorBuilder:
+                                            (context, error, stackTrace) => Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Icon(
+                                                  Icons.local_bar,
+                                                  size: 72,
+                                                  color: colors.accent,
+                                                ),
+                                                const SizedBox(height: 12),
+                                                Text(
+                                                  'LOKUM',
+                                                  style: brandTextStyle(
+                                                    color: colors.accent,
+                                                    fontSize: 30,
+                                                    fontWeight: FontWeight.w700,
+                                                  ).copyWith(letterSpacing: 4),
+                                                ),
+                                              ],
+                                            ),
                                       ),
-                                      const SizedBox(height: 12),
-                                      Text(
-                                        'LOKUM',
-                                        style: brandTextStyle(
-                                          color: colors.accent,
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.w700,
-                                        ).copyWith(letterSpacing: 4),
-                                      ),
-                                    ],
+                                    ),
                                   ),
+                                  const SizedBox(height: 48),
+                                  Text(
+                                    'Изберете език  ·  Choose your language',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: colors.textMuted,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 20),
+                                  _LanguageButton(
+                                    flag: '🇧🇬',
+                                    label: 'БЪЛГАРСКИ',
+                                    onTap: () =>
+                                        _selectLanguage(context, AppLang.bg),
+                                  ),
+                                  const SizedBox(height: 14),
+                                  _LanguageButton(
+                                    flag: '🇬🇧',
+                                    label: 'ENGLISH',
+                                    onTap: () =>
+                                        _selectLanguage(context, AppLang.en),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          'riffs & drinks',
-                          style: TextStyle(
-                            color: colors.textMuted,
-                            fontSize: 14,
-                            fontStyle: FontStyle.italic,
-                          ),
-                        ),
-                        const SizedBox(height: 48),
-                        Text(
-                          'Изберете език  ·  Choose your language',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: colors.textMuted,
-                            fontSize: 15,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        _LanguageButton(
-                          flag: '🇧🇬',
-                          label: 'БЪЛГАРСКИ',
-                          onTap: () => _selectLanguage(context, AppLang.bg),
-                        ),
-                        const SizedBox(height: 14),
-                        _LanguageButton(
-                          flag: '🇬🇧',
-                          label: 'ENGLISH',
-                          onTap: () => _selectLanguage(context, AppLang.en),
-                        ),
-                      ],
+                          const _CreditsFooter(),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-                const _CreditsFooter(),
-              ],
-            ),
+              );
+            },
           ),
         ),
       ),

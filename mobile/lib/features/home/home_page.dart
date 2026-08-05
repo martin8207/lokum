@@ -20,6 +20,14 @@ class HomePage extends StatelessWidget {
     return ValueListenableBuilder<AppLang>(
       valueListenable: AppLanguage.instance,
       builder: (context, lang, _) {
+        // Ширина на логото като % от екрана (не фиксирани пиксели) - на
+        // 360px телефон fixed 440px overflow-ваше хоризонтално. Височината
+        // следва реалния аспект на изрязаните лога (1080x645).
+        final logoWidth = (MediaQuery.sizeOf(context).width * 0.7).clamp(
+          200.0,
+          320.0,
+        );
+        final logoHeight = logoWidth * 645 / 1080;
         return Scaffold(
           body: FeaturedBackground(
             child: SafeArea(
@@ -46,14 +54,14 @@ class HomePage extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(18),
                               child: SizedBox(
-                                height: 130,
-                                width: 220,
+                                height: logoHeight,
+                                width: logoWidth,
                                 child: Image.asset(
                                   AssetPaths.logoFor(
                                     Theme.of(context).brightness,
+                                    lang,
                                   ),
-                                  fit: BoxFit.cover,
-                                  alignment: Alignment.topCenter,
+                                  fit: BoxFit.contain,
                                   errorBuilder: (context, error, stackTrace) =>
                                       Column(
                                         mainAxisSize: MainAxisSize.min,
@@ -77,16 +85,6 @@ class HomePage extends StatelessWidget {
                                         ],
                                       ),
                                 ),
-                              ),
-                            ),
-
-                            const SizedBox(height: 10),
-
-                            Text(
-                              "riffs & drinks",
-                              style: TextStyle(
-                                color: colors.textMuted,
-                                fontStyle: FontStyle.italic,
                               ),
                             ),
 
