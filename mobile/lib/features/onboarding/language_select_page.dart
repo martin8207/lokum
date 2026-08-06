@@ -101,14 +101,16 @@ class LanguageSelectPage extends StatelessWidget {
                                   ),
                                   const SizedBox(height: 20),
                                   _LanguageButton(
-                                    flag: '🇧🇬',
+                                    flagAsset: AssetPaths.flagBg,
+                                    flagEmoji: '🇧🇬',
                                     label: 'БЪЛГАРСКИ',
                                     onTap: () =>
                                         _selectLanguage(context, AppLang.bg),
                                   ),
                                   const SizedBox(height: 14),
                                   _LanguageButton(
-                                    flag: '🇬🇧',
+                                    flagAsset: AssetPaths.flagGb,
+                                    flagEmoji: '🇬🇧',
                                     label: 'ENGLISH',
                                     onTap: () =>
                                         _selectLanguage(context, AppLang.en),
@@ -167,12 +169,14 @@ class _CreditsFooter extends StatelessWidget {
 }
 
 class _LanguageButton extends StatelessWidget {
-  final String flag;
+  final String flagAsset;
+  final String flagEmoji;
   final String label;
   final VoidCallback onTap;
 
   const _LanguageButton({
-    required this.flag,
+    required this.flagAsset,
+    required this.flagEmoji,
     required this.label,
     required this.onTap,
   });
@@ -180,6 +184,15 @@ class _LanguageButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    // Флагче като снимка (не emoji) - CanvasKit тегли Noto emoji fallback
+    // шрифта от fonts.gstatic.com при среща на emoji, което е излишен CDN
+    // fetch само за 2 знака. Ако снимката все още не е качена, пада
+    // обратно към emoji-то.
+    final flagWidget = BundledAssets.has(flagAsset)
+        ? ClipOval(
+            child: Image.asset(flagAsset, width: 40, height: 40, fit: BoxFit.cover),
+          )
+        : Text(flagEmoji, style: const TextStyle(fontSize: 22));
     return SizedBox(
       width: double.infinity,
       height: 56,
@@ -194,7 +207,7 @@ class _LanguageButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(flag, style: const TextStyle(fontSize: 22)),
+            flagWidget,
             const SizedBox(width: 12),
             Text(
               label,

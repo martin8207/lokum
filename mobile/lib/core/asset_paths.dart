@@ -39,6 +39,11 @@ class AssetPaths {
 
   /// Оригинални цветни лога на социалните мрежи (не Material икони - за да
   /// пазим истинските брандови цветове/градиент, особено на Instagram).
+  /// Флагчета за избор на език (заменят emoji flags, за да избегнем runtime
+  /// fetch на Noto emoji fallback шрифт от fonts.gstatic.com при CanvasKit).
+  static const String flagBg = 'assets/icons/bg.png';
+  static const String flagGb = 'assets/icons/gb.png';
+
   static const String facebookLogo = 'assets/icons/facebook.webp';
   static const String instagramLogo = 'assets/icons/instagram.webp';
   static const String tiktokLogo = 'assets/icons/tiktok.webp';

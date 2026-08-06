@@ -6,7 +6,6 @@ version: 1.0.0+1
 environment:
   sdk: ^3.12.0
 dependencies:
-  excel: ^4.0.6
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
@@ -63,17 +62,17 @@ flutter:
     # fetch-ът се проваля и цялото приложение пада на празен бял екран.
     - family: Nunito
       fonts:
-        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-Regular.woff2
           weight: 400
-        - asset: assets/fonts/Nunito-SemiBold.ttf
+        - asset: assets/fonts/Nunito-SemiBold.woff2
           weight: 600
-        - asset: assets/fonts/Nunito-Bold.ttf
+        - asset: assets/fonts/Nunito-Bold.woff2
           weight: 700
-        - asset: assets/fonts/Nunito-ExtraBold.ttf
+        - asset: assets/fonts/Nunito-ExtraBold.woff2
           weight: 800
     - family: Unbounded
       fonts:
-        - asset: assets/fonts/Unbounded-SemiBold.ttf
+        - asset: assets/fonts/Unbounded-SemiBold.woff2
           weight: 600
-        - asset: assets/fonts/Unbounded-Bold.ttf
+        - asset: assets/fonts/Unbounded-Bold.woff2
           weight: 700

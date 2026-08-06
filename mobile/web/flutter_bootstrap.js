@@ -1,0 +1,17 @@
+{{flutter_js}}
+{{flutter_build_config}}
+
+_flutter.loader.load({
+  serviceWorkerSettings: {
+    serviceWorkerVersion: {{flutter_service_worker_version}}
+  },
+  config: {
+    // Форсира CanvasKit да се тегли от локално бъндълнатите файлове
+    // (/canvaskit/), не от gstatic.com CDN-а по подразбиране. Без това
+    // приложението не може да се рендерира изобщо, ако устройството няма
+    // общ интернет (само локална мрежа/Tailscale) - същият риск клас като
+    // офлайн бъга с google_fonts. Също намалява значително времето до
+    // първи кадър (гейт-ва целия рендер, а е ~6MB cross-origin файл).
+    canvasKitBaseUrl: "canvaskit/"
+  }
+});
