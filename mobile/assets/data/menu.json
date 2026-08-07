@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-04T04:22:05.620184+00:00",
+  "generatedAt": "2026-08-07T04:25:18.765263+00:00",
   "productCount": 181,
   "categories": [
     {
@@ -457,7 +457,7 @@
               "priceEur": 5.6,
               "quantity": 300.0,
               "unit": "g",
-              "image": "hrupkavi_pileshki_filentsa_s_mlechen_sos.webp",
+              "image": "food/mains/pileshki_filentza.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,

@@ -6,7 +6,7 @@ WORKDIR /app
 COPY . .
 
 RUN flutter pub get
-RUN flutter build web --release
+RUN flutter build web --release --source-maps
 
 # --- Stage 2: сервиране на статичните файлове с nginx ---
 FROM nginx:alpine
