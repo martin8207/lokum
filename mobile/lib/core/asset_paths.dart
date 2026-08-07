@@ -59,6 +59,8 @@ class AssetPaths {
       'assets/campaign/featured_background_sunday.jpg';
   static const String featuredBackgroundMonday =
       'assets/campaign/featured_background_monday.jpg';
+  static const String featuredBackgroundBeerDay =
+      'assets/campaign/featured_background_beer_day.jpg';
 
   /// Директория с продуктови снимки (bundled в приложението).
   /// Очакван формат на файловете: `product.image`, напр. "glarus_500.webp".

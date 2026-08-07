@@ -18,6 +18,16 @@ const List<(WeeklySchedule, String)> _scheduledBackgrounds = [
   ),
 ];
 
+/// Еднократни поводи, вързани за конкретна календарна дата (не се повтарят
+/// седмично) - виж [DateSchedule]. Проверяват се с приоритет пред
+/// седмичните разписания.
+const List<(DateSchedule, String)> _oneOffBackgrounds = [
+  (
+    DateSchedule(year: 2026, month: 8, day: 7), // Международен ден на бирата
+    AssetPaths.featuredBackgroundBeerDay,
+  ),
+];
+
 /// Слага текущата активна фонова снимка (по [_scheduledBackgrounds]) зад
 /// [child], с притъмняващ градиент отгоре за четимост на текста. Ако няма
 /// активно разписание в момента (или файлът липсва), просто връща [child]
@@ -29,6 +39,11 @@ class FeaturedBackground extends StatelessWidget {
 
   String? _activeBackgroundPath() {
     final now = DateTime.now();
+    for (final (schedule, assetPath) in _oneOffBackgrounds) {
+      if (schedule.isActiveAt(now) && BundledAssets.has(assetPath)) {
+        return assetPath;
+      }
+    }
     for (final (schedule, assetPath) in _scheduledBackgrounds) {
       if (schedule.isActiveAt(now) && BundledAssets.has(assetPath)) {
         return assetPath;
