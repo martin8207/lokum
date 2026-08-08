@@ -2,9 +2,13 @@
 {{flutter_build_config}}
 
 _flutter.loader.load({
-  serviceWorkerSettings: {
-    serviceWorkerVersion: {{flutter_service_worker_version}}
-  },
+  // Изрично БЕЗ serviceWorkerSettings - Flutter самите го маркират deprecated,
+  // и той е основната причина потребители да трябва ръчно да чистят кеша на
+  // браузъра, за да видят нов деплой (service worker-ът кешира в собствен
+  // Cache Storage слой, напълно независим от HTTP Cache-Control хедърите,
+  // и понякога не се обновява веднага). Без него всяко зареждане минава
+  // директно през нормалния HTTP кеш, който вече е конфигуриран правилно
+  // в nginx.conf (no-cache за index.html/main.dart.js гарантира свеж build).
   config: {
     // Форсира CanvasKit да се тегли от локално бъндълнатите файлове
     // (/canvaskit/), не от gstatic.com CDN-а по подразбиране. Без това

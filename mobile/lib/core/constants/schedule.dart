@@ -66,19 +66,26 @@ class WeeklySchedule {
   }
 }
 
-/// Еднократен (не повтарящ се) прозорец за конкретна календарна дата - напр.
-/// повод от рода на "Международен ден на бирата", който не се повтаря по
-/// седмичен цикъл като Брънч/Викторина. Активно е през целия ден (00:00 -
-/// 24:00 системно време), спира автоматично след смяна на датата.
-class DateSchedule {
-  final int year;
+/// Годишен повод, вързан за "първия [ден от седмицата] от [месец]" - напр.
+/// Международен ден на бирата = първи петък на август. Изчислява
+/// конкретната дата динамично за текущата година, така че работи
+/// автоматично всяка година, без ръчна поддръжка.
+class AnnualFirstWeekdaySchedule {
   final int month;
-  final int day;
 
-  const DateSchedule({required this.year, required this.month, required this.day});
+  /// [DateTime.monday]..[DateTime.sunday].
+  final int weekday;
 
-  bool isActiveAt(DateTime now) =>
-      now.year == year && now.month == month && now.day == day;
+  const AnnualFirstWeekdaySchedule({required this.month, required this.weekday});
+
+  bool isActiveAt(DateTime now) {
+    if (now.month != month) return false;
+    var d = DateTime(now.year, month, 1);
+    while (d.weekday != weekday) {
+      d = d.add(const Duration(days: 1));
+    }
+    return now.day == d.day;
+  }
 
   bool get isActiveNow => isActiveAt(DateTime.now());
 }

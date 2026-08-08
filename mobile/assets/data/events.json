@@ -1,20 +1,6 @@
 {
   "upcoming": [
     {
-      "id": "dj-party-nick-vernon-astrolog",
-      "titleBg": "DJ Party",
-      "titleEn": "DJ Party",
-      "cardSubtitleBg": "DJ PARTY | NICK VERNON & ASTRO.LOG | 07.08.2026",
-      "cardSubtitleEn": "DJ PARTY | NICK VERNON & ASTRO.LOG | 07.08.2026",
-      "descriptionBg": "DJ Селекция от плочи с електронна музика.",
-      "descriptionEn": "DJ selection of vinyl records with electronic music.",
-      "date": "2026-08-07T21:00:00",
-      "posterImage": "events/live/dj_parti_07082026.jpeg",
-      "logoImage": "events/live/dj_parti_07082026.jpeg",
-      "featured": true,
-      "featuredFixedHeight": true
-    },
-    {
       "id": "greesh-live",
       "titleBg": "GREESH",
       "titleEn": "GREESH",
@@ -243,6 +229,16 @@
       "titleEn": "The Spicy Kitchen",
       "date": "2025-11-14T00:00:00",
       "logoImage": "events/archive/luta_kuhnya/luta_kuhnya.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "dj_party_07082026",
+      "titleBg": "DJ Party",
+      "titleEn": "DJ Party",
+      "descriptionBg": "DJ Party с Nick Vernon & Astro.log - DJ селекция от плочи с електронна музика.",
+      "descriptionEn": "DJ Party with Nick Vernon & Astro.log - DJ selection of vinyl records with electronic music.",
+      "date": "2026-08-07T21:00:00",
+      "logoImage": "events/archive/dj_party_07082026/dj_party_07082026.jpeg",
       "galleryImages": []
     }
   ]

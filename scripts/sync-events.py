@@ -74,6 +74,16 @@ def archive_expired_events(data: dict) -> list[tuple[str, str]]:
                 dst = os.path.join(ASSETS_ROOT, cover_rel)
                 if not os.path.isfile(dst):
                     shutil.copy2(src, dst)
+                # Премести (не просто копирай) - трие оригинала от "live",
+                # освен ако друго все още предстоящо събитие не ползва
+                # същата снимка (споделен файл).
+                still_referenced = any(
+                    other is not event
+                    and (other.get("posterImage") == poster or other.get("logoImage") == poster)
+                    for other in data["upcoming"]
+                )
+                if not still_referenced:
+                    os.remove(src)
 
         archived = {
             "id": folder_name,
@@ -81,6 +91,12 @@ def archive_expired_events(data: dict) -> list[tuple[str, str]]:
             "titleEn": event.get("titleEn", ""),
             "date": date_str,
         }
+        # Пренасяй описанието, ако има такова - иначе детайли като имена на
+        # DJ-и/състав (често само там, не в title) се губят при архивиране.
+        if event.get("descriptionBg"):
+            archived["descriptionBg"] = event["descriptionBg"]
+        if event.get("descriptionEn"):
+            archived["descriptionEn"] = event["descriptionEn"]
         if cover_rel:
             archived["logoImage"] = cover_rel
         archived["galleryImages"] = []

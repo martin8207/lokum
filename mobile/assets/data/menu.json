@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-07T04:25:18.765263+00:00",
+  "generatedAt": "2026-08-08T05:55:00.815386+00:00",
   "productCount": 181,
   "categories": [
     {
@@ -539,7 +539,7 @@
               "priceEur": 7.9,
               "quantity": 300.0,
               "unit": "g",
-              "image": "zapecheni_bekonovi_rulentsa.webp",
+              "image": "food/mains/beconovi_rolentza.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -654,7 +654,7 @@
               "priceEur": 7.5,
               "quantity": 330.0,
               "unit": "g",
-              "image": "zelen_shum.webp",
+              "image": "food/salads/zelen_shum.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
