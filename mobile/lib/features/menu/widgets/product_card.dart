@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../core/app_config.dart';
 import '../../../core/asset_paths.dart';
 import '../../../core/constants/schedule.dart';
 import '../../../shared/models/product.dart';
@@ -328,18 +329,23 @@ class _PriceColumn extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(
-          product.formattedPrice(),
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            color: color,
+        if (AppConfig.showPrices) ...[
+          Text(
+            product.formattedPrice(),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: color,
+            ),
           ),
-        ),
-        Text(
-          product.formattedPriceBgn(),
-          style: TextStyle(fontSize: 12, color: color.withValues(alpha: 0.7)),
-        ),
+          Text(
+            product.formattedPriceBgn(),
+            style: TextStyle(
+              fontSize: 12,
+              color: color.withValues(alpha: 0.7),
+            ),
+          ),
+        ],
         if (product.isNew || product.featured || product.isRecommended)
           Padding(
             padding: const EdgeInsets.only(top: 4),

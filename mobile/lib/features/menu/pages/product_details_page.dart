@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../core/app_config.dart';
 import '../../../core/asset_paths.dart';
 import '../../../core/constants/schedule.dart';
 import '../../../core/services/menu_service.dart';
@@ -81,20 +82,22 @@ class ProductDetailsPage extends StatelessWidget {
                     ),
                   ),
                 ],
-                const SizedBox(height: 10),
-                Text(
-                  product.formattedPrice(),
-                  style: theme.textTheme.titleLarge?.copyWith(
-                    color: theme.colorScheme.primary,
-                    fontWeight: FontWeight.bold,
+                if (AppConfig.showPrices) ...[
+                  const SizedBox(height: 10),
+                  Text(
+                    product.formattedPrice(),
+                    style: theme.textTheme.titleLarge?.copyWith(
+                      color: theme.colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  product.formattedPriceBgn(),
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: theme.hintColor,
+                  Text(
+                    product.formattedPriceBgn(),
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      color: theme.hintColor,
+                    ),
                   ),
-                ),
+                ],
               ] else if (hasImage)
                 // Снимката е ляво подравнена, със заоблени краища,
                 // `BoxFit.cover` (запълва изцяло, без празно поле) —
@@ -145,20 +148,22 @@ class ProductDetailsPage extends StatelessWidget {
                                 ),
                               ),
                             ],
-                            const SizedBox(height: 10),
-                            Text(
-                              product.formattedPrice(),
-                              style: theme.textTheme.titleLarge?.copyWith(
-                                color: theme.colorScheme.primary,
-                                fontWeight: FontWeight.bold,
+                            if (AppConfig.showPrices) ...[
+                              const SizedBox(height: 10),
+                              Text(
+                                product.formattedPrice(),
+                                style: theme.textTheme.titleLarge?.copyWith(
+                                  color: theme.colorScheme.primary,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            Text(
-                              product.formattedPriceBgn(),
-                              style: theme.textTheme.bodyMedium?.copyWith(
-                                color: theme.hintColor,
+                              Text(
+                                product.formattedPriceBgn(),
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                  color: theme.hintColor,
+                                ),
                               ),
-                            ),
+                            ],
                           ],
                         ),
                       ),
@@ -177,24 +182,25 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          product.formattedPrice(),
-                          style: theme.textTheme.headlineSmall?.copyWith(
-                            color: theme.colorScheme.primary,
-                            fontWeight: FontWeight.bold,
+                    if (AppConfig.showPrices)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            product.formattedPrice(),
+                            style: theme.textTheme.headlineSmall?.copyWith(
+                              color: theme.colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        Text(
-                          product.formattedPriceBgn(),
-                          style: theme.textTheme.bodyMedium?.copyWith(
-                            color: theme.hintColor,
+                          Text(
+                            product.formattedPriceBgn(),
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.hintColor,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
+                        ],
+                      ),
                   ],
                 ),
                 if (quantity != null) ...[
