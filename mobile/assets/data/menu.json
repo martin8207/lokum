@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T05:47:25.912286+00:00",
+  "generatedAt": "2026-08-09T05:54:31.407030+00:00",
   "productCount": 181,
   "categories": [
     {
@@ -253,7 +253,7 @@
               "featured": false,
               "isNew": false,
               "isRecommended": false,
-              "available": true,
+              "available": false,
               "tags": [
                 "food",
                 "appetizer"
