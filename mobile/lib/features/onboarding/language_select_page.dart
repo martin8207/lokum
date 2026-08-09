@@ -196,29 +196,34 @@ class _LanguageButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       height: 56,
-      child: OutlinedButton(
-        onPressed: onTap,
-        style: OutlinedButton.styleFrom(
-          side: BorderSide(color: colors.accent, width: 1.5),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
-          ),
+      child: Card(
+        elevation: 0,
+        color: colors.surface,
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+          side: BorderSide(color: colors.border),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            flagWidget,
-            const SizedBox(width: 12),
-            Text(
-              label,
-              style: TextStyle(
-                color: colors.accent,
-                fontWeight: FontWeight.bold,
-                fontSize: 16,
-                letterSpacing: 1,
+        child: InkWell(
+          onTap: onTap,
+          hoverColor: colors.hoverOnSurface,
+          splashColor: colors.splashOnSurface,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              flagWidget,
+              const SizedBox(width: 12),
+              Text(
+                label,
+                style: TextStyle(
+                  color: colors.accent,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  letterSpacing: 1,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
