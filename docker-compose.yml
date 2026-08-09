@@ -57,6 +57,11 @@ services:
       # host-based routing-а на Caddy (който в момента разпознава само
       # lokum-shumen.duckdns.org).
 
+    volumes:
+      - nginx_logs:/var/log/nginx
+      # Достъп/натоварване логовете да оцеляват при rebuild - реалният
+      # Funnel трафик минава директно през тази nginx, не през Caddy.
+
     restart: unless-stopped
     # Flutter web build - изходът се копира в /srv вътре в тази стъпка (виж Dockerfile.web)
 
@@ -115,3 +120,4 @@ volumes:
   postgres_data:
   caddy_data:
   caddy_config:
+  nginx_logs:
