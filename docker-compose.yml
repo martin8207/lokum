@@ -65,6 +65,26 @@ services:
     restart: unless-stopped
     # Flutter web build - изходът се копира в /srv вътре в тази стъпка (виж Dockerfile.web)
 
+  lokum-web-v2:
+    build:
+      # ../lokum-test е отделен git worktree, chek-нат на branch "test" (виж
+      # docs/mobile/DEVELOPMENT_WORKFLOW.md за setup командите) - същия repo,
+      # различен branch на диска, без нужда от втори пълен clone.
+      context: ../lokum-test/mobile
+      dockerfile: Dockerfile.web
+
+    container_name: lokum-web-v2
+
+    ports:
+      - "8081:80"
+      # Само на хоста, БЕЗ Funnel/Caddy - достъпен само от устройства в
+      # tailnet-а (http://<tailscale-ip-на-сървъра>:8081), никога публично.
+
+    restart: unless-stopped
+    # v2.0 тестова среда - изтегля съдържание от production чрез
+    # `git merge main` в test branch-а (виж DEVELOPMENT_WORKFLOW.md),
+    # никога обратно.
+
   caddy:
     image: caddy:2-alpine
     container_name: lokum-caddy
