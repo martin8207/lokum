@@ -4,6 +4,7 @@ import '../../app/app_theme.dart';
 import '../../core/asset_paths.dart';
 import '../../shared/models/product.dart';
 import '../../shared/widgets/featured_background.dart';
+import '../../shared/widgets/theme_toggle.dart';
 import '../home/home_page.dart';
 
 /// Първият екран след сканиране на QR кода: лого на бара и избор на език.
@@ -49,6 +50,10 @@ class LanguageSelectPage extends StatelessWidget {
                       padding: const EdgeInsets.all(24),
                       child: Column(
                         children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: const [ThemeToggle()],
+                          ),
                           Expanded(
                             child: Center(
                               child: Column(
