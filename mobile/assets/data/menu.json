@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-09T16:19:04.607298+00:00",
+  "generatedAt": "2026-08-09T16:44:03.200588+00:00",
   "productCount": 181,
   "categories": [
     {
@@ -1305,7 +1305,7 @@
               "descriptionBg": "текила, ликьор портокал, сок лимон, захарен сироп",
               "descriptionEn": "tequila, orange liqueur, lemon juice, sugar syrup",
               "priceEur": 3.6,
-              "quantity": 150.0,
+              "quantity": 200.0,
               "unit": "ml",
               "image": "margarita.webp",
               "featured": false,
@@ -1329,7 +1329,7 @@
               "descriptionBg": "текила, ликьор портокал, сироп ягода, сок лимон",
               "descriptionEn": "tequila, orange liqueur, strawberry syrup, lemon juice",
               "priceEur": 3.6,
-              "quantity": 150.0,
+              "quantity": 200.0,
               "unit": "ml",
               "image": "yagodova_margarita.webp",
               "featured": false,
@@ -1523,7 +1523,7 @@
               "priceEur": 4.0,
               "quantity": 200.0,
               "unit": "ml",
-              "image": "cocktails/lokum/lokum.jpg",
+              "image": "cocktails/lokum.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
