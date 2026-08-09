@@ -11,6 +11,12 @@ RUN flutter build web --release --source-maps
 # --- Stage 2: сервиране на статичните файлове с nginx ---
 FROM nginx:alpine
 
+# Alpine е минимален - без tzdata пакета TZ env варът долу не важи на нищо
+# (няма /usr/share/zoneinfo файлове). Логовете да са в местно време
+# (Europe/Sofia), не UTC, за по-лесно четене.
+RUN apk add --no-cache tzdata
+ENV TZ=Europe/Sofia
+
 COPY --from=build /app/build/web /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
