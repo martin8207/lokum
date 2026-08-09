@@ -1,5 +1,5 @@
 {
-  "showPrices": false,
+  "showPrices": true,
   "app": {
     "name": "Lokum",
     "version": "1.0.0",
