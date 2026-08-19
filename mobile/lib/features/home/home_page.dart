@@ -12,6 +12,7 @@ import '../about/contact_page.dart';
 import '../events/pages/events_page.dart';
 import '../menu/pages/menu_page.dart';
 import '../menu/widgets/language_switch.dart';
+import '../staff/pages/staff_dashboard_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -71,10 +72,24 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
-                        children: const [
-                          ThemeToggle(),
-                          SizedBox(width: 8),
-                          LanguageSwitch(),
+                        children: [
+                          // Бележник на персонала (v2.0, само в test/
+                          // lokum-web-v2 build-а) - без login засега, виж
+                          // lokum-version2-planning.md, Функция 2.
+                          IconButton(
+                            icon: Icon(Icons.settings, color: colors.textMuted),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const StaffDashboardPage(),
+                                ),
+                              );
+                            },
+                          ),
+                          const ThemeToggle(),
+                          const SizedBox(width: 8),
+                          const LanguageSwitch(),
                         ],
                       ),
 

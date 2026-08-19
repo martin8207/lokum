@@ -69,4 +69,73 @@ model Product {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  orderItems OrderItem[]
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+}
+
+/// Сметката на една маса - отваря се автоматично при първата поръчка,
+/// затваря се при фактуриране. Групира множество Order записи, защото
+/// клиентите обикновено правят няколко кръга поръчки на едно седене -
+/// "Фактуриран" покрива цялата сесия, не последната поръчка.
+model TableSession {
+  id          String    @id @default(uuid())
+  tableNumber Int
+
+  openedAt      DateTime       @default(now())
+  invoicedAt    DateTime?
+  paymentMethod PaymentMethod?
+
+  orders Order[]
+
+  // Само една активна (нефактурирана) сесия на маса в даден момент -
+  // на ниво приложение се проверява преди отваряне на нова.
+  @@index([tableNumber, invoicedAt])
+}
+
+/// Един "кръг" поръчки, подаден наведнъж от бележника. servedAt/cancelledAt
+/// са на ниво поръчка (цялата се сервира или отказва наведнъж), но
+/// потвърждението в касовия апарат е на ниво отделна бройка - виж OrderItem.
+model Order {
+  id             String       @id @default(uuid())
+  tableSessionId String
+  tableSession   TableSession @relation(fields: [tableSessionId], references: [id])
+
+  submittedAt DateTime  @default(now())
+  servedAt    DateTime?
+  cancelledAt DateTime?
+
+  updatedAt DateTime @updatedAt
+
+  items OrderItem[]
+
+  @@index([tableSessionId])
+}
+
+/// Една бройка от артикул - НЕ ред с количество. "2x Стела" при подаване на
+/// поръчката създава 2 отделни записа, защото на практика бройките от едно
+/// и също количество могат да имат различна съдба (1 налята в КА, другата
+/// свършила и изтрита) - виж lokum-staff-search-demo.html / разговора за
+/// легендата със зелени/червени маркери.
+model OrderItem {
+  id        String  @id @default(uuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id])
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  // Снимка на цената в момента на поръчката - продуктовите цени могат да
+  // се сменят по-късно, сметката на масата не бива да "мърда" ретроактивно.
+  priceEur Decimal
+
+  kaConfirmedAt DateTime?
+  removedAt     DateTime?
+
+  createdAt DateTime @default(now())
+
+  @@index([orderId])
 }
