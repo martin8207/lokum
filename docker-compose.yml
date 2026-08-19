@@ -80,10 +80,36 @@ services:
       # Само на хоста, БЕЗ Funnel/Caddy - достъпен само от устройства в
       # tailnet-а (http://<tailscale-ip-на-сървъра>:8081), никога публично.
 
+    depends_on:
+      - lokum-server-v2
+
     restart: unless-stopped
     # v2.0 тестова среда - изтегля съдържание от production чрез
     # `git merge main` в test branch-а (виж DEVELOPMENT_WORKFLOW.md),
     # никога обратно.
+
+  lokum-server-v2:
+    build:
+      # Същият git worktree трик като lokum-web-v2 по-горе - отделен build
+      # context на branch "test", за да не се налага /project/lokum (production)
+      # да сменя branch само за да вземе бекенд промени за v2.0 разработката.
+      context: ../lokum-test/server
+      dockerfile: Dockerfile
+
+    container_name: lokum-server-v2
+
+    environment:
+      # Същата база като production lokum-server - безопасно, новите
+      # test-only таблици (TableSession/Order/OrderItem) са невидими за
+      # стария Prisma client на production, докато test не се merge-не.
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+
+    depends_on:
+      - postgres
+
+    restart: unless-stopped
+    # Без "ports" - достъпен само вътре в Docker мрежата, през nginx proxy-то
+    # на lokum-web-v2 (виж mobile/nginx.conf), точно като production lokum-server.
 
   caddy:
     image: caddy:2-alpine
