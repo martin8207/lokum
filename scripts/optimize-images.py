@@ -29,7 +29,9 @@ def optimize_image(path):
         print(f"  SKIP (не е валидно изображение): {path} ({e})")
         return
 
-    orig_size = os.path.getsize(path)
+    with open(path, "rb") as f:
+        orig_bytes = f.read()
+    orig_size = len(orig_bytes)
     w, h = img.size
 
     if max(w, h) > MAX_DIM:
@@ -54,6 +56,15 @@ def optimize_image(path):
     else:
         img.convert("RGB").save(path, "JPEG", quality=JPEG_QUALITY, optimize=True)
     new_size = os.path.getsize(path)
+
+    if new_size >= orig_size:
+        # Pillow-ският optimize=True понякога излиза по-слаб от външен
+        # компресор (напр. PNG, вече смален през сайт за компресия) -
+        # запазваме оригинала вместо да го "оптимизираме" до по-голям файл.
+        with open(path, "wb") as f:
+            f.write(orig_bytes)
+        print(f"  {path}: {orig_size//1024}KB -> запазен оригинал (без подобрение)")
+        return
 
     saved_pct = 100 * (1 - new_size / orig_size)
     print(f"  {path}: {orig_size//1024}KB -> {new_size//1024}KB (-{saved_pct:.0f}%)")
