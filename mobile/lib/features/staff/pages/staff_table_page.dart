@@ -30,6 +30,7 @@ class _StaffTablePageState extends State<StaffTablePage> {
   String? _loadError;
 
   final _searchController = TextEditingController();
+  final _searchFocusNode = FocusNode();
   List<StaffProduct> _results = [];
   bool _searching = false;
 
@@ -49,6 +50,12 @@ class _StaffTablePageState extends State<StaffTablePage> {
   @override
   void dispose() {
     _timer?.cancel();
+    // На Flutter Web, ако търсачката е фокусирана в момента на dispose (напр.
+    // при връщане назад с бутона), platform text input connection-ът не се
+    // прекъсва чисто и браузърната клавиатура остава "залепена" - изскача
+    // сама на следващия екран. Explicit unfocus преди dispose го оправя.
+    _searchFocusNode.unfocus();
+    _searchFocusNode.dispose();
     _searchController.dispose();
     super.dispose();
   }
@@ -332,6 +339,7 @@ class _StaffTablePageState extends State<StaffTablePage> {
         const SizedBox(height: 8),
         TextField(
           controller: _searchController,
+          focusNode: _searchFocusNode,
           decoration: InputDecoration(
             hintText: 'Търси артикул...',
             prefixIcon: const Icon(Icons.search),
