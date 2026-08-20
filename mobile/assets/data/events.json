@@ -124,8 +124,8 @@
       "date": "2026-05-15T00:00:00",
       "logoImage": "events/archive/acoustic_adventures_part1/acoustic_adventures_part1.jpg",
       "galleryImages": [
-        "events/archive/acoustic_adventures_part1/acoustic_adventures_part1_1.jpg",
-        "events/archive/acoustic_adventures_part1/acoustic_adventures_part1_2.jpg"
+        "events/archive/acoustic_adventures_part2/acoustic_adventures_part1_1.jpg",
+        "events/archive/acoustic_adventures_part2/acoustic_adventures_part1_2.jpg"
       ]
     },
     {
@@ -220,6 +220,17 @@
       "titleEn": "End of Year 2025",
       "date": "2025-12-31T00:00:00",
       "logoImage": "events/archive/end_of_year_2025/end_of_year_2025.jpg",
+      "galleryImages": [],
+      "squareCard": true
+    },
+    {
+      "id": "ishtah",
+      "titleBg": "ИЩАХ",
+      "titleEn": "ISHTAH",
+      "date": "2025-11-15T00:00:00",
+      "descriptionBg": "Изложба на Емилия Балева",
+      "descriptionEn": "Exhibition by Emilia Baleva",
+      "logoImage": "events/archive/ishtah/ishtah.jpg",
       "galleryImages": [],
       "squareCard": true
     },
