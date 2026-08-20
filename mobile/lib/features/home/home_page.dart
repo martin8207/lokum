@@ -71,11 +71,13 @@ class _HomePageState extends State<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // Бележник на персонала (v2.0, само в test/
                           // lokum-web-v2 build-а) - без login засега, виж
-                          // lokum-version2-planning.md, Функция 2.
+                          // lokum-version2-planning.md, Функция 2. Вляво, а
+                          // не до theme/language - да не се трупат и трите
+                          // от една страна.
                           IconButton(
                             icon: Icon(Icons.settings, color: colors.textMuted),
                             onPressed: () {
@@ -87,9 +89,13 @@ class _HomePageState extends State<HomePage> {
                               );
                             },
                           ),
-                          const ThemeToggle(),
-                          const SizedBox(width: 8),
-                          const LanguageSwitch(),
+                          Row(
+                            children: const [
+                              ThemeToggle(),
+                              SizedBox(width: 8),
+                              LanguageSwitch(),
+                            ],
+                          ),
                         ],
                       ),
 
