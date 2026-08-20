@@ -224,6 +224,17 @@
       "squareCard": true
     },
     {
+      "id": "ishtah",
+      "titleBg": "ИЩАХ",
+      "titleEn": "ISHTAH",
+      "date": "2025-11-15T00:00:00",
+      "descriptionBg": "Изложба на Емилия Балева",
+      "descriptionEn": "Exhibition by Emilia Baleva",
+      "logoImage": "events/archive/ishtah/ishtah.jpg",
+      "galleryImages": [],
+      "squareCard": true
+    },
+    {
       "id": "luta_kuhnya",
       "titleBg": "Лютата Кухня",
       "titleEn": "The Spicy Kitchen",
