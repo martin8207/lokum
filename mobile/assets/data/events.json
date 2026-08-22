@@ -115,7 +115,9 @@
       "titleEn": "Acoustic Adventures with Anni2 #2",
       "date": "2026-06-12T00:00:00",
       "logoImage": "events/archive/acoustic_adventures_part2/acoustic_adventures_part2.jpeg",
-      "galleryImages": []
+      "galleryImages": [
+        "events/archive/acoustic_adventures_part2/acoustic_adventures_part2_1.jpg"
+      ]
     },
     {
       "id": "acoustic_adventures_part1",
@@ -124,8 +126,8 @@
       "date": "2026-05-15T00:00:00",
       "logoImage": "events/archive/acoustic_adventures_part1/acoustic_adventures_part1.jpg",
       "galleryImages": [
-        "events/archive/acoustic_adventures_part2/acoustic_adventures_part1_1.jpg",
-        "events/archive/acoustic_adventures_part2/acoustic_adventures_part1_2.jpg"
+        "events/archive/acoustic_adventures_part1/acoustic_adventures_part1_1.jpg",
+        "events/archive/acoustic_adventures_part1/acoustic_adventures_part1_2.jpg"
       ]
     },
     {
