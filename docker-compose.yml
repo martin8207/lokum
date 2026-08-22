@@ -104,6 +104,13 @@ services:
       # стария Prisma client на production, докато test не се merge-не.
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
 
+    volumes:
+      # Същият трик като production lokum-server - npm run seed трябва да
+      # вижда menu.json. Пропуснат при първото добавяне на този service,
+      # затова seed-ът гърмеше с "Не намирам menu.json". Сочи към test
+      # worktree-а (../lokum-test), не към production-ния ./mobile.
+      - ../lokum-test/mobile/assets/data:/app/data:ro
+
     depends_on:
       - postgres
 
