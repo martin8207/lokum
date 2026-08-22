@@ -3472,7 +3472,7 @@
               "priceEur": 2.3,
               "quantity": 50.0,
               "unit": "ml",
-              "image": "aperol.webp",
+              "image": "cocktails/aperol.jpg",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
