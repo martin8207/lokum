@@ -40,6 +40,9 @@ async function findActiveSession(tableNumber) {
 // не отделен статус, който се пази в базата.
 function tileState(session) {
     const activeOrders = session.orders.filter((o) => !o.cancelledAt);
+    // Всички поръчки на масата са отказани (или сесията е празна) - нищо не
+    // я заема реално, дори техническият TableSession ред да стои нефактуриран.
+    if (activeOrders.length === 0) return "free";
     const hasUnservedOrder = activeOrders.some((o) => !o.servedAt);
     const hasPendingKa = activeOrders.some((o) =>
         o.items.some((it) => !it.removedAt && !it.kaConfirmedAt)
@@ -186,6 +189,31 @@ router.patch("/:number/invoice", async (req, res) => {
     const updated = await prisma.tableSession.update({
         where: { id: session.id },
         data: { invoicedAt: new Date(), paymentMethod }
+    });
+
+    res.json(updated);
+});
+
+// PATCH /api/tables/:number/free - "Освободи маса", изрично действие на
+// персонала, отделно от простото отказване/изтриване на артикули. Затваря
+// текущата сесия БЕЗ плащане/КА проверка - за изоставена маса, тестова
+// поръчка и т.н., не за реално платена сметка (за това си е /invoice).
+router.patch("/:number/free", async (req, res) => {
+    const tableNumber = parseTableNumber(req.params.number);
+    if (tableNumber === null) {
+        return res.status(400).json({ error: "invalid_table_number" });
+    }
+
+    const session = await prisma.tableSession.findFirst({
+        where: { tableNumber, invoicedAt: null }
+    });
+    if (!session) {
+        return res.status(404).json({ error: "no_active_session" });
+    }
+
+    const updated = await prisma.tableSession.update({
+        where: { id: session.id },
+        data: { invoicedAt: new Date(), paymentMethod: null }
     });
 
     res.json(updated);

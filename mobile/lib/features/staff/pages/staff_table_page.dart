@@ -229,6 +229,28 @@ class _StaffTablePageState extends State<StaffTablePage> {
     }
   }
 
+  // Изрично действие, отделно от отказ/изтриване на артикули - за изоставена
+  // маса или тестова поръчка. Затваря сесията БЕЗ плащане - затова изисква
+  // потвърждение, точно като отказа на цяла поръчка.
+  Future<void> _freeTable() async {
+    final confirmed = await _confirmDialog(
+      title: 'Освободи маса ${widget.tableNumber}?',
+      message:
+          'Затваря текущата сметка без плащане - за изоставена маса или тестова поръчка. Масата става свободна за следващи гости.',
+      confirmLabel: 'Освободи',
+      danger: true,
+    );
+    if (confirmed != true) return;
+
+    try {
+      await StaffApi.instance.freeTable(widget.tableNumber);
+      if (!mounted) return;
+      Navigator.pop(context);
+    } catch (e) {
+      _showError(e.toString());
+    }
+  }
+
   void _showError(String message) {
     if (!mounted) return;
     ScaffoldMessenger.of(
@@ -282,6 +304,10 @@ class _StaffTablePageState extends State<StaffTablePage> {
                     _buildOrderCard(order, colors),
                   const SizedBox(height: 8),
                   _buildInvoiceSection(detail, colors),
+                ],
+                if (detail.orders.isNotEmpty) ...[
+                  const SizedBox(height: 16),
+                  _buildFreeTableSection(colors),
                 ],
               ],
             ),
@@ -774,6 +800,28 @@ class _StaffTablePageState extends State<StaffTablePage> {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  // Отделен, винаги видим бутон - дори когато всички поръчки на масата вече
+  // са отказани (activeOrders празен), за да остане достъпен точно в случая,
+  // който провокира тази поправка: масата "заседна" на зелено ("Сервиран")
+  // след изтриване на поръчката, защото никой не е затворил сесията.
+  Widget _buildFreeTableSection(LokumColors colors) {
+    return SizedBox(
+      width: double.infinity,
+      child: OutlinedButton.icon(
+        onPressed: _freeTable,
+        icon: const Icon(Icons.event_available, color: _attentionColor),
+        label: const Text(
+          'Освободи маса',
+          style: TextStyle(color: _attentionColor, fontWeight: FontWeight.w700),
+        ),
+        style: OutlinedButton.styleFrom(
+          side: const BorderSide(color: _attentionColor),
+          padding: const EdgeInsets.symmetric(vertical: 12),
         ),
       ),
     );

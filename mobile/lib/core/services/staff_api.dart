@@ -104,4 +104,11 @@ class StaffApi {
     );
     _checkOk(res);
   }
+
+  /// "Освободи маса" - изрично действие, отделно от отказ/изтриване на
+  /// артикули. Затваря сесията без плащане/КА проверка (за изоставена маса,
+  /// тестова поръчка и т.н.) - виж PATCH /api/tables/:n/free.
+  Future<void> freeTable(int tableNumber) async {
+    _checkOk(await http.patch(_uri('/api/tables/$tableNumber/free')));
+  }
 }
