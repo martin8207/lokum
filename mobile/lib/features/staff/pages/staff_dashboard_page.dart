@@ -18,7 +18,8 @@ class StaffDashboardPage extends StatefulWidget {
   State<StaffDashboardPage> createState() => _StaffDashboardPageState();
 }
 
-class _StaffDashboardPageState extends State<StaffDashboardPage> {
+class _StaffDashboardPageState extends State<StaffDashboardPage>
+    with WidgetsBindingObserver {
   static const _pollInterval = Duration(seconds: 4);
 
   List<TableSummary>? _tables;
@@ -28,14 +29,24 @@ class _StaffDashboardPageState extends State<StaffDashboardPage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _refresh();
     _timer = Timer.periodic(_pollInterval, (_) => _refresh());
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _timer?.cancel();
     super.dispose();
+  }
+
+  // На мобилен браузър таймерът пауза, докато табът е във фон/устройството е
+  // заключено - без това, връщайки се, персоналът вижда old данни (напр.
+  // маса вече фактурирана от друг телефон), докато не мине следващият tick.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) _refresh();
   }
 
   Future<void> _refresh() async {

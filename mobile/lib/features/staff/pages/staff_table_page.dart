@@ -19,7 +19,8 @@ class StaffTablePage extends StatefulWidget {
   State<StaffTablePage> createState() => _StaffTablePageState();
 }
 
-class _StaffTablePageState extends State<StaffTablePage> {
+class _StaffTablePageState extends State<StaffTablePage>
+    with WidgetsBindingObserver {
   static const _pollInterval = Duration(seconds: 4);
   static const _confirmedColor = Color(0xFF1F9254);
   static const _attentionColor = Color(0xFFE0473F);
@@ -43,12 +44,14 @@ class _StaffTablePageState extends State<StaffTablePage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _refresh();
     _timer = Timer.periodic(_pollInterval, (_) => _refresh(silent: true));
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _timer?.cancel();
     // На Flutter Web, ако търсачката е фокусирана в момента на dispose (напр.
     // при връщане назад с бутона), platform text input connection-ът не се
@@ -58,6 +61,14 @@ class _StaffTablePageState extends State<StaffTablePage> {
     _searchFocusNode.dispose();
     _searchController.dispose();
     super.dispose();
+  }
+
+  // Виж StaffDashboardPage - същата причина: таймерът пауза във фон, force
+  // refresh при връщане, за да не гледаш заключена/платена маса като все
+  // още активна (точно сценарият, който доведе до тази поправка).
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) _refresh();
   }
 
   Future<void> _refresh({bool silent = false}) async {
