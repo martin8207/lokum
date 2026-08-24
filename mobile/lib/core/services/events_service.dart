@@ -16,14 +16,38 @@ class Events {
   factory Events.fromJson(Map<String, dynamic> json) {
     final upcomingJson = (json['upcoming'] as List? ?? const []);
     final pastJson = (json['past'] as List? ?? const []);
-    return Events(
-      upcoming: upcomingJson
-          .map((e) => BarEvent.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      past: pastJson
-          .map((e) => BarEvent.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+    // "upcoming"/"past" в events.json са само за удобство при редакция -
+    // кой бъкет наистина важи се решава ТУК, по дата, при всяко зареждане.
+    // Иначе събитие като Greesh (23.08) си остава завинаги в "Предстоящи"
+    // след като мине, докато някой ръчно не го премести в JSON-а (виж
+    // Sprint 3, бележка 3).
+    final all = [
+      ...upcomingJson.map((e) => BarEvent.fromJson(e as Map<String, dynamic>)),
+      ...pastJson.map((e) => BarEvent.fromJson(e as Map<String, dynamic>)),
+    ];
+    final now = DateTime.now();
+
+    final upcoming = all.where((e) => _isUpcoming(e, now)).toList()
+      ..sort((a, b) {
+        final aDate = a.date;
+        final bDate = b.date;
+        if (aDate == null && bDate == null) return 0;
+        if (aDate == null) return 1; // повтарящи се - най-накрая
+        if (bDate == null) return -1;
+        return aDate.compareTo(bDate);
+      });
+    final past = all.where((e) => !_isUpcoming(e, now)).toList();
+
+    return Events(upcoming: upcoming, past: past);
+  }
+
+  // Еднократно събитие е "предстоящо", докато не мине началният му час.
+  // Повтарящо се (без фиксирана date, само седмично разписание) е винаги
+  // предстоящо - никога не "изтича" в архива.
+  static bool _isUpcoming(BarEvent event, DateTime now) {
+    final date = event.date;
+    if (date == null) return event.recurring != null;
+    return date.isAfter(now);
   }
 }
 
