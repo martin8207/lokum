@@ -1,0 +1,19 @@
+---
+name: Deploy Test
+on:
+  push:
+    branches:
+      - test
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy lokum-web-v2 (test)
+        run: |
+          cd /project/lokum-test
+          git pull
+          cd /project/lokum
+          docker compose build lokum-web-v2
+          docker compose up -d lokum-server-v2 lokum-web-v2
+          docker compose run --rm lokum-server-v2 npm run seed
