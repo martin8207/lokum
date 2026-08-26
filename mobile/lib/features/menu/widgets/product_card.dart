@@ -53,7 +53,10 @@ class ProductCard extends StatelessWidget {
             onTap: product.available ? onTap : null,
           );
         }
-        return Opacity(opacity: product.available && offeredNow ? 1 : 0.5, child: card);
+        return Opacity(
+          opacity: product.available && offeredNow ? 1 : 0.5,
+          child: card,
+        );
       },
     );
   }
@@ -336,13 +339,6 @@ class _PriceColumn extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 16,
               color: color,
-            ),
-          ),
-          Text(
-            product.formattedPriceBgn(),
-            style: TextStyle(
-              fontSize: 12,
-              color: color.withValues(alpha: 0.7),
             ),
           ),
         ],
