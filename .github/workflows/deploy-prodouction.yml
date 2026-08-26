@@ -1,0 +1,17 @@
+---
+name: Deploy Production
+on:
+  push:
+    branches:
+      - production
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v5
+      - name: Deploy lokum-web (production)
+        run: |
+          cd /project/lokum
+          git pull
+          docker compose build lokum-web
+          docker compose up -d lokum-web
