@@ -1,10 +1,12 @@
 ---
 name: Test Runner
 on:
-  workflow_dispatch: null
+  push:
+    branches:
+      - test
 jobs:
   test:
     runs-on: self-hosted
     steps:
       - name: Say hello
-        run: echo "Runner works correct!"
+        run: echo "Runner-ът работи успешно!"
