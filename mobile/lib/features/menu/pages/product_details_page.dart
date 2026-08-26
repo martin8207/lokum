@@ -91,12 +91,6 @@ class ProductDetailsPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
-                    product.formattedPriceBgn(),
-                    style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.hintColor,
-                    ),
-                  ),
                 ],
               ] else if (hasImage)
                 // Снимката е ляво подравнена, със заоблени краища,
@@ -157,12 +151,6 @@ class ProductDetailsPage extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              Text(
-                                product.formattedPriceBgn(),
-                                style: theme.textTheme.bodyMedium?.copyWith(
-                                  color: theme.hintColor,
-                                ),
-                              ),
                             ],
                           ],
                         ),
@@ -191,12 +179,6 @@ class ProductDetailsPage extends StatelessWidget {
                             style: theme.textTheme.headlineSmall?.copyWith(
                               color: theme.colorScheme.primary,
                               fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            product.formattedPriceBgn(),
-                            style: theme.textTheme.bodyMedium?.copyWith(
-                              color: theme.hintColor,
                             ),
                           ),
                         ],

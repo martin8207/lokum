@@ -4,8 +4,6 @@
 /// `tools/excel_to_json.py` в `mobile/assets/data/menu.json`.
 library;
 
-import '../../core/constants/currency.dart';
-
 /// Поддържани езици в приложението.
 enum AppLang { bg, en }
 
@@ -67,11 +65,6 @@ class Product {
 
   /// Форматирана цена, напр. "3.30 €".
   String formattedPrice() => '${priceEur.toStringAsFixed(2)} €';
-
-  /// Левова равностойност по фиксирания курс, напр. "6.46 лв.".
-  /// Задължителна по закон като втора цена до края на периода на двойно
-  /// обозначаване.
-  String formattedPriceBgn() => Currency.formattedBgn(priceEur);
 
   /// Порция/обем, напр. "500 ml" или "200 g". Null ако липсва.
   String? formattedQuantity() {
