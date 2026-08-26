@@ -1,0 +1,10 @@
+---
+name: Test Runner
+on:
+  workflow_dispatch: null
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - name: Say hello
+        run: echo "Runner works correct!"
