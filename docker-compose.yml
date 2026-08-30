@@ -103,6 +103,11 @@ services:
       # test-only таблици (TableSession/Order/OrderItem) са невидими за
       # стария Prisma client на production, докато test не се merge-не.
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      # Логин на бележника - споделена парола за целия персонал, не по
+      # човек. И двете идват от root .env (git-ignored), никога хардкоднати
+      # тук - виж server/src/routes/auth.js и middleware/requireStaffAuth.js.
+      JWT_SECRET: ${JWT_SECRET}
+      STAFF_PASSWORD_HASH: ${STAFF_PASSWORD_HASH}
 
     volumes:
       # Същият трик като production lokum-server - npm run seed трябва да
