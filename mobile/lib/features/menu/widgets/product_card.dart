@@ -6,6 +6,7 @@ import '../../../core/asset_paths.dart';
 import '../../../core/constants/schedule.dart';
 import '../../../core/services/order_cart_service.dart';
 import '../../../shared/models/product.dart';
+import '../../order/widgets/table_prompt.dart';
 
 /// Ред за продукт в списъка на подкатегорията.
 ///
@@ -389,7 +390,7 @@ class _QuickAddButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(16),
-      onTap: () {
+      onTap: () async {
         OrderCartService.instance.add(product);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -399,8 +400,16 @@ class _QuickAddButton extends StatelessWidget {
             duration: const Duration(seconds: 1),
           ),
         );
+        await promptTableIfNeeded(context, lang);
       },
-      child: Icon(Icons.add_circle_outline, size: 26, color: color),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.shopping_cart_outlined, size: 16, color: color),
+          const SizedBox(width: 2),
+          Icon(Icons.add_circle_outline, size: 24, color: color),
+        ],
+      ),
     );
   }
 }

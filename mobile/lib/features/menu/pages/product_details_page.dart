@@ -9,6 +9,7 @@ import '../../../core/services/order_cart_service.dart';
 import '../../../shared/models/product.dart';
 import '../../../shared/widgets/theme_toggle.dart';
 import '../../order/widgets/order_bar.dart';
+import '../../order/widgets/table_prompt.dart';
 import '../widgets/schedule_banner.dart';
 
 /// Пълен изглед на продукт: снимка, име, описание, цена, порция, тагове,
@@ -287,7 +288,7 @@ class ProductDetailsPage extends StatelessWidget {
 
   Widget _buildAddToCart(BuildContext context, Product product, AppLang lang) {
     return FilledButton.icon(
-      onPressed: () {
+      onPressed: () async {
         OrderCartService.instance.add(product);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -297,6 +298,7 @@ class ProductDetailsPage extends StatelessWidget {
             duration: const Duration(seconds: 1),
           ),
         );
+        await promptTableIfNeeded(context, lang);
       },
       icon: const Icon(Icons.add_shopping_cart_outlined),
       label: Text(lang == AppLang.bg ? 'Добави в количката' : 'Add to cart'),
