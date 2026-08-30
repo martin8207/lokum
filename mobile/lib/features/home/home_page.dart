@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
 import '../../core/asset_paths.dart';
 import '../../core/services/events_service.dart';
+import '../../core/services/staff_api.dart';
 import '../../shared/models/event.dart';
 import '../../shared/models/product.dart';
 import '../../shared/widgets/featured_background.dart';
@@ -13,6 +14,7 @@ import '../events/pages/events_page.dart';
 import '../menu/pages/menu_page.dart';
 import '../menu/widgets/language_switch.dart';
 import '../staff/pages/staff_dashboard_page.dart';
+import '../staff/pages/staff_login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -74,17 +76,22 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           // Бележник на персонала (v2.0, само в test/
-                          // lokum-web-v2 build-а) - без login засега, виж
-                          // lokum-version2-planning.md, Функция 2. Вляво, а
-                          // не до theme/language - да не се трупат и трите
-                          // от една страна.
+                          // lokum-web-v2 build-а) - зад споделена парола
+                          // (lokum-version2-planning.md, Функция 2), за да
+                          // остане недостъпен за клиенти, щом този build
+                          // някога стане публичен. Вляво, а не до theme/
+                          // language - да не се трупат и трите от една страна.
                           IconButton(
                             icon: Icon(Icons.settings, color: colors.textMuted),
-                            onPressed: () {
+                            onPressed: () async {
+                              await StaffApi.instance.loadStoredToken();
+                              if (!context.mounted) return;
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => const StaffDashboardPage(),
+                                  builder: (_) => StaffApi.instance.isLoggedIn
+                                      ? const StaffDashboardPage()
+                                      : const StaffLoginPage(),
                                 ),
                               );
                             },

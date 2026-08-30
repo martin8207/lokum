@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/services/staff_api.dart';
 import '../../../shared/models/staff_order.dart';
+import 'staff_login_page.dart';
 import 'staff_table_page.dart';
 
 /// Табло с общ преглед на всички маси (Функция 1, "Табло с общ преглед").
@@ -57,6 +58,12 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
         _tables = tables;
         _error = null;
       });
+    } on StaffAuthException {
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const StaffLoginPage()),
+      );
     } catch (e) {
       if (!mounted) return;
       setState(() => _error = e.toString());

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/services/staff_api.dart';
 import '../../../shared/models/staff_order.dart';
+import 'staff_login_page.dart';
 
 /// Бележникът на персонала за една маса - търсене/добавяне на артикули,
 /// статус по бройка (потвърдено в КА / изтрито), сервиране, отказ и
@@ -81,6 +82,12 @@ class _StaffTablePageState extends State<StaffTablePage>
         _detail = detail;
         _loadError = null;
       });
+    } on StaffAuthException {
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const StaffLoginPage()),
+      );
     } catch (e) {
       if (!mounted || silent) return;
       setState(() => _loadError = e.toString());
