@@ -190,8 +190,11 @@ class _OrderStatusPageState extends State<OrderStatusPage>
               ],
             ),
             const SizedBox(height: 10),
-            for (final item in order.activeItems)
-              _buildItemRow(item, lang, colors),
+            // order.activeItems маха отказаните бройки съвсем (полезно за
+            // сметката), но точно тях трябва да види клиентът - иначе
+            // "няма наличност" известието никога не се показва, артикулът
+            // просто изчезва мълчаливо. Затова тук е пълният items списък.
+            for (final item in order.items) _buildItemRow(item, lang, colors),
             if (order.customerCancellable) ...[
               const SizedBox(height: 8),
               Align(
