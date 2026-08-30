@@ -228,7 +228,16 @@ class _StaffTablePageState extends State<StaffTablePage>
     );
   }
 
-  Future<void> _invoice() async {
+  Future<void> _invoice(double total) async {
+    final payLabel = _paymentMethod == 'CASH' ? 'в брой' : 'с карта';
+    final confirmed = await _confirmDialog(
+      title: 'Фактурирай маса ${widget.tableNumber}?',
+      message:
+          'Общо ${total.toStringAsFixed(2)} € $payLabel. Сметката се затваря и масата се освобождава.',
+      confirmLabel: 'Фактурирай',
+    );
+    if (confirmed != true) return;
+
     try {
       await StaffApi.instance.invoiceTable(widget.tableNumber, _paymentMethod);
       if (!mounted) return;
@@ -768,7 +777,9 @@ class _StaffTablePageState extends State<StaffTablePage>
             SizedBox(
               width: double.infinity,
               child: FilledButton(
-                onPressed: detail.readyToInvoice ? _invoice : null,
+                onPressed: detail.readyToInvoice
+                    ? () => _invoice(detail.total)
+                    : null,
                 child: const Text('Фактурирай'),
               ),
             ),
