@@ -111,8 +111,17 @@ class StaffOrder {
 class TableSessionDetail {
   final int tableNumber;
   final List<StaffOrder> orders;
+  final DateTime? billRequestedAt;
+  final String? requestedPaymentMethod;
 
-  const TableSessionDetail({required this.tableNumber, this.orders = const []});
+  const TableSessionDetail({
+    required this.tableNumber,
+    this.orders = const [],
+    this.billRequestedAt,
+    this.requestedPaymentMethod,
+  });
+
+  bool get billRequested => billRequestedAt != null;
 
   List<StaffOrder> get activeOrders =>
       orders.where((o) => !o.isCancelled).toList();
@@ -142,11 +151,15 @@ class TableSessionDetail {
       orders: (json['orders'] as List? ?? const [])
           .map((e) => StaffOrder.fromJson(e as Map<String, dynamic>))
           .toList(),
+      billRequestedAt: json['billRequestedAt'] == null
+          ? null
+          : DateTime.parse(json['billRequestedAt'] as String),
+      requestedPaymentMethod: json['requestedPaymentMethod'] as String?,
     );
   }
 }
 
-enum TableTileState { free, waiting, needsKa, served }
+enum TableTileState { free, waiting, needsKa, served, billRequested }
 
 /// Ред за плочка в таблото (Функция 1, "Табло с общ преглед на всички маси").
 class TableSummary {
@@ -160,6 +173,7 @@ class TableSummary {
       'waiting' => TableTileState.waiting,
       'needsKa' => TableTileState.needsKa,
       'served' => TableTileState.served,
+      'billRequested' => TableTileState.billRequested,
       _ => TableTileState.free,
     };
     return TableSummary(tableNumber: json['tableNumber'] as int, state: state);

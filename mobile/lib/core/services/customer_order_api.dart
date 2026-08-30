@@ -52,6 +52,18 @@ class CustomerOrderApi {
     _checkOk(res);
   }
 
+  /// Иска сметката с предпочитан начин на плащане - НЕ фактурира сама по
+  /// себе си (клиентът не може да затвори собствената си сметка), само
+  /// маркира искането за персонала (виж customerOrders.js:/request-bill).
+  Future<void> requestBill(int tableNumber, String paymentMethod) async {
+    final res = await http.patch(
+      _uri('/api/customer/tables/$tableNumber/request-bill'),
+      headers: const {'Content-Type': 'application/json'},
+      body: jsonEncode({'paymentMethod': paymentMethod}),
+    );
+    _checkOk(res);
+  }
+
   /// Отказ на собствена поръчка - сървърът връща 409, ако персоналът вече я
   /// е докоснал (сервирана или поне 1 бройка потвърдена в КА) - виж
   /// customerOrders.js за причината.

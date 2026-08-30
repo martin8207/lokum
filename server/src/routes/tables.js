@@ -19,6 +19,9 @@ function tileState(session) {
     // Всички поръчки на масата са отказани (или сесията е празна) - нищо не
     // я заема реално, дори техническият TableSession ред да стои нефактуриран.
     if (activeOrders.length === 0) return "free";
+    // Искане за сметка е най-спешното за персонала - изместваме пред
+    // waiting/needsKa/served, за да го хванат веднага на таблото.
+    if (session.billRequestedAt) return "billRequested";
     const hasUnservedOrder = activeOrders.some((o) => !o.servedAt);
     const hasPendingKa = activeOrders.some((o) =>
         o.items.some((it) => !it.removedAt && !it.kaConfirmedAt)

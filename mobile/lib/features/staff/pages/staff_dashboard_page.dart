@@ -187,6 +187,8 @@ class _TableRail extends StatelessWidget {
         return const Color(0xFFE0473F);
       case TableTileState.served:
         return const Color(0xFF1F9254);
+      case TableTileState.billRequested:
+        return const Color(0xFF2F6FED);
       case TableTileState.free:
         return Colors.transparent;
     }

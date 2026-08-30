@@ -32,6 +32,7 @@ class _OrderStatusPageState extends State<OrderStatusPage>
   TableSessionDetail? _detail;
   String? _error;
   String? _cancellingOrderId;
+  bool _requestingBill = false;
 
   @override
   void initState() {
@@ -81,6 +82,47 @@ class _OrderStatusPageState extends State<OrderStatusPage>
       ).showSnackBar(SnackBar(content: Text(e.toString())));
     } finally {
       if (mounted) setState(() => _cancellingOrderId = null);
+    }
+  }
+
+  Future<void> _requestBill(AppLang lang) async {
+    final method = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          lang == AppLang.bg ? 'Как ще платиш?' : 'How will you pay?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(lang == AppLang.bg ? 'Отказ' : 'Cancel'),
+          ),
+          FilledButton.icon(
+            onPressed: () => Navigator.pop(context, 'CASH'),
+            icon: const Icon(Icons.payments_outlined),
+            label: Text(lang == AppLang.bg ? 'В брой' : 'Cash'),
+          ),
+          FilledButton.icon(
+            onPressed: () => Navigator.pop(context, 'CARD'),
+            icon: const Icon(Icons.credit_card),
+            label: Text(lang == AppLang.bg ? 'Карта' : 'Card'),
+          ),
+        ],
+      ),
+    );
+    if (method == null || !mounted) return;
+
+    setState(() => _requestingBill = true);
+    try {
+      await CustomerOrderApi.instance.requestBill(widget.tableNumber, method);
+      await _refresh();
+    } catch (e) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(e.toString())));
+    } finally {
+      if (mounted) setState(() => _requestingBill = false);
     }
   }
 
@@ -154,6 +196,35 @@ class _OrderStatusPageState extends State<OrderStatusPage>
                             ],
                           ),
                         ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: detail.billRequested
+                            ? _buildBillRequestedBanner(detail, lang, colors)
+                            : SizedBox(
+                                width: double.infinity,
+                                child: OutlinedButton.icon(
+                                  onPressed: _requestingBill
+                                      ? null
+                                      : () => _requestBill(lang),
+                                  icon: _requestingBill
+                                      ? const SizedBox(
+                                          height: 16,
+                                          width: 16,
+                                          child: CircularProgressIndicator(
+                                            strokeWidth: 2,
+                                          ),
+                                        )
+                                      : const Icon(
+                                          Icons.request_quote_outlined,
+                                        ),
+                                  label: Text(
+                                    lang == AppLang.bg
+                                        ? 'Поискай сметката'
+                                        : 'Request the bill',
+                                  ),
+                                ),
+                              ),
+                      ),
                       for (final order in detail.activeOrders)
                         _buildOrderCard(order, lang, colors),
                     ],
@@ -161,6 +232,46 @@ class _OrderStatusPageState extends State<OrderStatusPage>
                 ),
         );
       },
+    );
+  }
+
+  Widget _buildBillRequestedBanner(
+    TableSessionDetail detail,
+    AppLang lang,
+    LokumColors colors,
+  ) {
+    final methodLabel = detail.requestedPaymentMethod == 'CARD'
+        ? (lang == AppLang.bg ? 'с карта' : 'by card')
+        : (lang == AppLang.bg ? 'в брой' : 'in cash');
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: _pendingColor.withValues(alpha: 0.12),
+        border: Border.all(color: _pendingColor),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.request_quote_outlined,
+            size: 20,
+            color: _pendingColor,
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              lang == AppLang.bg
+                  ? 'Сметката е поискана - плащане $methodLabel. Персоналът ще дойде скоро.'
+                  : 'Bill requested - payment $methodLabel. Staff will be with you shortly.',
+              style: TextStyle(
+                fontSize: 12.5,
+                fontWeight: FontWeight.w700,
+                color: colors.textMain,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 

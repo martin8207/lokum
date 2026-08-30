@@ -90,6 +90,13 @@ model TableSession {
   invoicedAt    DateTime?
   paymentMethod PaymentMethod?
 
+  // Клиентът поиска сметката директно от масата (виж
+  // customerOrders.js:/request-bill) - персоналът вижда искането на
+  // таблото/детайла и го затваря със стандартния /invoice поток, след
+  // като всичко мине през КА. Не затваря сесията само по себе си.
+  billRequestedAt        DateTime?
+  requestedPaymentMethod PaymentMethod?
+
   orders Order[]
 
   // Само една активна (нефактурирана) сесия на маса в даден момент -

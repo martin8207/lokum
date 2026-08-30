@@ -86,4 +86,34 @@ router.patch("/tables/:number/orders/:orderId/cancel", async (req, res) => {
     res.json(updated);
 });
 
+// PATCH /api/customer/tables/:number/request-bill - клиентът иска сметката,
+// с предпочитан начин на плащане. НЕ фактурира сама по себе си (клиентът не
+// може да затвори собствената си сметка - виж routes/tables.js:/invoice) -
+// само маркира искането, за да го види персоналът на таблото/детайла.
+router.patch("/tables/:number/request-bill", async (req, res) => {
+    const tableNumber = parseTableNumber(req.params.number);
+    if (tableNumber === null) {
+        return res.status(400).json({ error: "invalid_table_number" });
+    }
+
+    const { paymentMethod } = req.body;
+    if (paymentMethod !== "CASH" && paymentMethod !== "CARD") {
+        return res.status(400).json({ error: "invalid_payment_method" });
+    }
+
+    const session = await prisma.tableSession.findFirst({
+        where: { tableNumber, invoicedAt: null }
+    });
+    if (!session) {
+        return res.status(404).json({ error: "no_active_session" });
+    }
+
+    const updated = await prisma.tableSession.update({
+        where: { id: session.id },
+        data: { billRequestedAt: new Date(), requestedPaymentMethod: paymentMethod }
+    });
+
+    res.json(updated);
+});
+
 module.exports = router;

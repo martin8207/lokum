@@ -92,6 +92,12 @@ class _StaffTableDetailState extends State<StaffTableDetail>
       );
       if (!mounted) return;
       setState(() {
+        // Предварително избираме начина на плащане, поискан от клиента -
+        // само при първо зареждане, за да не презаписваме избор, който
+        // персоналът вече е сменил ръчно.
+        if (_detail == null && detail.requestedPaymentMethod != null) {
+          _paymentMethod = detail.requestedPaymentMethod!;
+        }
         _detail = detail;
         _loadError = null;
       });
@@ -347,6 +353,10 @@ class _StaffTableDetailState extends State<StaffTableDetail>
             padding: const EdgeInsets.all(16),
             children: [
               _buildTotalHeader(detail, colors),
+              if (detail.billRequested) ...[
+                const SizedBox(height: 12),
+                _buildBillRequestedBanner(detail),
+              ],
               const SizedBox(height: 20),
               _buildNotebookSection(colors),
               if (detail.activeOrders.isNotEmpty) ...[
@@ -406,6 +416,40 @@ class _StaffTableDetailState extends State<StaffTableDetail>
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildBillRequestedBanner(TableSessionDetail detail) {
+    final methodLabel = detail.requestedPaymentMethod == 'CARD'
+        ? 'с карта'
+        : 'в брой';
+    return Container(
+      padding: const EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: _progressColor.withValues(alpha: 0.12),
+        border: Border.all(color: _progressColor),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.request_quote_outlined,
+            size: 18,
+            color: _progressColor,
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              'Клиентът поиска сметката - $methodLabel.',
+              style: const TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w800,
+                color: _progressColor,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 
