@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/asset_paths.dart';
 import '../../../shared/models/product.dart';
 import '../../../shared/widgets/theme_toggle.dart';
+import '../../order/widgets/order_bar.dart';
 import '../widgets/subcategory_card.dart';
 import 'product_list_page.dart';
 
@@ -56,6 +57,7 @@ class SubcategoryPage extends StatelessWidget {
                     );
                   },
                 ),
+          bottomNavigationBar: const OrderBar(),
         );
       },
     );

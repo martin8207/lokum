@@ -4,6 +4,7 @@ import '../../../core/asset_paths.dart';
 import '../../../core/services/menu_service.dart';
 import '../../../shared/models/product.dart';
 import '../../../shared/widgets/theme_toggle.dart';
+import '../../order/widgets/order_bar.dart';
 import '../widgets/category_card.dart';
 import 'subcategory_page.dart';
 
@@ -82,6 +83,7 @@ class _MenuPageState extends State<MenuPage> {
               );
             },
           ),
+          bottomNavigationBar: const OrderBar(),
         );
       },
     );

@@ -83,6 +83,12 @@ class StaffOrder {
       .where((it) => it.isConfirmed)
       .fold(0.0, (sum, it) => sum + it.priceEur);
 
+  /// Клиентът може сам да откаже поръчката само докато персоналът не я е
+  /// докоснал - виж POST /api/customer/tables/:n/orders/:id/cancel, същото
+  /// условие е приложено и server-side (409, ако вече е сервирана/потвърдена).
+  bool get customerCancellable =>
+      !isCancelled && !isServed && !items.any((it) => it.isConfirmed);
+
   factory StaffOrder.fromJson(Map<String, dynamic> json) {
     return StaffOrder(
       id: json['id'] as String,
@@ -113,6 +119,14 @@ class TableSessionDetail {
 
   double get total =>
       activeOrders.fold(0.0, (sum, o) => sum + o.confirmedTotal);
+
+  /// За клиентския статус екран - очакваната сметка от ВСИЧКИ неотказани
+  /// бройки, не само вече потвърдените в КА (виж [total]) - иначе клиентът
+  /// вижда 0.00 € веднага след поръчка, преди персоналът да е стигнал до нея.
+  double get estimatedTotal => activeOrders.fold(
+    0.0,
+    (sum, o) => sum + o.activeItems.fold(0.0, (s, it) => s + it.priceEur),
+  );
 
   bool get needsKaAttention => activeOrders.any((o) => o.needsKaAttention);
 

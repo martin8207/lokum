@@ -5,8 +5,10 @@ import '../../../core/app_config.dart';
 import '../../../core/asset_paths.dart';
 import '../../../core/constants/schedule.dart';
 import '../../../core/services/menu_service.dart';
+import '../../../core/services/order_cart_service.dart';
 import '../../../shared/models/product.dart';
 import '../../../shared/widgets/theme_toggle.dart';
+import '../../order/widgets/order_bar.dart';
 import '../widgets/schedule_banner.dart';
 
 /// Пълен изглед на продукт: снимка, име, описание, цена, порция, тагове,
@@ -195,6 +197,10 @@ class ProductDetailsPage extends StatelessWidget {
                   ),
                 ],
               ],
+              if (product.available) ...[
+                const SizedBox(height: 16),
+                _buildAddToCart(context, product, lang),
+              ],
               if (!product.available) ...[
                 const SizedBox(height: 12),
                 Chip(
@@ -273,8 +279,27 @@ class ProductDetailsPage extends StatelessWidget {
               ],
             ],
           ),
+          bottomNavigationBar: const OrderBar(),
         );
       },
+    );
+  }
+
+  Widget _buildAddToCart(BuildContext context, Product product, AppLang lang) {
+    return FilledButton.icon(
+      onPressed: () {
+        OrderCartService.instance.add(product);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              lang == AppLang.bg ? 'Добавено в количката' : 'Added to cart',
+            ),
+            duration: const Duration(seconds: 1),
+          ),
+        );
+      },
+      icon: const Icon(Icons.add_shopping_cart_outlined),
+      label: Text(lang == AppLang.bg ? 'Добави в количката' : 'Add to cart'),
     );
   }
 }

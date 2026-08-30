@@ -4,6 +4,7 @@ import '../../../core/asset_paths.dart';
 import '../../../core/constants/schedule.dart';
 import '../../../shared/models/product.dart';
 import '../../../shared/widgets/theme_toggle.dart';
+import '../../order/widgets/order_bar.dart';
 import '../widgets/product_card.dart';
 import '../widgets/schedule_banner.dart';
 import 'product_details_page.dart';
@@ -28,17 +29,22 @@ class ProductListPage extends StatelessWidget {
         // изчерпаните, после със снимка преди тези без, после азбучно на
         // текущия избран език - независимо от реда им в Excel-а, автоматично
         // за всеки нов продукт.
-        final products = [...subcategory.products]..sort((a, b) {
-          if (a.featured != b.featured) return a.featured ? -1 : 1;
-          if (a.available != b.available) return a.available ? -1 : 1;
-          final aHasImage = BundledAssets.has(AssetPaths.productImage(a.image));
-          final bHasImage = BundledAssets.has(AssetPaths.productImage(b.image));
-          if (aHasImage != bHasImage) return aHasImage ? -1 : 1;
-          return a
-              .name(lang)
-              .toLowerCase()
-              .compareTo(b.name(lang).toLowerCase());
-        });
+        final products = [...subcategory.products]
+          ..sort((a, b) {
+            if (a.featured != b.featured) return a.featured ? -1 : 1;
+            if (a.available != b.available) return a.available ? -1 : 1;
+            final aHasImage = BundledAssets.has(
+              AssetPaths.productImage(a.image),
+            );
+            final bHasImage = BundledAssets.has(
+              AssetPaths.productImage(b.image),
+            );
+            if (aHasImage != bHasImage) return aHasImage ? -1 : 1;
+            return a
+                .name(lang)
+                .toLowerCase()
+                .compareTo(b.name(lang).toLowerCase());
+          });
         final schedule = kSubcategorySchedules[subcategory.id];
         return Scaffold(
           appBar: AppBar(
@@ -84,6 +90,7 @@ class ProductListPage extends StatelessWidget {
               ),
             ],
           ),
+          bottomNavigationBar: const OrderBar(),
         );
       },
     );
