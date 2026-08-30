@@ -84,8 +84,12 @@ class _OrderStatusPageState extends State<OrderStatusPage>
     }
   }
 
-  String _formatTime(DateTime dt) =>
-      '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}';
+  // Сървърът праща UTC timestamps (Prisma/Postgres) - .toLocal() е нужен,
+  // иначе часът показан на клиента изостава с часовата зона на бара.
+  String _formatTime(DateTime dt) {
+    final local = dt.toLocal();
+    return '${local.hour.toString().padLeft(2, '0')}:${local.minute.toString().padLeft(2, '0')}';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,6 +104,7 @@ class _OrderStatusPageState extends State<OrderStatusPage>
               lang == AppLang.bg
                   ? 'Поръчката ти - маса ${widget.tableNumber}'
                   : 'Your order - table ${widget.tableNumber}',
+              style: const TextStyle(fontSize: 17),
             ),
           ),
           body: detail == null

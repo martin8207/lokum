@@ -316,8 +316,12 @@ class _StaffTableDetailState extends State<StaffTableDetail>
     ).showSnackBar(SnackBar(content: Text(message)));
   }
 
-  String _formatTime(DateTime dt) =>
-      '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}';
+  // Сървърът праща UTC timestamps (Prisma/Postgres) - .toLocal() е нужен,
+  // иначе часът показан на персонала изостава с часовата зона на бара.
+  String _formatTime(DateTime dt) {
+    final local = dt.toLocal();
+    return '${local.hour.toString().padLeft(2, '0')}:${local.minute.toString().padLeft(2, '0')}';
+  }
 
   Map<String, List<StaffOrderItem>> _groupByProduct(
     List<StaffOrderItem> items,

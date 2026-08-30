@@ -77,7 +77,12 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
     final colors = context.colors;
     final tables = _tables;
     return Scaffold(
-      appBar: AppBar(title: const Text('Бележник на персонала')),
+      appBar: AppBar(
+        title: const Text(
+          'Бележник на персонала',
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
       body: tables == null
           ? _error == null
                 ? const Center(child: CircularProgressIndicator())
