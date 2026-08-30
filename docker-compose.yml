@@ -108,6 +108,7 @@ services:
       # тук - виж server/src/routes/auth.js и middleware/requireStaffAuth.js.
       JWT_SECRET: ${JWT_SECRET}
       STAFF_PASSWORD_HASH: ${STAFF_PASSWORD_HASH}
+      KITCHEN_PASSWORD_HASH: ${KITCHEN_PASSWORD_HASH}
 
     volumes:
       # Същият трик като production lokum-server - npm run seed трябва да
