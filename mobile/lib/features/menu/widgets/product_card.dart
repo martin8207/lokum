@@ -4,6 +4,7 @@ import '../../../app/app_theme.dart';
 import '../../../core/app_config.dart';
 import '../../../core/asset_paths.dart';
 import '../../../core/constants/schedule.dart';
+import '../../../core/services/order_cart_service.dart';
 import '../../../shared/models/product.dart';
 
 /// Ред за продукт в списъка на подкатегорията.
@@ -361,7 +362,45 @@ class _PriceColumn extends StatelessWidget {
               ],
             ),
           ),
+        if (product.available) ...[
+          const SizedBox(height: 6),
+          _QuickAddButton(product: product, lang: lang, color: color),
+        ],
       ],
+    );
+  }
+}
+
+/// Бърз "+" директно от реда в списъка - позволява поръчка, без да се влиза
+/// чак в детайлите на продукта (те си остават за хора, които искат да видят
+/// снимка/описание/алергени преди да поръчат).
+class _QuickAddButton extends StatelessWidget {
+  final Product product;
+  final AppLang lang;
+  final Color color;
+
+  const _QuickAddButton({
+    required this.product,
+    required this.lang,
+    required this.color,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      borderRadius: BorderRadius.circular(16),
+      onTap: () {
+        OrderCartService.instance.add(product);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              lang == AppLang.bg ? 'Добавено в количката' : 'Added to cart',
+            ),
+            duration: const Duration(seconds: 1),
+          ),
+        );
+      },
+      child: Icon(Icons.add_circle_outline, size: 26, color: color),
     );
   }
 }

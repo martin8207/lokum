@@ -180,6 +180,17 @@ class _StaffTableDetailState extends State<StaffTableDetail>
     }
   }
 
+  // Обратното на _confirmItem - за поправка на грешно тапнат зелен чек.
+  Future<void> _unconfirmItem(StaffOrder order, StaffOrderItem item) async {
+    try {
+      await StaffApi.instance.unconfirmItem(order.id, item.id);
+      await _refresh();
+      widget.onChanged?.call();
+    } catch (e) {
+      _showError(e.toString());
+    }
+  }
+
   Future<void> _removeItem(StaffOrder order, StaffOrderItem item) async {
     try {
       await StaffApi.instance.removeItem(order.id, item.id);
@@ -579,7 +590,10 @@ class _StaffTableDetailState extends State<StaffTableDetail>
               _buildWarningBanner(order),
             ],
             const SizedBox(height: 12),
-            Row(
+            Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              runSpacing: 4,
               children: [
                 Text(
                   '${order.confirmedTotal.toStringAsFixed(2)} €',
@@ -589,16 +603,22 @@ class _StaffTableDetailState extends State<StaffTableDetail>
                     fontSize: 15,
                   ),
                 ),
-                const Spacer(),
-                if (!order.isServed)
-                  TextButton(
-                    onPressed: () => _serveOrder(order),
-                    child: const Text('Маркирай сервирано'),
-                  ),
-                TextButton(
-                  style: TextButton.styleFrom(foregroundColor: _attentionColor),
-                  onPressed: () => _cancelOrderWithConfirmation(order),
-                  child: const Text('Откажи'),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (!order.isServed)
+                      TextButton(
+                        onPressed: () => _serveOrder(order),
+                        child: const Text('Маркирай сервирано'),
+                      ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        foregroundColor: _attentionColor,
+                      ),
+                      onPressed: () => _cancelOrderWithConfirmation(order),
+                      child: const Text('Откажи'),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -658,21 +678,27 @@ class _StaffTableDetailState extends State<StaffTableDetail>
     );
   }
 
-  // Зелено чек = наляно в КА (tap на червения "!" маркира точно това).
-  // Червен "!" + отделен "×" до него = не е налично - tap-ни "!" щом го
-  // прекуцаш, или "×" за да го изтриеш и добавиш заместител от търсачката.
+  // Зелено чек = наляно в КА (tap на червения "!" маркира точно това; tap на
+  // самия зелен чек го връща обратно в "чака" - за поправка на грешно
+  // тапване). Червен "!" + отделен "×" до него = не е налично - tap-ни "!"
+  // щом го прекуцаш, или "×" за да го изтриеш и добавиш заместител от
+  // търсачката.
   Widget _buildUnitChip(StaffOrder order, StaffOrderItem item) {
     const size = 26.0;
     if (item.isConfirmed) {
-      return Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          color: _confirmedColor.withValues(alpha: 0.16),
-          borderRadius: BorderRadius.circular(7),
+      return InkWell(
+        borderRadius: BorderRadius.circular(7),
+        onTap: () => _unconfirmItem(order, item),
+        child: Container(
+          width: size,
+          height: size,
+          decoration: BoxDecoration(
+            color: _confirmedColor.withValues(alpha: 0.16),
+            borderRadius: BorderRadius.circular(7),
+          ),
+          alignment: Alignment.center,
+          child: const Icon(Icons.check, size: 14, color: _confirmedColor),
         ),
-        alignment: Alignment.center,
-        child: const Icon(Icons.check, size: 14, color: _confirmedColor),
       );
     }
     return Row(

@@ -169,6 +169,17 @@ class StaffApi {
     );
   }
 
+  /// Връща грешно потвърдена бройка обратно в "чака" - за поправка на
+  /// случайно тапване в КА.
+  Future<void> unconfirmItem(String orderId, String itemId) async {
+    _checkOk(
+      await http.patch(
+        _uri('/api/orders/$orderId/items/$itemId/unconfirm'),
+        headers: _headers(),
+      ),
+    );
+  }
+
   Future<void> removeItem(String orderId, String itemId) async {
     _checkOk(
       await http.delete(

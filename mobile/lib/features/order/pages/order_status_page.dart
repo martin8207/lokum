@@ -256,55 +256,75 @@ class _OrderStatusPageState extends State<OrderStatusPage>
     );
   }
 
+  // Същият визуален език като бележника на персонала (зелен чек = потвърдено
+  // в КА, червено "!" = няма наличност) - за да разпознае клиентът веднага
+  // статуса, без да учи нова легенда.
   Widget _buildItemRow(StaffOrderItem item, AppLang lang, LokumColors colors) {
     final name = lang == AppLang.bg ? item.nameBg : item.nameEn;
-    if (item.isRemoved) {
-      return Padding(
-        padding: const EdgeInsets.only(bottom: 6),
-        child: Row(
-          children: [
-            const Icon(
-              Icons.warning_amber_rounded,
-              size: 16,
-              color: _attentionColor,
-            ),
-            const SizedBox(width: 6),
-            Expanded(
-              child: Text(
-                lang == AppLang.bg
-                    ? '$name - за съжаление не е налично'
-                    : '$name - unfortunately unavailable',
-                style: const TextStyle(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
-                  color: _attentionColor,
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
-    final color = item.isConfirmed ? _confirmedColor : colors.textMuted;
     return Padding(
-      padding: const EdgeInsets.only(bottom: 6),
+      padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         children: [
-          Icon(
-            item.isConfirmed ? Icons.check_circle : Icons.schedule,
-            size: 16,
-            color: color,
-          ),
-          const SizedBox(width: 6),
+          _buildStatusChip(item, colors),
+          const SizedBox(width: 8),
           Expanded(
             child: Text(
-              name,
-              style: TextStyle(fontSize: 13, color: colors.textMain),
+              item.isRemoved
+                  ? (lang == AppLang.bg
+                        ? '$name - няма наличност'
+                        : '$name - unavailable')
+                  : name,
+              style: TextStyle(
+                fontSize: 13,
+                fontWeight: item.isRemoved ? FontWeight.w700 : FontWeight.w400,
+                color: item.isRemoved ? _attentionColor : colors.textMain,
+              ),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildStatusChip(StaffOrderItem item, LokumColors colors) {
+    const size = 22.0;
+    if (item.isRemoved) {
+      return Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: _attentionColor.withValues(alpha: 0.16),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        alignment: Alignment.center,
+        child: const Icon(
+          Icons.priority_high,
+          size: 14,
+          color: _attentionColor,
+        ),
+      );
+    }
+    if (item.isConfirmed) {
+      return Container(
+        width: size,
+        height: size,
+        decoration: BoxDecoration(
+          color: _confirmedColor.withValues(alpha: 0.16),
+          borderRadius: BorderRadius.circular(6),
+        ),
+        alignment: Alignment.center,
+        child: const Icon(Icons.check, size: 14, color: _confirmedColor),
+      );
+    }
+    return Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        color: colors.textMuted.withValues(alpha: 0.14),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      alignment: Alignment.center,
+      child: Icon(Icons.schedule, size: 13, color: colors.textMuted),
     );
   }
 }
