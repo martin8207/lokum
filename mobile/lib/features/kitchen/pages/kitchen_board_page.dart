@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
-import '../../../core/services/kitchen_api.dart';
+import '../../../core/services/staff_api.dart';
 import '../../../shared/models/kitchen_order.dart';
-import 'kitchen_login_page.dart';
+import '../../staff/pages/staff_login_page.dart';
 
 /// Кухненско табло - само за гледане (виж разговора: v1 без "готово"
 /// маркиране). Показва кои ястия чакат по маси, групирани по артикул за
@@ -48,17 +48,17 @@ class _KitchenBoardPageState extends State<KitchenBoardPage>
 
   Future<void> _refresh({bool silent = false}) async {
     try {
-      final tables = await KitchenApi.instance.fetchTables();
+      final tables = await StaffApi.instance.fetchKitchenTables();
       if (!mounted) return;
       setState(() {
         _tables = tables;
         _error = null;
       });
-    } on KitchenAuthException {
+    } on StaffAuthException {
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const KitchenLoginPage()),
+        MaterialPageRoute(builder: (_) => const StaffLoginPage()),
       );
     } catch (e) {
       if (!mounted || silent) return;

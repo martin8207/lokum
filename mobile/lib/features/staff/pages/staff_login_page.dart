@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../core/services/staff_api.dart';
+import '../../kitchen/pages/kitchen_board_page.dart';
 import 'staff_dashboard_page.dart';
 
-/// Вход в бележника на персонала - обща парола за всички (не индивидуален
-/// login, виж lokum-version2-planning.md). Пази staff екраните недостъпни
-/// за клиенти, ако/когато test build-ът някога стане публичен.
+/// Вход за персонала - едно поле за парола, обща за всички (не индивидуален
+/// login). Ролята (бележник/кухня) се определя от коя парола е въведена, не
+/// от отделен избор тук - виж StaffApi.role/server/src/routes/auth.js.
+/// Пази екраните недостъпни за клиенти, ако/когато test build-ът някога
+/// стане публичен.
 class StaffLoginPage extends StatefulWidget {
   const StaffLoginPage({super.key});
 
@@ -38,7 +41,11 @@ class _StaffLoginPageState extends State<StaffLoginPage> {
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (_) => const StaffDashboardPage()),
+        MaterialPageRoute(
+          builder: (_) => StaffApi.instance.role == 'kitchen'
+              ? const KitchenBoardPage()
+              : const StaffDashboardPage(),
+        ),
       );
     } catch (e) {
       if (!mounted) return;

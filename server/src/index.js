@@ -23,14 +23,14 @@ const PORT = process.env.PORT || 3000;
 // го проксира и nginx-ът на lokum-web-v2 (виж mobile/nginx.conf), за да може
 // бележникът на персонала да стигне дотук по tailnet-а.
 //
-// /health, /auth/* и /customer/* са публични - /customer/* е клиентското
+// /health, /auth/login и /customer/* са публични - /customer/* е клиентското
 // поръчване от масата (без login, виж routes/customerOrders.js). Останалото
 // изисква JWT с точна роля: /products, /tables, /orders са staff-only (виж
-// requireStaffAuth), /kitchen е kitchen-only (viж requireKitchenAuth) -
-// двата логина (/auth/login, /auth/kitchen-login) издават токени с различна
-// роля, всеки заключен само до собствената си група routes. Клиентското меню
-// само по себе си НЕ минава оттук (чете локален bundled menu.json) - само
-// поръчването/кухнята го правят.
+// requireStaffAuth), /kitchen е kitchen-only (виж requireKitchenAuth) - и
+// двете роли идват от ЕДНО и също /auth/login (коя парола въведеш решава
+// коя роля получаваш, виж routes/auth.js), всяка заключена само до
+// собствената си група routes. Клиентското меню само по себе си НЕ минава
+// оттук (чете локален bundled menu.json) - само поръчването/кухнята го правят.
 const apiRouter = express.Router();
 apiRouter.use("/health", healthRouter);
 apiRouter.use("/auth", authRouter);

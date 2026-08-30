@@ -1,7 +1,10 @@
 const jwt = require("jsonwebtoken");
 
 // Пази routes/kitchen.js - отделна роля от requireStaffAuth, за да не може
-// кухненски токен да достигне бележника/сметките, и обратно.
+// кухненски токен да достигне бележника/сметките, и обратно. Двата логина
+// (staff/kitchen) минават през едно и също /api/auth/login - виж
+// routes/auth.js - ролята идва от коя парола е въведена, не от отделен
+// избор в UI-я.
 function requireKitchenAuth(req, res, next) {
     const header = req.headers.authorization || "";
     const token = header.startsWith("Bearer ") ? header.slice(7) : null;
