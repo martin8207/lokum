@@ -12,7 +12,12 @@ function requireStaffAuth(req, res, next) {
     }
 
     try {
-        jwt.verify(token, process.env.JWT_SECRET);
+        const payload = jwt.verify(token, process.env.JWT_SECRET);
+        // Kitchen токените не бива да имат достъп дотук (бележник/сметки/
+        // фактуриране) - само до routes/kitchen.js, виж requireKitchenAuth.
+        if (payload.role !== "staff") {
+            return res.status(403).json({ error: "wrong_role" });
+        }
         next();
     } catch {
         res.status(401).json({ error: "invalid_token" });

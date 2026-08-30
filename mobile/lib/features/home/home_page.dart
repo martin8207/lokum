@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
 import '../../core/asset_paths.dart';
 import '../../core/services/events_service.dart';
+import '../../core/services/kitchen_api.dart';
 import '../../core/services/staff_api.dart';
 import '../../shared/models/event.dart';
 import '../../shared/models/product.dart';
@@ -11,6 +12,8 @@ import '../../shared/widgets/theme_toggle.dart';
 import '../about/about_page.dart';
 import '../about/contact_page.dart';
 import '../events/pages/events_page.dart';
+import '../kitchen/pages/kitchen_board_page.dart';
+import '../kitchen/pages/kitchen_login_page.dart';
 import '../menu/pages/menu_page.dart';
 import '../menu/widgets/language_switch.dart';
 import '../staff/pages/staff_dashboard_page.dart';
@@ -81,20 +84,50 @@ class _HomePageState extends State<HomePage> {
                           // остане недостъпен за клиенти, щом този build
                           // някога стане публичен. Вляво, а не до theme/
                           // language - да не се трупат и трите от една страна.
-                          IconButton(
-                            icon: Icon(Icons.settings, color: colors.textMuted),
-                            onPressed: () async {
-                              await StaffApi.instance.loadStoredToken();
-                              if (!context.mounted) return;
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => StaffApi.instance.isLoggedIn
-                                      ? const StaffDashboardPage()
-                                      : const StaffLoginPage(),
+                          Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(
+                                  Icons.settings,
+                                  color: colors.textMuted,
                                 ),
-                              );
-                            },
+                                onPressed: () async {
+                                  await StaffApi.instance.loadStoredToken();
+                                  if (!context.mounted) return;
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          StaffApi.instance.isLoggedIn
+                                          ? const StaffDashboardPage()
+                                          : const StaffLoginPage(),
+                                    ),
+                                  );
+                                },
+                              ),
+                              // Кухненско табло (v2.0, само гледане) - отделна
+                              // споделена парола от бележника, до зъбчатката,
+                              // също толкова незабележимо за клиенти.
+                              IconButton(
+                                icon: Icon(
+                                  Icons.soup_kitchen_outlined,
+                                  color: colors.textMuted,
+                                ),
+                                onPressed: () async {
+                                  await KitchenApi.instance.loadStoredToken();
+                                  if (!context.mounted) return;
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) =>
+                                          KitchenApi.instance.isLoggedIn
+                                          ? const KitchenBoardPage()
+                                          : const KitchenLoginPage(),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
                           ),
                           Row(
                             children: const [
