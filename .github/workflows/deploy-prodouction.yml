@@ -13,5 +13,5 @@ jobs:
         run: |
           cd /project/lokum
           git pull
-          docker compose build lokum-web
-          docker compose up -d lokum-web
+          docker compose build lokum-server lokum-web
+          docker compose up -d lokum-server lokum-web
