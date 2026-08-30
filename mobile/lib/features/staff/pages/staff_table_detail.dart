@@ -9,18 +9,31 @@ import 'staff_login_page.dart';
 
 /// Бележникът на персонала за една маса - търсене/добавяне на артикули,
 /// статус по бройка (потвърдено в КА / изтрито), сервиране, отказ и
-/// приключване на сметката. Всичко в едно скролируемо табло вместо отделни
-/// екрани - виж разговора след lokum-staff-search-demo.html.
-class StaffTablePage extends StatefulWidget {
+/// приключване на сметката. Вгражда се като дясната половина на
+/// master-detail табло-то (виж StaffDashboardPage) - не е самостоятелна
+/// страница, затова няма собствен Scaffold/AppBar. Ползва се с
+/// `key: ValueKey(tableNumber)`, за да получи чисто ново състояние
+/// (количка, търсене) при смяна на избраната маса.
+class StaffTableDetail extends StatefulWidget {
   final int tableNumber;
 
-  const StaffTablePage({super.key, required this.tableNumber});
+  /// Извиква се след всяко действие, което променя състоянието на масата
+  /// (поръчка, сервиране, отказ, фактуриране, освобождаване) - за да може
+  /// лявата лента с масите да се опресни веднага, без да чака следващия
+  /// polling tick.
+  final VoidCallback? onChanged;
+
+  const StaffTableDetail({
+    super.key,
+    required this.tableNumber,
+    this.onChanged,
+  });
 
   @override
-  State<StaffTablePage> createState() => _StaffTablePageState();
+  State<StaffTableDetail> createState() => _StaffTableDetailState();
 }
 
-class _StaffTablePageState extends State<StaffTablePage>
+class _StaffTableDetailState extends State<StaffTableDetail>
     with WidgetsBindingObserver {
   static const _pollInterval = Duration(seconds: 4);
   static const _confirmedColor = Color(0xFF1F9254);
@@ -146,6 +159,7 @@ class _StaffTablePageState extends State<StaffTablePage>
         _submitting = false;
       });
       await _refresh();
+      widget.onChanged?.call();
     } catch (e) {
       if (!mounted) return;
       setState(() => _submitting = false);
@@ -160,6 +174,7 @@ class _StaffTablePageState extends State<StaffTablePage>
     try {
       await StaffApi.instance.confirmItem(order.id, item.id);
       await _refresh();
+      widget.onChanged?.call();
     } catch (e) {
       _showError(e.toString());
     }
@@ -169,6 +184,7 @@ class _StaffTablePageState extends State<StaffTablePage>
     try {
       await StaffApi.instance.removeItem(order.id, item.id);
       await _refresh();
+      widget.onChanged?.call();
     } catch (e) {
       _showError(e.toString());
     }
@@ -178,6 +194,7 @@ class _StaffTablePageState extends State<StaffTablePage>
     try {
       await StaffApi.instance.serveOrder(order.id);
       await _refresh();
+      widget.onChanged?.call();
     } catch (e) {
       _showError(e.toString());
     }
@@ -202,6 +219,7 @@ class _StaffTablePageState extends State<StaffTablePage>
     try {
       await StaffApi.instance.cancelOrder(order.id);
       await _refresh();
+      widget.onChanged?.call();
     } catch (e) {
       _showError(e.toString());
     }
@@ -248,7 +266,8 @@ class _StaffTablePageState extends State<StaffTablePage>
     try {
       await StaffApi.instance.invoiceTable(widget.tableNumber, _paymentMethod);
       if (!mounted) return;
-      Navigator.pop(context);
+      await _refresh();
+      widget.onChanged?.call();
     } catch (e) {
       _showError(
         'Не може да се фактурира - провери дали всички артикули са минали през КА.',
@@ -272,7 +291,8 @@ class _StaffTablePageState extends State<StaffTablePage>
     try {
       await StaffApi.instance.freeTable(widget.tableNumber);
       if (!mounted) return;
-      Navigator.pop(context);
+      await _refresh();
+      widget.onChanged?.call();
     } catch (e) {
       _showError(e.toString());
     }
@@ -302,43 +322,40 @@ class _StaffTablePageState extends State<StaffTablePage>
   Widget build(BuildContext context) {
     final colors = context.colors;
     final detail = _detail;
-    return Scaffold(
-      appBar: AppBar(title: Text('Маса ${widget.tableNumber}')),
-      body: detail == null
-          ? Center(
-              child: _loadError == null
-                  ? const CircularProgressIndicator()
-                  : Text(_loadError!),
-            )
-          : ListView(
-              padding: const EdgeInsets.all(16),
-              children: [
-                _buildTotalHeader(detail, colors),
-                const SizedBox(height: 20),
-                _buildNotebookSection(colors),
-                if (detail.activeOrders.isNotEmpty) ...[
-                  const SizedBox(height: 24),
-                  Text(
-                    'Поръчки на масата',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 15,
-                      color: colors.textMain,
-                    ),
+    return detail == null
+        ? Center(
+            child: _loadError == null
+                ? const CircularProgressIndicator()
+                : Text(_loadError!),
+          )
+        : ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              _buildTotalHeader(detail, colors),
+              const SizedBox(height: 20),
+              _buildNotebookSection(colors),
+              if (detail.activeOrders.isNotEmpty) ...[
+                const SizedBox(height: 24),
+                Text(
+                  'Поръчки на масата',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w800,
+                    fontSize: 15,
+                    color: colors.textMain,
                   ),
-                  const SizedBox(height: 10),
-                  for (final order in detail.activeOrders)
-                    _buildOrderCard(order, colors),
-                  const SizedBox(height: 8),
-                  _buildInvoiceSection(detail, colors),
-                ],
-                if (detail.orders.isNotEmpty) ...[
-                  const SizedBox(height: 16),
-                  _buildFreeTableSection(colors),
-                ],
+                ),
+                const SizedBox(height: 10),
+                for (final order in detail.activeOrders)
+                  _buildOrderCard(order, colors),
+                const SizedBox(height: 8),
+                _buildInvoiceSection(detail, colors),
               ],
-            ),
-    );
+              if (detail.orders.isNotEmpty) ...[
+                const SizedBox(height: 16),
+                _buildFreeTableSection(colors),
+              ],
+            ],
+          );
   }
 
   Widget _buildTotalHeader(TableSessionDetail detail, LokumColors colors) {

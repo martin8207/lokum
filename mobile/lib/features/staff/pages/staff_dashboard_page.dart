@@ -6,12 +6,13 @@ import '../../../app/app_theme.dart';
 import '../../../core/services/staff_api.dart';
 import '../../../shared/models/staff_order.dart';
 import 'staff_login_page.dart';
-import 'staff_table_page.dart';
+import 'staff_table_detail.dart';
 
-/// Табло с общ преглед на всички маси (Функция 1, "Табло с общ преглед").
-/// Polling на всеки 4 сек - "достатъчно добър" fallback вместо WebSocket за
-/// v1 (виж lokum-version2-planning.md), два телефона в tailnet-а виждат
-/// едно и също състояние с малко закъснение, без допълнителна инфраструктура.
+/// Табло на бележника - master-detail на един екран (виж артефакта
+/// staff-master-detail.html): тънък списък с номерата на масите вляво
+/// (Функция 1, "Табло с общ преглед"), детайлът на избраната маса вдясно,
+/// смяна без навигация. Polling на всеки 4 сек - "достатъчно добър"
+/// fallback вместо WebSocket за v1 (виж lokum-version2-planning.md).
 class StaffDashboardPage extends StatefulWidget {
   const StaffDashboardPage({super.key});
 
@@ -26,6 +27,7 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
   List<TableSummary>? _tables;
   String? _error;
   Timer? _timer;
+  int? _selected;
 
   @override
   void initState() {
@@ -73,41 +75,32 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
+    final tables = _tables;
     return Scaffold(
-      appBar: AppBar(title: const Text('Табло — маси')),
-      body: _tables == null
+      appBar: AppBar(title: const Text('Бележник на персонала')),
+      body: tables == null
           ? _error == null
                 ? const Center(child: CircularProgressIndicator())
                 : _ErrorState(message: _error!, onRetry: _refresh)
-          : RefreshIndicator(
-              onRefresh: _refresh,
-              child: GridView.builder(
-                padding: const EdgeInsets.all(16),
-                itemCount: _tables!.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 1,
+          : Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                _TableRail(
+                  tables: tables,
+                  selected: _selected,
+                  colors: colors,
+                  onSelect: (n) => setState(() => _selected = n),
                 ),
-                itemBuilder: (context, index) {
-                  final table = _tables![index];
-                  return _TableTile(
-                    table: table,
-                    colors: colors,
-                    onTap: () async {
-                      await Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) =>
-                              StaffTablePage(tableNumber: table.tableNumber),
+                Expanded(
+                  child: _selected == null
+                      ? _EmptyDetail(colors: colors)
+                      : StaffTableDetail(
+                          key: ValueKey(_selected),
+                          tableNumber: _selected!,
+                          onChanged: _refresh,
                         ),
-                      );
-                      _refresh();
-                    },
-                  );
-                },
-              ),
+                ),
+              ],
             ),
     );
   }
@@ -137,86 +130,134 @@ class _ErrorState extends StatelessWidget {
   }
 }
 
-class _TableTile extends StatelessWidget {
-  final TableSummary table;
+class _EmptyDetail extends StatelessWidget {
   final LokumColors colors;
-  final VoidCallback onTap;
 
-  const _TableTile({
-    required this.table,
+  const _EmptyDetail({required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.table_bar_outlined, size: 36, color: colors.textMuted),
+            const SizedBox(height: 10),
+            Text(
+              'Избери маса вляво',
+              style: TextStyle(color: colors.textMuted),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Плосък, нескролируем списък с номерата на масите - виж артефакта
+/// staff-master-detail.html: не плочки, а тесен таб-списък с тънка цветна
+/// ивица отляво за статус, за да се съберат всички маси без скрол лента.
+class _TableRail extends StatelessWidget {
+  static const _width = 46.0;
+
+  final List<TableSummary> tables;
+  final int? selected;
+  final LokumColors colors;
+  final ValueChanged<int> onSelect;
+
+  const _TableRail({
+    required this.tables,
+    required this.selected,
     required this.colors,
-    required this.onTap,
+    required this.onSelect,
   });
 
-  ({Color bg, Color border, Color text, String label}) _style() {
-    switch (table.state) {
+  Color _stripeColor(TableTileState state) {
+    switch (state) {
       case TableTileState.waiting:
-        return (
-          bg: const Color(0x29E8871E),
-          border: const Color(0xFFE8871E),
-          text: const Color(0xFFE8871E),
-          label: 'Нова',
-        );
+        return const Color(0xFFE8871E);
       case TableTileState.needsKa:
-        return (
-          bg: const Color(0x29E0473F),
-          border: const Color(0xFFE0473F),
-          text: const Color(0xFFE0473F),
-          label: 'Чака КА',
-        );
+        return const Color(0xFFE0473F);
       case TableTileState.served:
-        return (
-          bg: const Color(0x291F9254),
-          border: const Color(0xFF1F9254),
-          text: const Color(0xFF1F9254),
-          label: 'Сервиран',
-        );
+        return const Color(0xFF1F9254);
       case TableTileState.free:
-        return (
-          bg: colors.surface,
-          border: colors.border,
-          text: colors.textMuted,
-          label: 'Свободна',
-        );
+        return Colors.transparent;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final style = _style();
-    return Material(
-      color: style.bg,
-      borderRadius: BorderRadius.circular(14),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(14),
-        onTap: onTap,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: style.border, width: 1.5),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 12, 0, 12),
+      child: Container(
+        width: _width,
+        decoration: BoxDecoration(
+          border: Border.all(color: colors.border),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (var i = 0; i < tables.length; i++)
+              _RailRow(
+                table: tables[i],
+                showBottomBorder: i != tables.length - 1,
+                isSelected: tables[i].tableNumber == selected,
+                stripeColor: _stripeColor(tables[i].state),
+                colors: colors,
+                onTap: () => onSelect(tables[i].tableNumber),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _RailRow extends StatelessWidget {
+  static const _height = 34.0;
+
+  final TableSummary table;
+  final bool showBottomBorder;
+  final bool isSelected;
+  final Color stripeColor;
+  final LokumColors colors;
+  final VoidCallback onTap;
+
+  const _RailRow({
+    required this.table,
+    required this.showBottomBorder,
+    required this.isSelected,
+    required this.stripeColor,
+    required this.colors,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: _height,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: isSelected ? colors.accent : colors.surface,
+          border: Border(
+            bottom: showBottomBorder
+                ? BorderSide(color: colors.border)
+                : BorderSide.none,
+            left: BorderSide(color: stripeColor, width: 3),
           ),
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                '${table.tableNumber}',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w800,
-                  color: colors.textMain,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                style.label,
-                style: TextStyle(
-                  fontSize: 9,
-                  fontWeight: FontWeight.w700,
-                  color: style.text,
-                ),
-              ),
-            ],
+        ),
+        child: Text(
+          '${table.tableNumber}',
+          style: TextStyle(
+            fontWeight: isSelected ? FontWeight.w800 : FontWeight.w700,
+            fontSize: 13,
+            color: isSelected ? colors.menuCardText : colors.textMain,
           ),
         ),
       ),
