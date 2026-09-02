@@ -221,15 +221,13 @@ class StaffApi {
 
   /// Само за kitchen роля - виж server/src/routes/kitchen.js. Kitchen
   /// токените нямат достъп до нищо друго от този клас (requireStaffAuth
-  /// проверява ролята сървър-side).
-  Future<List<KitchenTable>> fetchKitchenTables() async {
-    final res = await http.get(
-      _uri('/api/kitchen/tables'),
-      headers: _headers(),
-    );
+  /// проверява ролята сървър-side). Сървърът вече връща сортирано възходящо
+  /// по час на подаване (FIFO).
+  Future<List<KitchenLineItem>> fetchKitchenItems() async {
+    final res = await http.get(_uri('/api/kitchen/items'), headers: _headers());
     _checkOk(res);
     return (jsonDecode(res.body) as List)
-        .map((e) => KitchenTable.fromJson(e as Map<String, dynamic>))
+        .map((e) => KitchenLineItem.fromJson(e as Map<String, dynamic>))
         .toList();
   }
 

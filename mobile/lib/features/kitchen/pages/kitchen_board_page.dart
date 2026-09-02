@@ -7,10 +7,12 @@ import '../../../core/services/staff_api.dart';
 import '../../../shared/models/kitchen_order.dart';
 import '../../staff/pages/staff_login_page.dart';
 
-/// Кухненско табло - само за гледане (виж разговора: v1 без "готово"
-/// маркиране). Показва кои ястия чакат по маси, групирани по артикул за
-/// четимост. Веднъж сервирана поръчката, изчезва оттук - kitchen.js вече я
-/// филтрира сървър-side.
+/// Кухненско табло - плосък списък от чакащи ястия, най-старото първо
+/// (FIFO), с триетапно цветово предупреждение по време на чакане - виж
+/// lokum-kitchen-view-task.md/lokum-kitchen-view-demo.html. Чисто за
+/// гледане: няма "готово" бутон тук - редът изчезва сам, щом сервитьорът
+/// маркира поръчката като сервирана от изгледа на масата (един и същ запис
+/// зад двата екрана).
 class KitchenBoardPage extends StatefulWidget {
   const KitchenBoardPage({super.key});
 
@@ -21,8 +23,11 @@ class KitchenBoardPage extends StatefulWidget {
 class _KitchenBoardPageState extends State<KitchenBoardPage>
     with WidgetsBindingObserver {
   static const _pollInterval = Duration(seconds: 4);
+  static const _freshColor = Color(0xFFF3D98A);
+  static const _warmColor = Color(0xFFE8963C);
+  static const _lateColor = Color(0xFFE0554F);
 
-  List<KitchenTable>? _tables;
+  List<KitchenLineItem>? _items;
   String? _error;
   Timer? _timer;
 
@@ -48,10 +53,10 @@ class _KitchenBoardPageState extends State<KitchenBoardPage>
 
   Future<void> _refresh({bool silent = false}) async {
     try {
-      final tables = await StaffApi.instance.fetchKitchenTables();
+      final items = await StaffApi.instance.fetchKitchenItems();
       if (!mounted) return;
       setState(() {
-        _tables = tables;
+        _items = items;
         _error = null;
       });
     } on StaffAuthException {
@@ -66,35 +71,59 @@ class _KitchenBoardPageState extends State<KitchenBoardPage>
     }
   }
 
-  // Сървърът праща UTC timestamps - виж същата бележка в staff/customer
-  // екраните.
+  int _waitMinutes(DateTime submittedAt) =>
+      DateTime.now().difference(submittedAt).inMinutes;
+
+  Color _waitColor(int minutes) {
+    if (minutes >= 15) return _lateColor;
+    if (minutes >= 10) return _warmColor;
+    return _freshColor;
+  }
+
   String _formatTime(DateTime dt) {
     final local = dt.toLocal();
     return '${local.hour.toString().padLeft(2, '0')}:${local.minute.toString().padLeft(2, '0')}';
   }
 
-  Map<String, int> _groupCounts(List<KitchenItem> items) {
-    final counts = <String, int>{};
-    for (final item in items) {
-      final name = item.nameBg.isNotEmpty ? item.nameBg : item.nameEn;
-      counts[name] = (counts[name] ?? 0) + 1;
-    }
-    return counts;
-  }
-
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final tables = _tables;
+    final items = _items;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Кухня', style: TextStyle(fontSize: 18)),
+        actions: [
+          if (items != null)
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
+              child: Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 4,
+                  ),
+                  decoration: BoxDecoration(
+                    color: colors.accent,
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text(
+                    '${items.length} ${items.length == 1 ? "чакащ" : "чакащи"}',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 12,
+                      color: colors.menuCardText,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
       ),
-      body: tables == null
+      body: items == null
           ? _error == null
                 ? const Center(child: CircularProgressIndicator())
                 : _ErrorState(message: _error!, onRetry: _refresh)
-          : tables.isEmpty
+          : items.isEmpty
           ? Center(
               child: Text(
                 'Няма чакащи ястия за приготвяне.',
@@ -103,73 +132,87 @@ class _KitchenBoardPageState extends State<KitchenBoardPage>
             )
           : RefreshIndicator(
               onRefresh: _refresh,
-              child: GridView.builder(
+              child: ListView.builder(
                 padding: const EdgeInsets.all(16),
-                itemCount: tables.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 0.85,
-                ),
+                itemCount: items.length,
                 itemBuilder: (context, index) =>
-                    _buildTableCard(tables[index], colors),
+                    _buildRow(items[index], colors),
               ),
             ),
     );
   }
 
-  Widget _buildTableCard(KitchenTable table, LokumColors colors) {
+  Widget _buildRow(KitchenLineItem item, LokumColors colors) {
+    final minutes = _waitMinutes(item.submittedAt);
+    final waitColor = _waitColor(minutes);
     return Container(
-      padding: const EdgeInsets.all(12),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         color: colors.surface,
         borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: colors.border),
+        border: minutes >= 15 ? Border.all(color: _lateColor) : null,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            'Маса ${table.tableNumber}',
-            style: TextStyle(
-              fontSize: 17,
-              fontWeight: FontWeight.w800,
-              color: colors.accent,
+          SizedBox(
+            width: 56,
+            child: Column(
+              children: [
+                Text(
+                  _formatTime(item.submittedAt),
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: waitColor,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  'преди $minutes мин',
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: waitColor.withValues(alpha: 0.85),
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(width: 12),
+          Container(width: 1, height: 36, color: colors.border),
+          const SizedBox(width: 12),
           Expanded(
-            child: ListView(
-              padding: EdgeInsets.zero,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final order in table.orders)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          _formatTime(order.submittedAt),
-                          style: TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w700,
-                            color: colors.textMuted,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        for (final entry in _groupCounts(order.items).entries)
-                          Text(
-                            '${entry.value}× ${entry.key}',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w600,
-                              color: colors.textMain,
-                            ),
-                          ),
-                      ],
+                Text(
+                  '${item.nameBg} ×${item.quantity}',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: colors.textMain,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 9,
+                    vertical: 2,
+                  ),
+                  decoration: BoxDecoration(
+                    color: colors.accent.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(999),
+                  ),
+                  child: Text(
+                    'Маса ${item.tableNumber}',
+                    style: TextStyle(
+                      fontSize: 11,
+                      fontWeight: FontWeight.w700,
+                      color: colors.accent,
                     ),
                   ),
+                ),
               ],
             ),
           ),

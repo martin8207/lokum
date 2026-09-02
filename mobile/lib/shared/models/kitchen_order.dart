@@ -1,66 +1,36 @@
-/// Модели за кухненското табло (само за гледане - виж KitchenApi/
-/// server/src/routes/kitchen.js). Различни от StaffOrder/StaffOrderItem,
-/// защото кухнята не се интересува от КА потвърждение/цена - само какво
-/// да сготви, по маси.
+/// Модел за кухненското табло (само за гледане - виж StaffApi/
+/// server/src/routes/kitchen.js). Плосък ред - едно ястие × количество, с
+/// номер на маса и час на подаване, вместо влагане по поръчка/маса.
 library;
 
-class KitchenItem {
+class KitchenLineItem {
   final String id;
   final String productId;
   final String nameBg;
   final String nameEn;
+  final int quantity;
+  final int tableNumber;
+  final DateTime submittedAt;
 
-  const KitchenItem({
+  const KitchenLineItem({
     required this.id,
     required this.productId,
     required this.nameBg,
     required this.nameEn,
+    required this.quantity,
+    required this.tableNumber,
+    required this.submittedAt,
   });
 
-  factory KitchenItem.fromJson(Map<String, dynamic> json) {
-    return KitchenItem(
+  factory KitchenLineItem.fromJson(Map<String, dynamic> json) {
+    return KitchenLineItem(
       id: json['id'] as String,
       productId: json['productId'] as String,
       nameBg: json['nameBg'] as String? ?? '',
       nameEn: json['nameEn'] as String? ?? '',
-    );
-  }
-}
-
-class KitchenOrder {
-  final String orderId;
-  final DateTime submittedAt;
-  final List<KitchenItem> items;
-
-  const KitchenOrder({
-    required this.orderId,
-    required this.submittedAt,
-    this.items = const [],
-  });
-
-  factory KitchenOrder.fromJson(Map<String, dynamic> json) {
-    return KitchenOrder(
-      orderId: json['orderId'] as String,
-      submittedAt: DateTime.parse(json['submittedAt'] as String),
-      items: (json['items'] as List? ?? const [])
-          .map((e) => KitchenItem.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-  }
-}
-
-class KitchenTable {
-  final int tableNumber;
-  final List<KitchenOrder> orders;
-
-  const KitchenTable({required this.tableNumber, this.orders = const []});
-
-  factory KitchenTable.fromJson(Map<String, dynamic> json) {
-    return KitchenTable(
+      quantity: json['quantity'] as int? ?? 1,
       tableNumber: json['tableNumber'] as int,
-      orders: (json['orders'] as List? ?? const [])
-          .map((e) => KitchenOrder.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      submittedAt: DateTime.parse(json['submittedAt'] as String),
     );
   }
 }
