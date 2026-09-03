@@ -11,6 +11,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   url_launcher: ^6.3.1
   shared_preferences: ^2.3.3
+  http: ^1.2.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -30,6 +31,7 @@ flutter:
     - assets/events/
     - assets/events/brunch/
     - assets/events/quiz/
+    - assets/events/themed/
     - assets/events/archive/DnD_VIT/
     - assets/events/archive/deestoned/
     - assets/events/archive/bgz/
