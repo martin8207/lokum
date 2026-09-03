@@ -27,6 +27,12 @@ services:
       # Построена от същите POSTGRES_* стойности по-горе - винаги в синхрон,
       # без ръчно дублиране между .env файловете.
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      # Логин на бележника/кухнята - същите стойности като lokum-server-v2,
+      # четени от същия root .env (един споделен файл за целия compose
+      # проект) - виж server/src/routes/auth.js.
+      JWT_SECRET: ${JWT_SECRET}
+      STAFF_PASSWORD_HASH: ${STAFF_PASSWORD_HASH}
+      KITCHEN_PASSWORD_HASH: ${KITCHEN_PASSWORD_HASH}
 
     env_file:
       - ./server/.env
