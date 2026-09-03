@@ -6,7 +6,12 @@ WORKDIR /app
 COPY . .
 
 RUN flutter pub get
-RUN flutter build web --release --source-maps
+# --no-tree-shake-icons: release build-ът иначе маха "неизползвани" MaterialIcons
+# glyph-ове по статичен анализ, който понякога пропуска реално използвани икони
+# (напр. Icons.settings, Icons.visibility_outlined/visibility_off_outlined) -
+# бутонът пак работи, но иконата е невидима. Разходът е няколко KB по-голям
+# шрифт, компромисът си струва за коректни икони навсякъде.
+RUN flutter build web --release --source-maps --no-tree-shake-icons
 
 # --- Stage 2: сервиране на статичните файлове с nginx ---
 FROM nginx:alpine
