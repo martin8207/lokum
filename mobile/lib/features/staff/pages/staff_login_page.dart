@@ -5,9 +5,11 @@ import '../../../core/services/staff_api.dart';
 import '../../kitchen/pages/kitchen_board_page.dart';
 import 'staff_dashboard_page.dart';
 
-/// Вход за персонала - едно поле за парола, обща за всички (не индивидуален
-/// login). Ролята (бележник/кухня) се определя от коя парола е въведена, не
-/// от отделен избор тук - виж StaffApi.role/server/src/routes/auth.js.
+/// Вход за персонала - combo box избира изрично роля (бележник/кухня, всяка
+/// със своя собствена споделена парола), после парола за тази роля. Изрично
+/// избраната роля се проверява САМО срещу нейната парола - ако избереш
+/// "Персонал" и въведеш паролата на кухнята, не влиза (виж
+/// server/src/routes/auth.js, разговора: изрично, не auto-detect).
 /// Пази екраните недостъпни за клиенти, ако/когато test build-ът някога
 /// стане публичен.
 class StaffLoginPage extends StatefulWidget {
@@ -22,6 +24,7 @@ class _StaffLoginPageState extends State<StaffLoginPage> {
   bool _submitting = false;
   String? _error;
   bool _obscure = true;
+  String _role = 'staff';
 
   @override
   void dispose() {
@@ -37,12 +40,12 @@ class _StaffLoginPageState extends State<StaffLoginPage> {
       _error = null;
     });
     try {
-      await StaffApi.instance.login(password);
+      await StaffApi.instance.login(password, _role);
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => StaffApi.instance.role == 'kitchen'
+          builder: (_) => _role == 'kitchen'
               ? const KitchenBoardPage()
               : const StaffDashboardPage(),
         ),
@@ -78,6 +81,25 @@ class _StaffLoginPageState extends State<StaffLoginPage> {
                   style: TextStyle(color: colors.textMuted),
                 ),
                 const SizedBox(height: 24),
+                DropdownButtonFormField<String>(
+                  initialValue: _role,
+                  decoration: const InputDecoration(
+                    labelText: 'Профил',
+                    border: OutlineInputBorder(),
+                  ),
+                  items: const [
+                    DropdownMenuItem(value: 'staff', child: Text('Персонал')),
+                    DropdownMenuItem(value: 'kitchen', child: Text('Кухня')),
+                  ],
+                  onChanged: (value) {
+                    if (value == null) return;
+                    setState(() {
+                      _role = value;
+                      _error = null;
+                    });
+                  },
+                ),
+                const SizedBox(height: 12),
                 TextField(
                   controller: _passwordController,
                   obscureText: _obscure,

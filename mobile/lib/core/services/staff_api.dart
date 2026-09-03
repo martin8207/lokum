@@ -94,13 +94,14 @@ class StaffApi {
     }
   }
 
-  /// Споделена парола за целия персонал (не индивидуален login) - виж
-  /// server/src/routes/auth.js.
-  Future<void> login(String password) async {
+  /// Споделена парола, изрично избрана роля от combo box-а на login екрана
+  /// (не auto-detect) - паролата се проверява само срещу избраната роля,
+  /// виж server/src/routes/auth.js.
+  Future<void> login(String password, String role) async {
     final res = await http.post(
       _uri('/api/auth/login'),
       headers: const {'Content-Type': 'application/json'},
-      body: jsonEncode({'password': password}),
+      body: jsonEncode({'password': password, 'role': role}),
     );
     if (res.statusCode == 401) {
       throw const StaffApiException('Грешна парола.');
@@ -110,7 +111,6 @@ class StaffApi {
     }
     final body = jsonDecode(res.body) as Map<String, dynamic>;
     final token = body['token'] as String;
-    final role = body['role'] as String? ?? 'staff';
     _token = token;
     _role = role;
     final prefs = await SharedPreferences.getInstance();

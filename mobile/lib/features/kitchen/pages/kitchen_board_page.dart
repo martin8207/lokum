@@ -26,6 +26,8 @@ class _KitchenBoardPageState extends State<KitchenBoardPage>
   static const _freshColor = Color(0xFFF3D98A);
   static const _warmColor = Color(0xFFE8963C);
   static const _lateColor = Color(0xFFE0554F);
+  static const _confirmedColor = Color(0xFF1F9254);
+  static const _servedColor = Color(0xFF2F6FED);
 
   List<KitchenLineItem>? _items;
   String? _error;
@@ -186,32 +188,71 @@ class _KitchenBoardPageState extends State<KitchenBoardPage>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '${item.nameBg} ×${item.quantity}',
-                  style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w700,
-                    color: colors.textMain,
-                  ),
+                Row(
+                  children: [
+                    if (item.confirmed) ...[
+                      const Icon(
+                        Icons.check_circle,
+                        size: 16,
+                        color: _confirmedColor,
+                      ),
+                      const SizedBox(width: 5),
+                    ],
+                    Flexible(
+                      child: Text(
+                        '${item.nameBg} ×${item.quantity}',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                          color: colors.textMain,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 4),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 9,
-                    vertical: 2,
-                  ),
-                  decoration: BoxDecoration(
-                    color: colors.accent.withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(999),
-                  ),
-                  child: Text(
-                    'Маса ${item.tableNumber}',
-                    style: TextStyle(
-                      fontSize: 11,
-                      fontWeight: FontWeight.w700,
-                      color: colors.accent,
+                Wrap(
+                  spacing: 6,
+                  runSpacing: 4,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 9,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: colors.accent.withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(999),
+                      ),
+                      child: Text(
+                        'Маса ${item.tableNumber}',
+                        style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                          color: colors.accent,
+                        ),
+                      ),
                     ),
-                  ),
+                    if (item.served && !item.confirmed)
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 9,
+                          vertical: 2,
+                        ),
+                        decoration: BoxDecoration(
+                          color: _servedColor.withValues(alpha: 0.15),
+                          borderRadius: BorderRadius.circular(999),
+                        ),
+                        child: const Text(
+                          'Сервирано - чака КА',
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w700,
+                            color: _servedColor,
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ],
             ),

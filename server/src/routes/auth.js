@@ -4,39 +4,32 @@ const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
-// POST /api/auth/login - едно поле за парола, за всичкия персонал (не
-// индивидуален login). Ролята (staff/kitchen) се определя от това КОЯ
-// споделена парола е въведена, не от отделен избор в UI-я - виж
-// разговора: една зъбчатка, паролата решава накъде отива човекът.
+// POST /api/auth/login - body: { password, role }. Ролята се избира изрично
+// в UI-я (combo box до зъбчатката) и паролата се проверява САМО срещу
+// избраната роля - ако избереш "персонал" и въведеш паролата на кухнята,
+// не влиза (виж разговора: изрично, не auto-detect по коя парола съвпада).
 router.post("/login", async (req, res) => {
-    const { password } = req.body;
+    const { password, role } = req.body;
     if (typeof password !== "string" || password.length === 0) {
         return res.status(400).json({ error: "missing_password" });
     }
-
-    const isStaff = await bcrypt.compare(
-        password,
-        process.env.STAFF_PASSWORD_HASH || ""
-    );
-    if (isStaff) {
-        const token = jwt.sign({ role: "staff" }, process.env.JWT_SECRET, {
-            expiresIn: "30d"
-        });
-        return res.json({ token, role: "staff" });
+    if (role !== "staff" && role !== "kitchen") {
+        return res.status(400).json({ error: "invalid_role" });
     }
 
-    const isKitchen = await bcrypt.compare(
-        password,
-        process.env.KITCHEN_PASSWORD_HASH || ""
-    );
-    if (isKitchen) {
-        const token = jwt.sign({ role: "kitchen" }, process.env.JWT_SECRET, {
-            expiresIn: "30d"
-        });
-        return res.json({ token, role: "kitchen" });
+    const hash =
+        role === "staff"
+            ? process.env.STAFF_PASSWORD_HASH
+            : process.env.KITCHEN_PASSWORD_HASH;
+    const matches = await bcrypt.compare(password, hash || "");
+    if (!matches) {
+        return res.status(401).json({ error: "invalid_password" });
     }
 
-    res.status(401).json({ error: "invalid_password" });
+    const token = jwt.sign({ role }, process.env.JWT_SECRET, {
+        expiresIn: "30d"
+    });
+    res.json({ token, role });
 });
 
 module.exports = router;

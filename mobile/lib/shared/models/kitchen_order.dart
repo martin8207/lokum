@@ -12,6 +12,12 @@ class KitchenLineItem {
   final int tableNumber;
   final DateTime submittedAt;
 
+  /// Всички бройки от този ред минали ли са през КА. Редът се маха от
+  /// таблото само когато е И [confirmed], И [served] - иначе остава като
+  /// напомняне на сервитьора да го чекне, дори ако вече е занесен физически.
+  final bool confirmed;
+  final bool served;
+
   const KitchenLineItem({
     required this.id,
     required this.productId,
@@ -20,6 +26,8 @@ class KitchenLineItem {
     required this.quantity,
     required this.tableNumber,
     required this.submittedAt,
+    required this.confirmed,
+    required this.served,
   });
 
   factory KitchenLineItem.fromJson(Map<String, dynamic> json) {
@@ -31,6 +39,8 @@ class KitchenLineItem {
       quantity: json['quantity'] as int? ?? 1,
       tableNumber: json['tableNumber'] as int,
       submittedAt: DateTime.parse(json['submittedAt'] as String),
+      confirmed: json['confirmed'] as bool? ?? false,
+      served: json['served'] as bool? ?? false,
     );
   }
 }

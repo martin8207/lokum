@@ -31,6 +31,7 @@ flutter:
     - assets/events/
     - assets/events/brunch/
     - assets/events/quiz/
+    - assets/events/themed/
     - assets/events/archive/DnD_VIT/
     - assets/events/archive/deestoned/
     - assets/events/archive/bgz/
