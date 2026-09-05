@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../app/app_theme.dart';
@@ -27,27 +29,50 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // Постерът за бутона "Събития" се сменя автоматично според съдържанието
   // на events.json - виж lokum-events-button-task.md. Няма нужда от ръчна
-  // намеса тук, когато събитие мине или се добави ново предстоящо.
-  BarEvent? _nearestUpcomingEvent;
+  // намеса тук, когато събитие мине или се добави ново предстоящо. Ако има
+  // повече от едно предстоящо събитие с постер, бутонът се върти между тях
+  // на всеки 5 секунди.
+  static const _rotationInterval = Duration(seconds: 5);
+
+  List<BarEvent> _upcomingWithPosters = const [];
+  int _posterIndex = 0;
+  Timer? _rotationTimer;
 
   @override
   void initState() {
     super.initState();
-    _loadNearestUpcomingEvent();
+    _loadUpcomingPosterEvents();
   }
 
-  Future<void> _loadNearestUpcomingEvent() async {
+  @override
+  void dispose() {
+    _rotationTimer?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _loadUpcomingPosterEvents() async {
     final events = await EventsService.instance.loadEvents();
     final now = DateTime.now();
-    final dated =
-        events.upcoming
-            .where((e) => e.date != null && e.date!.isAfter(now))
-            .toList()
-          ..sort((a, b) => a.date!.compareTo(b.date!));
+    final dated = events.upcoming.where((e) {
+      if (e.date == null || !e.date!.isAfter(now)) return false;
+      final poster = e.posterImage;
+      if (poster == null) return false;
+      return BundledAssets.has(AssetPaths.eventImage(poster));
+    }).toList()..sort((a, b) => a.date!.compareTo(b.date!));
     if (!mounted) return;
     setState(() {
-      _nearestUpcomingEvent = dated.isEmpty ? null : dated.first;
+      _upcomingWithPosters = dated;
+      _posterIndex = 0;
     });
+    _rotationTimer?.cancel();
+    if (dated.length > 1) {
+      _rotationTimer = Timer.periodic(_rotationInterval, (_) {
+        if (!mounted) return;
+        setState(() {
+          _posterIndex = (_posterIndex + 1) % _upcomingWithPosters.length;
+        });
+      });
+    }
   }
 
   @override
@@ -289,13 +314,15 @@ class _HomePageState extends State<HomePage> {
     required LokumColors colors,
     required String title,
   }) {
-    final posterImage = _nearestUpcomingEvent?.posterImage;
-    final posterPath = posterImage == null
-        ? null
-        : AssetPaths.eventImage(posterImage);
-    final hasPoster = posterPath != null && BundledAssets.has(posterPath);
+    final hasPoster = _upcomingWithPosters.isNotEmpty;
+    final posterPath = hasPoster
+        ? AssetPaths.eventImage(
+            _upcomingWithPosters[_posterIndex % _upcomingWithPosters.length]
+                .posterImage!,
+          )
+        : null;
 
-    if (!hasPoster) {
+    if (!hasPoster || posterPath == null) {
       return _buildCard(
         context: context,
         colors: colors,
@@ -316,7 +343,14 @@ class _HomePageState extends State<HomePage> {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                Image.asset(posterPath, fit: BoxFit.cover),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 600),
+                  child: Image.asset(
+                    posterPath,
+                    key: ValueKey(posterPath),
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 const DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
