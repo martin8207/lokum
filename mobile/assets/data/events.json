@@ -9,7 +9,20 @@
       "descriptionBg": "Три за късмет! Сладкодумни вечери пред бар Локум се завръща с трето издание. В него отново ще дадем свобода на думите си и ще ги пуснем на воля по нашата улица.\nПредходните ни срещи ни показаха, че те ни събират по магически начини.\nМикрофонът отново ще е отворен за всеки, който иска да прочете творбите си и ще приветства, и тези, които искат да споделят любим текст или откъс от любима творба. И така пак ще слушаме, ще споделяме, ще се смеем, ще мълчим на кръстопътя на историите, които носим в себе си, на който се срещаме и разминаваме, на който се прегръщаме и се отдалечаваме. Нека се потопим в магията на думите заедно.\nВсеки автор ще има 10-15 минути да прочете едно или няколко произведения. За участие - изпратете ни съобщение или се запишете на място.",
       "descriptionEn": "Three's the charm! Evenings of Words and Stories in front of Bar Lokum returns for a third edition. Once again we'll set our words free and let them roam our street.\nOur previous gatherings showed us that they bring people together in magical ways.\nThe mic will once again be open to anyone who wants to read their own work, and just as welcoming to those who'd rather share a favorite text or passage from someone else's. So once again we'll listen, share, laugh, and fall silent at the crossroads of the stories we carry - where we meet and part, embrace and drift apart. Let's dive into the magic of words together.\nEach author gets 10-15 minutes to read one or a few pieces. To take part - message us or sign up on the spot.",
       "date": "2026-09-09T19:30:00",
-      "posterImage": "events/themed/evenings_of_words_and_stories.jpg"
+      "posterImage": "events/themed/evenings_of_words_and_stories.jpg",
+      "featured": true
+    },
+    {
+      "id": "rhcp_tribute_10092026",
+      "titleBg": "RHCP Tribute Band",
+      "titleEn": "RHCP Tribute Band",
+      "cardSubtitleBg": "Трибют на Red Hot Chili Peppers",
+      "cardSubtitleEn": "A Red Hot Chili Peppers tribute",
+      "descriptionBg": "Горещ, лют фънк, и цветно калифорнийско настроение с трибют бандата на Red Hot Chili Peppers. Какво по-подходящо място за най-големите хитове на \"Чушките\" в Шумен от пъстрия бар Локум и #нашатаулица\nВход свободен",
+      "descriptionEn": "Hot, spicy funk and colorful Californian vibes with the Red Hot Chili Peppers tribute band. What better place for the \"Peppers'\" biggest hits in Shumen than the colorful Bar Lokum and #ourstreet\nFree entry",
+      "date": "2026-09-10T20:00:00",
+      "posterImage": "events/rhcp_tributejpg.jpg",
+      "featured": true
     },
     {
       "id": "sunday-brunch",
