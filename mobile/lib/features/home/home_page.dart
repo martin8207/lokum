@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   // намеса тук, когато събитие мине или се добави ново предстоящо. Ако има
   // повече от едно предстоящо събитие с постер, бутонът се върти между тях
   // на всеки 5 секунди.
-  static const _rotationInterval = Duration(seconds: 5);
+  static const _rotationInterval = Duration(seconds: 2);
 
   List<BarEvent> _upcomingWithPosters = const [];
   int _posterIndex = 0;
