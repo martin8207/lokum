@@ -108,9 +108,9 @@ class _HomePageState extends State<HomePage> {
                           // роли - паролата решава накъде отива човекът (виж
                           // StaffApi.role). Вляво, а не до theme/language -
                           // да не се трупат и трите от една страна.
-                          IconButton(
-                            icon: Icon(Icons.settings, color: colors.textMuted),
-                            onPressed: () async {
+                          InkWell(
+                            borderRadius: BorderRadius.circular(20),
+                            onTap: () async {
                               await StaffApi.instance.loadStoredToken();
                               if (!context.mounted) return;
                               Widget destination;
@@ -126,6 +126,19 @@ class _HomePageState extends State<HomePage> {
                                 MaterialPageRoute(builder: (_) => destination),
                               );
                             },
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: colors.surface,
+                                shape: BoxShape.circle,
+                                border: Border.all(color: colors.border),
+                              ),
+                              child: Icon(
+                                Icons.settings,
+                                size: 18,
+                                color: colors.accent,
+                              ),
+                            ),
                           ),
                           Row(
                             children: const [
