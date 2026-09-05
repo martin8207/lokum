@@ -345,10 +345,16 @@ class _HomePageState extends State<HomePage> {
               children: [
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 600),
-                  child: Image.asset(
-                    posterPath,
+                  // AnimatedSwitcher-ът подрежда старото/новото дете в
+                  // собствен, ХЛАБАВ (loose fit) вътрешен Stack - без явни
+                  // width/height картинката пада на естествения си пикселен
+                  // размер вместо да разпъне BoxFit.cover върху цялото поле,
+                  // оставяйки празно поле отстрани.
+                  child: SizedBox(
                     key: ValueKey(posterPath),
-                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Image.asset(posterPath, fit: BoxFit.cover),
                   ),
                 ),
                 const DecoratedBox(
