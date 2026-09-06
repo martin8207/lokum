@@ -755,6 +755,27 @@
           "nameEn": "Desserts",
           "products": [
             {
+              "id": "borovinkov_cheese_cake",
+              "categoryId": "food",
+              "subcategoryId": "desserts",
+              "brand": null,
+              "variant": null,
+              "nameBg": "Боровинков чийзкейк",
+              "nameEn": "Blueberry Cheesecake",
+              "descriptionBg": "Не винаги е наличен - попитай за чийзкейк.",
+              "descriptionEn": "Not always available - ask about the cheesecake.",
+              "priceEur": 4.8,
+              "quantity": 150.0,
+              "unit": "g",
+              "image": "food/desserts/borovinkov_cheese_cake.jpg",
+              "featured": true,
+              "isNew": true,
+              "isRecommended": false,
+              "available": true,
+              "tags": ["food", "dessert"],
+              "allergens": ["1", "3", "7", "8"]
+            },
+            {
               "id": "topka_sladoled",
               "categoryId": "food",
               "subcategoryId": "desserts",
