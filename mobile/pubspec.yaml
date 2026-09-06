@@ -55,6 +55,7 @@ flutter:
     - assets/events/archive/greesh_23082026/
     - assets/food/
     - assets/food/brunch/
+    - assets/food/desserts/
     - assets/food/mains/
     - assets/food/burgers/
     - assets/food/salads/
