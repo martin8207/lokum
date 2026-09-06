@@ -28,6 +28,7 @@ class ProductDetailsPage extends StatelessWidget {
       valueListenable: AppLanguage.instance,
       builder: (context, lang, _) {
         final description = product.description(lang);
+        final note = product.note(lang);
         final quantity = product.formattedQuantity();
         final model = product.formattedModel();
         final imagePath = AssetPaths.productImage(product.image);
@@ -246,6 +247,16 @@ class ProductDetailsPage extends StatelessWidget {
                         ),
                       ),
                   ],
+                ),
+              ],
+              if (note != null) ...[
+                const SizedBox(height: 16),
+                Text(
+                  note,
+                  style: theme.textTheme.bodyMedium?.copyWith(
+                    fontStyle: FontStyle.italic,
+                    color: theme.hintColor,
+                  ),
                 ),
               ],
               if (description != null) ...[

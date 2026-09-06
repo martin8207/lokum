@@ -21,6 +21,8 @@ class Product {
   final String nameEn;
   final String? descriptionBg;
   final String? descriptionEn;
+  final String? noteBg;
+  final String? noteEn;
   final double priceEur;
   final double? quantity;
   final String? unit;
@@ -44,6 +46,8 @@ class Product {
     this.variant,
     this.descriptionBg,
     this.descriptionEn,
+    this.noteBg,
+    this.noteEn,
     this.quantity,
     this.unit,
     this.featured = false,
@@ -60,6 +64,13 @@ class Product {
   /// Локализирано описание (може да липсва).
   String? description(AppLang lang) {
     final value = lang == AppLang.bg ? descriptionBg : descriptionEn;
+    return (value == null || value.isEmpty) ? null : value;
+  }
+
+  /// Кратка бележка извън съставките (напр. "Попитай за наличност") - не се
+  /// показва под "Съставки", а отделно.
+  String? note(AppLang lang) {
+    final value = lang == AppLang.bg ? noteBg : noteEn;
     return (value == null || value.isEmpty) ? null : value;
   }
 
@@ -106,6 +117,8 @@ class Product {
       nameEn: json['nameEn'] as String? ?? '',
       descriptionBg: json['descriptionBg'] as String?,
       descriptionEn: json['descriptionEn'] as String?,
+      noteBg: json['noteBg'] as String?,
+      noteEn: json['noteEn'] as String?,
       priceEur: (json['priceEur'] as num?)?.toDouble() ?? 0.0,
       quantity: (json['quantity'] as num?)?.toDouble(),
       unit: json['unit'] as String?,

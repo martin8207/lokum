@@ -846,6 +846,8 @@
               "variant": null,
               "nameBg": "Боровинков чийзкейк",
               "nameEn": "Blueberry cheesecake",
+              "noteBg": "Попитай за чийзкейк.",
+              "noteEn": "Ask about the cheesecake.",
               "priceEur": 4.5,
               "quantity": 180.0,
               "unit": "g",
