@@ -74,15 +74,21 @@ server {
         add_header Cache-Control "no-cache";
     }
 
-    # Проксира API заявките към lokum-server-v2 през Docker DNS. На production
-    # (lokum-web) това никога не се стига - Caddy прихваща /api/* по-рано и
-    # праща директно към production lokum-server:3000 (виж root Caddyfile,
-    # отделен service от lokum-server-v2). Но lokum-web-v2 няма Caddy пред себе
-    # си (само директно на хоста през Tailscale), затова там ТОЗИ блок е
-    # единственият път бележникът на персонала да стигне до API-то - и то до
-    # изолирания test бекенд (lokum-server-v2), не до production.
+    # Проксира API заявките към бекенда, зададен от API_BACKEND (env var,
+    # виж docker-compose.yml) - "lokum-server" за lokum-web (production),
+    # "lokum-server-v2" за lokum-web-v2 (test). Този файл е .template и се
+    # envsubst-ва автоматично от nginx:alpine entrypoint-а при старт (виж
+    # Dockerfile.web) - НЕ добавяй тук нов $VAR, който не е реална env
+    # променлива, иначе ще се опита да го замести и ще излезе празно.
+    #
+    # ВАЖНО: Tailscale Funnel сочи директно към порта на тази nginx (8080 за
+    # production), НЕ през Caddy - Caddy въобще не участва в реалния трафик
+    # (виж root Caddyfile/docker-compose.yml коментарите за историята). Затова
+    # тук трябва ВИНАГИ коректния бекенд за средата, не "дефолт към test,
+    # защото production мине другаде" - това предположение излезе грешно и
+    # прати реален клиентски/персонал трафик към test базата.
     location /api/ {
-        proxy_pass http://lokum-server-v2:3000/api/;
+        proxy_pass http://${API_BACKEND}:3000/api/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

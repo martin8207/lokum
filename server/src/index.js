@@ -18,10 +18,13 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-// Caddy проксира /api/* тук с пълния префикс запазен (handle, не handle_path),
-// затова всички routes живеят под /api - виж root Caddyfile. Същият префикс
-// го проксира и nginx-ът на lokum-web-v2 (виж mobile/nginx.conf), за да може
-// бележникът на персонала да стигне дотук по tailnet-а.
+// Реалният публичен трафик влиза през Tailscale Funnel директно към nginx-а
+// на lokum-web/lokum-web-v2 (порт 8080/8081 на хоста) - Caddy НЕ участва,
+// въпреки root Caddyfile-а (Funnel bypass-ва host-based routing-а му). Тази
+// nginx проксира /api/* насам според env-а API_BACKEND (виж
+// mobile/nginx.conf.template + docker-compose.yml) - "lokum-server" за
+// lokum-web, "lokum-server-v2" за lokum-web-v2. Затова всички routes живеят
+// под /api с пълния префикс запазен.
 //
 // /health, /auth/login и /customer/* са публични - /customer/* е клиентското
 // поръчване от масата (без login, виж routes/customerOrders.js). Останалото

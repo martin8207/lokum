@@ -56,12 +56,23 @@ services:
 
     container_name: lokum-web
 
+    environment:
+      # Кой бекенд да проксира nginx-ът на /api/* (виж mobile/nginx.conf.template)
+      # - envsubst-ва се при старт на контейнера. Funnel сочи директно към
+      # тази nginx (виж коментара за портовете по-долу), НЕ през Caddy, затова
+      # тук трябва изричен, коректен бекенд за production - не "дефолт", който
+      # разчита Caddy да прихване /api/* first (тя не участва в реалния трафик).
+      API_BACKEND: lokum-server
+
     ports:
       - "8080:80"
       # Публикуван на хоста самостоятелно (в допълнение на Caddy), за да може
       # Tailscale Funnel да сочи директно към nginx, без да минава през
       # host-based routing-а на Caddy (който в момента разпознава само
       # lokum-shumen.duckdns.org).
+
+    depends_on:
+      - lokum-server
 
     volumes:
       - nginx_logs:/var/log/nginx
@@ -80,6 +91,11 @@ services:
       dockerfile: Dockerfile.web
 
     container_name: lokum-web-v2
+
+    environment:
+      # Тестовият бекенд - виж mobile/nginx.conf.template и коментара при
+      # API_BACKEND на lokum-web по-горе.
+      API_BACKEND: lokum-server-v2
 
     ports:
       - "8081:80"
@@ -128,7 +144,8 @@ services:
 
     restart: unless-stopped
     # Без "ports" - достъпен само вътре в Docker мрежата, през nginx proxy-то
-    # на lokum-web-v2 (виж mobile/nginx.conf), точно като production lokum-server.
+    # на lokum-web-v2 (виж mobile/nginx.conf.template + API_BACKEND по-горе),
+    # точно като production lokum-server.
 
   caddy:
     image: caddy:2-alpine
