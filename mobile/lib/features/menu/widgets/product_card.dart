@@ -6,6 +6,7 @@ import '../../../core/asset_paths.dart';
 import '../../../core/constants/schedule.dart';
 import '../../../core/services/order_cart_service.dart';
 import '../../../shared/models/product.dart';
+import '../../../shared/widgets/new_badge.dart';
 import '../../order/widgets/table_prompt.dart';
 
 /// Ред за продукт в списъка на подкатегорията.
@@ -265,7 +266,20 @@ class _FoodPhotoCard extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: 1,
-              child: Image.asset(imagePath, fit: BoxFit.cover),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.asset(imagePath, fit: BoxFit.cover),
+                  if (product.isNew)
+                    Positioned(
+                      right: 10,
+                      bottom: 10,
+                      child: NewBadge(
+                        label: lang == AppLang.bg ? 'НОВО' : 'NEW',
+                      ),
+                    ),
+                ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(12),
@@ -306,6 +320,9 @@ class _FoodPhotoCard extends StatelessWidget {
                     product: product,
                     lang: lang,
                     color: colors.menuCardText,
+                    // "Ново" вече седи върху снимката (долу вдясно) - виж
+                    // NewBadge по-горе, не го дублираме и тук.
+                    showNewBadge: false,
                   ),
                 ],
               ),
@@ -321,11 +338,13 @@ class _PriceColumn extends StatelessWidget {
   final Product product;
   final AppLang lang;
   final Color color;
+  final bool showNewBadge;
 
   const _PriceColumn({
     required this.product,
     required this.lang,
     required this.color,
+    this.showNewBadge = true,
   });
 
   @override
