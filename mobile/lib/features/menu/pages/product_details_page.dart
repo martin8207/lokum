@@ -7,7 +7,6 @@ import '../../../core/constants/schedule.dart';
 import '../../../core/services/menu_service.dart';
 import '../../../core/services/order_cart_service.dart';
 import '../../../shared/models/product.dart';
-import '../../../shared/widgets/new_badge.dart';
 import '../../../shared/widgets/theme_toggle.dart';
 import '../../order/widgets/order_bar.dart';
 import '../../order/widgets/table_prompt.dart';
@@ -231,7 +230,13 @@ class ProductDetailsPage extends StatelessWidget {
                   spacing: 8,
                   children: [
                     if (product.isNew)
-                      NewBadge(label: lang == AppLang.bg ? 'НОВО' : 'NEW'),
+                      Chip(
+                        label: Text(
+                          lang == AppLang.bg ? 'Ново' : 'New',
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        backgroundColor: Colors.green,
+                      ),
                     if (product.featured)
                       Chip(
                         label: Text(
