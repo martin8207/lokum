@@ -31,7 +31,29 @@ function tileState(session) {
     return "served";
 }
 
-// GET /api/tables - табло с общ преглед на всички 1..14 маси.
+// От кога чака масата внимание - най-старият все още неприключен момент, за
+// сортиране на таблото хронологично (виж GET /, огледало на кухненския FIFO
+// ред в routes/kitchen.js). Null за маса, която не чака нищо (free/served).
+function waitingSince(session) {
+    if (session.billRequestedAt) return session.billRequestedAt;
+    const activeOrders = session.orders.filter((o) => !o.cancelledAt);
+    const pending = activeOrders.filter(
+        (o) =>
+            !o.servedAt ||
+            o.items.some((it) => !it.removedAt && !it.kaConfirmedAt)
+    );
+    if (pending.length === 0) return null;
+    return pending.reduce(
+        (min, o) => (o.submittedAt < min ? o.submittedAt : min),
+        pending[0].submittedAt
+    );
+}
+
+// GET /api/tables - табло с общ преглед на всички 1..14 маси, подредено
+// хронологично: масата, чакаща най-отдавна, е на върха - без значение дали
+// поръчката е записана от персонала (бележника) или подадена директно от
+// клиента, който е бил first, излиза first. Обслужените/свободните нямат за
+// какво да чакат, остават по номер най-отдолу, за да не подскачат безсмислено.
 router.get("/", async (req, res) => {
     const sessions = await prisma.tableSession.findMany({
         where: { invoicedAt: null },
@@ -48,16 +70,25 @@ router.get("/", async (req, res) => {
     for (let n = MIN_TABLE; n <= MAX_TABLE; n++) {
         const session = byTable.get(n);
         if (!session) {
-            tables.push({ tableNumber: n, state: "free" });
+            tables.push({ tableNumber: n, state: "free", _since: null });
             continue;
         }
         tables.push({
             tableNumber: n,
             state: tileState(session),
             sessionId: session.id,
-            openedAt: session.openedAt
+            openedAt: session.openedAt,
+            _since: waitingSince(session)
         });
     }
+
+    tables.sort((a, b) => {
+        if (a._since && b._since) return new Date(a._since) - new Date(b._since);
+        if (a._since) return -1;
+        if (b._since) return 1;
+        return a.tableNumber - b.tableNumber;
+    });
+    for (const t of tables) delete t._since;
 
     res.json(tables);
 });
