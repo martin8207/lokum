@@ -22,9 +22,10 @@ const PORT = process.env.PORT || 3000;
 // на lokum-web/lokum-web-v2 (порт 8080/8081 на хоста) - Caddy НЕ участва,
 // въпреки root Caddyfile-а (Funnel bypass-ва host-based routing-а му). Тази
 // nginx проксира /api/* насам според env-а API_BACKEND (виж
-// mobile/nginx.conf.template + docker-compose.yml) - "lokum-server" за
-// lokum-web, "lokum-server-v2" за lokum-web-v2. Затова всички routes живеят
-// под /api с пълния префикс запазен.
+// mobile/nginx.conf.template + docker-compose.yml) - upstream "api_production"
+// (round-robin между това копие и lokum-server-2, stateless е безопасно) за
+// lokum-web, upstream "api_test" (само lokum-server-v2) за lokum-web-v2.
+// Затова всички routes живеят под /api с пълния префикс запазен.
 //
 // /health, /auth/login и /customer/* са публични - /customer/* е клиентското
 // поръчване от масата (без login, виж routes/customerOrders.js). Останалото

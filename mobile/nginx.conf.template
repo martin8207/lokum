@@ -4,6 +4,22 @@
 # гадаем кое от двете влиза в един слят резултат.
 log_format lokum_access '$remote_addr xff=$http_x_forwarded_for - [$time_local] "$request" $status $body_bytes_sent "$http_user_agent"';
 
+# Двете имена по-долу са ВИНАГИ дефинирани тук, независимо кой образ (web
+# vs web-v2) чете файла - всички lokum-server* контейнери седят в една и
+# съща Docker мрежа (виж docker-compose.yml), значи имената им се
+# resolve-ват от всеки от двата nginx-а, дори тук да се ползва само едното.
+# api_production е реалният round-robin+failover между двете production
+# копия на бекенда - nginx маркира паднало upstream за 10с (default
+# max_fails/fail_timeout) и праща следващите заявки към другото, без
+# клиентът изобщо да усети.
+upstream api_production {
+    server lokum-server:3000;
+    server lokum-server-2:3000;
+}
+upstream api_test {
+    server lokum-server-v2:3000;
+}
+
 server {
     listen 80;
     server_name _;
@@ -74,21 +90,22 @@ server {
         add_header Cache-Control "no-cache";
     }
 
-    # Проксира API заявките към бекенда, зададен от API_BACKEND (env var,
-    # виж docker-compose.yml) - "lokum-server" за lokum-web (production),
-    # "lokum-server-v2" за lokum-web-v2 (test). Този файл е .template и се
-    # envsubst-ва автоматично от nginx:alpine entrypoint-а при старт (виж
-    # Dockerfile.web) - НЕ добавяй тук нов $VAR, който не е реална env
-    # променлива, иначе ще се опита да го замести и ще излезе празно.
+    # Проксира API заявките към upstream групата, зададена от API_BACKEND
+    # (env var, виж docker-compose.yml) - "api_production" (lokum-server +
+    # lokum-server-2, round-robin) за lokum-web, "api_test" (lokum-server-v2,
+    # само един) за lokum-web-v2. Този файл е .template и се envsubst-ва
+    # автоматично от nginx:alpine entrypoint-а при старт (виж Dockerfile.web)
+    # - НЕ добавяй тук нов $VAR, който не е реална env променлива, иначе ще
+    # се опита да го замести и ще излезе празно.
     #
     # ВАЖНО: Tailscale Funnel сочи директно към порта на тази nginx (8080 за
     # production), НЕ през Caddy - Caddy въобще не участва в реалния трафик
     # (виж root Caddyfile/docker-compose.yml коментарите за историята). Затова
-    # тук трябва ВИНАГИ коректния бекенд за средата, не "дефолт към test,
-    # защото production мине другаде" - това предположение излезе грешно и
-    # прати реален клиентски/персонал трафик към test базата.
+    # тук трябва ВИНАГИ коректната upstream група за средата, не "дефолт към
+    # test, защото production мине другаде" - това предположение излезе
+    # грешно и прати реален клиентски/персонал трафик към test базата.
     location /api/ {
-        proxy_pass http://${API_BACKEND}:3000/api/;
+        proxy_pass http://${API_BACKEND}/api/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

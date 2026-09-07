@@ -49,6 +49,38 @@ services:
     # Без "ports" тук - Caddy е единствената входна точка освен.
     # lokum-server е достъпен вътрешно през Docker DNS като "lokum-server:3000".
 
+  # Втора, идентична копия на production бекенда - виж upstream api_production
+  # в mobile/nginx.conf.template. И двете копия сочат към СЪЩИЯ Postgres
+  # (stateless - виж server/src/index.js), значи е безопасно nginx да
+  # разпределя заявките между тях: няма session/кеш в паметта на едното,
+  # което другото да не вижда. Целта е round-robin + автоматичен failover
+  # (nginx маха паднало upstream за 10с), не разделяне на данни.
+  lokum-server-2:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+
+    container_name: lokum-server-2
+
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      JWT_SECRET: ${JWT_SECRET}
+      STAFF_PASSWORD_HASH: ${STAFF_PASSWORD_HASH}
+      KITCHEN_PASSWORD_HASH: ${KITCHEN_PASSWORD_HASH}
+
+    env_file:
+      - ./server/.env
+
+    volumes:
+      - ./mobile/assets/data:/app/data:ro
+
+    depends_on:
+      - postgres
+
+    restart: unless-stopped
+    # Без "ports" - вътрешен, достъпен само през Docker DNS като
+    # "lokum-server-2:3000", точно като lokum-server.
+
   lokum-web:
     build:
       context: ./mobile
@@ -57,12 +89,13 @@ services:
     container_name: lokum-web
 
     environment:
-      # Кой бекенд да проксира nginx-ът на /api/* (виж mobile/nginx.conf.template)
-      # - envsubst-ва се при старт на контейнера. Funnel сочи директно към
-      # тази nginx (виж коментара за портовете по-долу), НЕ през Caddy, затова
-      # тук трябва изричен, коректен бекенд за production - не "дефолт", който
-      # разчита Caddy да прихване /api/* first (тя не участва в реалния трафик).
-      API_BACKEND: lokum-server
+      # Кой upstream (виж mobile/nginx.conf.template) да проксира nginx-ът на
+      # /api/* - envsubst-ва се при старт на контейнера. Funnel сочи директно
+      # към тази nginx (виж коментара за портовете по-долу), НЕ през Caddy,
+      # затова тук трябва изричен, коректен upstream за production - не
+      # "дефолт", който разчита Caddy да прихване /api/* first (тя не участва
+      # в реалния трафик). api_production = lokum-server + lokum-server-2.
+      API_BACKEND: api_production
 
     ports:
       - "8080:80"
@@ -73,6 +106,7 @@ services:
 
     depends_on:
       - lokum-server
+      - lokum-server-2
 
     volumes:
       - nginx_logs:/var/log/nginx
@@ -93,9 +127,9 @@ services:
     container_name: lokum-web-v2
 
     environment:
-      # Тестовият бекенд - виж mobile/nginx.conf.template и коментара при
-      # API_BACKEND на lokum-web по-горе.
-      API_BACKEND: lokum-server-v2
+      # Тестовият upstream (само lokum-server-v2) - виж mobile/nginx.conf.template
+      # и коментара при API_BACKEND на lokum-web по-горе.
+      API_BACKEND: api_test
 
     ports:
       - "8081:80"
@@ -167,6 +201,7 @@ services:
 
     depends_on:
       - lokum-server
+      - lokum-server-2
       - lokum-web
 
     restart: unless-stopped

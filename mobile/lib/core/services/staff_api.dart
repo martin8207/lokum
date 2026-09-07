@@ -1,10 +1,10 @@
 /// HTTP клиент за бележника на персонала И кухнята - говори през `/api/*`,
 /// проксирано от nginx на СЪЩИЯ произход (виж mobile/nginx.conf.template,
-/// env `API_BACKEND` в docker-compose.yml решава дали това е `lokum-server`
-/// или `lokum-server-v2`), затова `Uri.base.resolve(...)` е достатъчно - няма
-/// нужда от отделен host или CORS. Един login екран, една зъбчатка - коя
-/// парола въведеш решава дали получаваш staff или kitchen роля (виж
-/// server/src/routes/auth.js).
+/// env `API_BACKEND` в docker-compose.yml сочи upstream `api_production`
+/// - round-robin между lokum-server и lokum-server-2 - или `api_test`),
+/// затова `Uri.base.resolve(...)` е достатъчно - няма нужда от отделен host
+/// или CORS. Един login екран, една зъбчатка - коя парола въведеш решава
+/// дали получаваш staff или kitchen роля (виж server/src/routes/auth.js).
 library;
 
 import 'dart:convert';
