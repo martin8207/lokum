@@ -9,8 +9,27 @@ import '../../../shared/models/product.dart';
 /// на приложението къде седи, за да стигне поръчката до правилния сервитьор
 /// (виж бележника на персонала - таблото се организира по номер на маса).
 class OrderTableEntryPage extends StatelessWidget {
-  static const _minTable = 1;
-  static const _maxTable = 14;
+  // Физическите маси 1-14 + виртуалните 33/42/99 за клиенти, които искат
+  // отделна сметка (виж server/src/lib/tableSession.js - същият списък).
+  static const _tableNumbers = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    33,
+    42,
+    99,
+  ];
 
   const OrderTableEntryPage({super.key});
 
@@ -40,7 +59,7 @@ class OrderTableEntryPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 Expanded(
                   child: GridView.builder(
-                    itemCount: _maxTable - _minTable + 1,
+                    itemCount: _tableNumbers.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 4,
@@ -49,7 +68,7 @@ class OrderTableEntryPage extends StatelessWidget {
                           childAspectRatio: 1,
                         ),
                     itemBuilder: (context, index) {
-                      final number = _minTable + index;
+                      final number = _tableNumbers[index];
                       return Material(
                         color: colors.menuCardBackground,
                         borderRadius: BorderRadius.circular(14),

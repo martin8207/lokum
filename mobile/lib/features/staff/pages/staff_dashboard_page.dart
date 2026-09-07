@@ -205,19 +205,25 @@ class _TableRail extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         clipBehavior: Clip.antiAlias,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (var i = 0; i < tables.length; i++)
-              _RailRow(
-                table: tables[i],
-                showBottomBorder: i != tables.length - 1,
-                isSelected: tables[i].tableNumber == selected,
-                stripeColor: _stripeColor(tables[i].state),
-                colors: colors,
-                onTap: () => onSelect(tables[i].tableNumber),
-              ),
-          ],
+        // SingleChildScrollView - листата маси вече не е точно 14 (виж
+        // TABLE_NUMBERS в server/src/lib/tableSession.js), а Column-ът отдолу
+        // не пада никога сам, само scroll-ва, ако редовете не се съберат на
+        // по-нисък екран.
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (var i = 0; i < tables.length; i++)
+                _RailRow(
+                  table: tables[i],
+                  showBottomBorder: i != tables.length - 1,
+                  isSelected: tables[i].tableNumber == selected,
+                  stripeColor: _stripeColor(tables[i].state),
+                  colors: colors,
+                  onTap: () => onSelect(tables[i].tableNumber),
+                ),
+            ],
+          ),
         ),
       ),
     );

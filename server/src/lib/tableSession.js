@@ -1,11 +1,13 @@
 const prisma = require("../db");
 
-const MIN_TABLE = 1;
-const MAX_TABLE = 14;
+// Физическите маси 1-14 + три "виртуални" номера за клиенти, които искат
+// отделна сметка на същата физическа маса (напр. разделена компания) - не са
+// поредни, затова списък, не диапазон.
+const TABLE_NUMBERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 33, 42, 99];
 
 function parseTableNumber(raw) {
     const n = Number(raw);
-    if (!Number.isInteger(n) || n < MIN_TABLE || n > MAX_TABLE) return null;
+    if (!Number.isInteger(n) || !TABLE_NUMBERS.includes(n)) return null;
     return n;
 }
 
@@ -87,4 +89,4 @@ async function createOrder(tableNumber, items) {
     return { order };
 }
 
-module.exports = { MIN_TABLE, MAX_TABLE, parseTableNumber, findActiveSession, createOrder };
+module.exports = { TABLE_NUMBERS, parseTableNumber, findActiveSession, createOrder };

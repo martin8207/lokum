@@ -2,8 +2,7 @@ const express = require("express");
 
 const prisma = require("../db");
 const {
-    MIN_TABLE,
-    MAX_TABLE,
+    TABLE_NUMBERS,
     parseTableNumber,
     findActiveSession,
     createOrder
@@ -49,7 +48,8 @@ function waitingSince(session) {
     );
 }
 
-// GET /api/tables - табло с общ преглед на всички 1..14 маси, подредено
+// GET /api/tables - табло с общ преглед на всички маси (виж TABLE_NUMBERS -
+// физическите 1-14 + виртуалните 33/42/99 за отделна сметка), подредено
 // хронологично: масата, чакаща най-отдавна, е на върха - без значение дали
 // поръчката е записана от персонала (бележника) или подадена директно от
 // клиента, който е бил first, излиза first. Обслужените/свободните нямат за
@@ -67,7 +67,7 @@ router.get("/", async (req, res) => {
     const byTable = new Map(sessions.map((s) => [s.tableNumber, s]));
 
     const tables = [];
-    for (let n = MIN_TABLE; n <= MAX_TABLE; n++) {
+    for (const n of TABLE_NUMBERS) {
         const session = byTable.get(n);
         if (!session) {
             tables.push({ tableNumber: n, state: "free", _since: null });
