@@ -358,7 +358,21 @@ class _StaffTableDetailState extends State<StaffTableDetail>
                 _buildBillRequestedBanner(detail),
               ],
               const SizedBox(height: 20),
-              _buildNotebookSection(colors),
+              // KeyedSubtree с фиксиран key - секцията с търсачката трябва да
+              // пази своя Element (и с него фокуса на TextField-а) дори
+              // когато "Клиентът поиска сметката" банерът отгоре се появи/
+              // изчезне между два polling refresh-а. Без key, вмъкването на
+              // банера отпред измества всичко след него с една позиция в тази
+              // некиймплирана ListView children листа - Flutter го чете като
+              // "различен widget на този слот" и пресъздава TextField-а (и
+              // платформения text input connection), което затваря
+              // клавиатурата насред писане. Забелязано по-често при натоварена
+              // вечер, защото повече активност = по-чести билРекуест/поръчки
+              // превключвания, не защото самият сървър се задъхва.
+              KeyedSubtree(
+                key: const ValueKey('notebook-section'),
+                child: _buildNotebookSection(colors),
+              ),
               if (detail.activeOrders.isNotEmpty) ...[
                 const SizedBox(height: 24),
                 Text(

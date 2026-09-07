@@ -24,7 +24,16 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
     with WidgetsBindingObserver {
   static const _pollInterval = Duration(seconds: 4);
 
-  List<TableSummary>? _tables;
+  // ValueNotifier, не State поле - таблото пуска този poll на всеки 4 сек, а
+  // детайлът на избраната маса (StaffTableDetail, вдясно) си има собствен
+  // независим 4-сек poll и своя вътрешна търсачка. Ако тукашният refresh
+  // минаваше през setState на ЦЕЛИЯ _StaffDashboardPageState, всеки tick би
+  // пресъздавал и StaffTableDetail widget-а (нов instance, дори със същите
+  // стойности) - парното "родителско" rebuild-ване кара Flutter да rebuild-не
+  // и детайла, без реална нужда. С ValueListenableBuilder, scope-нат само
+  // около рейла (виж build() по-долу и `child:`-а му), детайлът остава СЪЩИЯТ
+  // widget instance между тези tick-ове и изобщо не се rebuild-ва оттук.
+  final _tablesNotifier = ValueNotifier<List<TableSummary>?>(null);
   String? _error;
   Timer? _timer;
   int? _selected;
@@ -41,6 +50,7 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     _timer?.cancel();
+    _tablesNotifier.dispose();
     super.dispose();
   }
 
@@ -56,10 +66,8 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
     try {
       final tables = await StaffApi.instance.fetchTables();
       if (!mounted) return;
-      setState(() {
-        _tables = tables;
-        _error = null;
-      });
+      _tablesNotifier.value = tables;
+      if (_error != null) setState(() => _error = null);
     } on StaffAuthException {
       if (!mounted) return;
       Navigator.pushReplacement(
@@ -75,7 +83,18 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
   @override
   Widget build(BuildContext context) {
     final colors = context.colors;
-    final tables = _tables;
+    // Построен ТУК, не вътре в ValueListenableBuilder.builder - подаден като
+    // негов `child:`, за да не се пресъздава на всеки poll tick (виж бележката
+    // при _tablesNotifier по-горе). Все още се пресъздава при истинска смяна
+    // (различна избрана маса), защото build() тогава наистина се извиква
+    // отново заради setState-а в onSelect.
+    final detailPane = _selected == null
+        ? _EmptyDetail(colors: colors)
+        : StaffTableDetail(
+            key: ValueKey(_selected),
+            tableNumber: _selected!,
+            onChanged: _refresh,
+          );
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -83,30 +102,29 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
           style: TextStyle(fontSize: 18),
         ),
       ),
-      body: tables == null
-          ? _error == null
+      body: ValueListenableBuilder<List<TableSummary>?>(
+        valueListenable: _tablesNotifier,
+        builder: (context, tables, child) {
+          if (tables == null) {
+            return _error == null
                 ? const Center(child: CircularProgressIndicator())
-                : _ErrorState(message: _error!, onRetry: _refresh)
-          : Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _TableRail(
-                  tables: tables,
-                  selected: _selected,
-                  colors: colors,
-                  onSelect: (n) => setState(() => _selected = n),
-                ),
-                Expanded(
-                  child: _selected == null
-                      ? _EmptyDetail(colors: colors)
-                      : StaffTableDetail(
-                          key: ValueKey(_selected),
-                          tableNumber: _selected!,
-                          onChanged: _refresh,
-                        ),
-                ),
-              ],
-            ),
+                : _ErrorState(message: _error!, onRetry: _refresh);
+          }
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _TableRail(
+                tables: tables,
+                selected: _selected,
+                colors: colors,
+                onSelect: (n) => setState(() => _selected = n),
+              ),
+              Expanded(child: child!),
+            ],
+          );
+        },
+        child: detailPane,
+      ),
     );
   }
 }
