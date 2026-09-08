@@ -5,13 +5,28 @@ const prisma = require("../db");
 const router = express.Router();
 
 // PATCH /api/orders/:orderId/serve - маркира целия кръг поръчки като занесен
-// на масата. Независимо от "Потвърден в КА" - виж items/:itemId/confirm.
+// на масата. Заключено зад КА, огледално на /invoice в tables.js - не пускай
+// сервитьора да отнесе нещо на масата, преди да е минало през касата, иначе
+// бройката така и не влиза в сметката (виж readyToInvoice в бележника).
 router.patch("/:orderId/serve", async (req, res) => {
-    const order = await prisma.order.update({
+    const order = await prisma.order.findUnique({
+        where: { id: req.params.orderId },
+        include: { items: true }
+    });
+    if (!order) return res.status(404).json({ error: "order_not_found" });
+
+    const hasUnresolvedItem = order.items
+        .filter((it) => !it.removedAt)
+        .some((it) => !it.kaConfirmedAt);
+    if (hasUnresolvedItem) {
+        return res.status(409).json({ error: "items_not_confirmed_in_ka" });
+    }
+
+    const updated = await prisma.order.update({
         where: { id: req.params.orderId },
         data: { servedAt: new Date() }
     });
-    res.json(order);
+    res.json(updated);
 });
 
 // PATCH /api/orders/:orderId/cancel - отказва цялата поръчка. Двойното/

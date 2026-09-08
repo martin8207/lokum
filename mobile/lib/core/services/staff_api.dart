@@ -231,6 +231,26 @@ class StaffApi {
         .toList();
   }
 
+  /// Маркира ЕДНА бройка като издадена от кухнята - независимо от КА/served.
+  Future<void> issueItem(String itemId) async {
+    _checkOk(
+      await http.patch(
+        _uri('/api/kitchen/items/$itemId/issue'),
+        headers: _headers(),
+      ),
+    );
+  }
+
+  /// Обратното на [issueItem] - за поправка на грешно тапнато "Издадено".
+  Future<void> unissueItem(String itemId) async {
+    _checkOk(
+      await http.patch(
+        _uri('/api/kitchen/items/$itemId/unissue'),
+        headers: _headers(),
+      ),
+    );
+  }
+
   /// "Освободи маса" - изрично действие, отделно от отказ/изтриване на
   /// артикули. Затваря сесията без плащане/КА проверка (за изоставена маса,
   /// тестова поръчка и т.н.) - виж PATCH /api/tables/:n/free.

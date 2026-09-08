@@ -47,22 +47,27 @@ router.get("/items", async (req, res) => {
                         productId: item.productId,
                         nameBg: item.product.nameBg,
                         nameEn: item.product.nameEn,
-                        quantity: 0,
-                        confirmedCount: 0,
                         tableNumber: session.tableNumber,
                         submittedAt: order.submittedAt,
-                        served: order.servedAt !== null
+                        served: order.servedAt !== null,
+                        // Индивидуални бройки, не само общ брой - кухнята
+                        // маркира "издадено" по бройка (виж PATCH /items/:id/issue),
+                        // затова UI-ят трябва да вижда истинските OrderItem id-та.
+                        units: []
                     };
                     byProduct.set(item.productId, row);
                 }
-                row.quantity += 1;
-                if (item.kaConfirmedAt) row.confirmedCount += 1;
+                row.units.push({
+                    itemId: item.id,
+                    confirmed: item.kaConfirmedAt !== null,
+                    issued: item.issuedAt !== null
+                });
             }
 
             for (const row of byProduct.values()) {
-                const confirmed = row.confirmedCount === row.quantity;
+                const confirmed = row.units.every((u) => u.confirmed);
                 if (row.served && confirmed) continue;
-                delete row.confirmedCount;
+                row.quantity = row.units.length;
                 row.confirmed = confirmed;
                 rows.push(row);
             }
@@ -71,6 +76,37 @@ router.get("/items", async (req, res) => {
 
     rows.sort((a, b) => new Date(a.submittedAt) - new Date(b.submittedAt));
     res.json(rows);
+});
+
+// PATCH /api/kitchen/items/:itemId/issue - маркира ЕДНА бройка като издадена
+// от кухнята (приготвена/предадена) - независимо от kaConfirmedAt (касата) и
+// от Order.servedAt (сервитьорът още не я е занесъл непременно на масата).
+router.patch("/items/:itemId/issue", async (req, res) => {
+    const item = await prisma.orderItem.findUnique({
+        where: { id: req.params.itemId }
+    });
+    if (!item) return res.status(404).json({ error: "item_not_found" });
+
+    const updated = await prisma.orderItem.update({
+        where: { id: item.id },
+        data: { issuedAt: new Date() }
+    });
+    res.json(updated);
+});
+
+// PATCH /api/kitchen/items/:itemId/unissue - обратното, за поправка на
+// грешно тапнато "Издадено".
+router.patch("/items/:itemId/unissue", async (req, res) => {
+    const item = await prisma.orderItem.findUnique({
+        where: { id: req.params.itemId }
+    });
+    if (!item) return res.status(404).json({ error: "item_not_found" });
+
+    const updated = await prisma.orderItem.update({
+        where: { id: item.id },
+        data: { issuedAt: null }
+    });
+    res.json(updated);
 });
 
 module.exports = router;

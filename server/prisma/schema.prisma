@@ -154,6 +154,12 @@ model OrderItem {
   kaConfirmedAt DateTime?
   removedAt     DateTime?
 
+  // Кухнята маркира кога е приготвила/предала тази бройка - независим статус
+  // от kaConfirmedAt (касата) и от Order.servedAt (сервитьорът е занесъл на
+  // масата). Междинна стъпка: издадено от кухнята не значи занесено на
+  // масата, виж routes/kitchen.js.
+  issuedAt DateTime?
+
   createdAt DateTime @default(now())
 
   @@index([orderId])

@@ -207,13 +207,17 @@ class _StaffTableDetailState extends State<StaffTableDetail>
     }
   }
 
+  // Сървърът отказва (409), ако има непреминала през КА бройка в поръчката -
+  // виж PATCH /orders/:id/serve.
   Future<void> _serveOrder(StaffOrder order) async {
     try {
       await StaffApi.instance.serveOrder(order.id);
       await _refresh();
       widget.onChanged?.call();
     } catch (e) {
-      _showError(e.toString());
+      _showError(
+        'Не може да се маркира сервирано - провери дали всички артикули са минали през КА.',
+      );
     }
   }
 
