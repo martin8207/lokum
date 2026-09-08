@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_theme.dart';
 import '../../core/asset_paths.dart';
 import '../../core/services/events_service.dart';
+import '../../core/services/push_notification_service.dart';
 import '../../core/services/staff_api.dart';
 import '../../shared/models/event.dart';
 import '../../shared/models/product.dart';
@@ -120,6 +121,19 @@ class _HomePageState extends State<HomePage> {
                                 destination = const KitchenBoardPage();
                               } else {
                                 destination = const StaffDashboardPage();
+                              }
+                              // Вече логнат от предишна сесия (запазен token) -
+                              // прескача login екрана, затова trySubscribe()
+                              // трябва да се извика и оттук, не само от
+                              // StaffLoginPage._submit() (виж
+                              // PushNotificationService) - иначе абонамент
+                              // никога не се регистрира, докато някой не
+                              // изчисти storage-а и логне наново.
+                              if (StaffApi.instance.isLoggedIn) {
+                                unawaited(
+                                  PushNotificationService.instance
+                                      .trySubscribe(),
+                                );
                               }
                               Navigator.push(
                                 context,
