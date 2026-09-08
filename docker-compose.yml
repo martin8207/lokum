@@ -22,6 +22,12 @@ services:
       dockerfile: Dockerfile
 
     container_name: lokum-server
+    # container_name сменя само Docker-DNS/CLI името, НЕ os.hostname() вътре в
+    # контейнера (Docker по подразбиране слага случаен hex id за него) - явно
+    # зададен hostname тук е нужен, за да върне /api/whoami четимо име (виж
+    # server/src/routes/whoami.js) и да се различава от lokum-server-2 в
+    # отговорите при редуване на nginx upstream-а.
+    hostname: lokum-server
 
     environment:
       # Построена от същите POSTGRES_* стойности по-горе - винаги в синхрон,
@@ -61,6 +67,7 @@ services:
       dockerfile: Dockerfile
 
     container_name: lokum-server-2
+    hostname: lokum-server-2
 
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}

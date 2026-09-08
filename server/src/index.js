@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 
 const healthRouter = require("./routes/health");
+const whoamiRouter = require("./routes/whoami");
 const authRouter = require("./routes/auth");
 const productsRouter = require("./routes/products");
 const tablesRouter = require("./routes/tables");
@@ -37,6 +38,7 @@ const PORT = process.env.PORT || 3000;
 // оттук (чете локален bundled menu.json) - само поръчването/кухнята го правят.
 const apiRouter = express.Router();
 apiRouter.use("/health", healthRouter);
+apiRouter.use("/whoami", whoamiRouter);
 apiRouter.use("/auth", authRouter);
 apiRouter.use("/customer", customerOrdersRouter);
 apiRouter.use("/products", requireStaffAuth, productsRouter);
