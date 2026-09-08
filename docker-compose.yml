@@ -172,6 +172,15 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       STAFF_PASSWORD_HASH: ${STAFF_PASSWORD_HASH}
       KITCHEN_PASSWORD_HASH: ${KITCHEN_PASSWORD_HASH}
+      # Push нотификации - засега само тук (test), виж .env.example за
+      # генериращата команда. Празни стойности просто изключват push-а мълчаливо
+      # (виж lib/webPush.js в test branch-а на server) - не чупят нищо друго,
+      # докато не бъдат генерирани. Тази docker-compose.yml редакция трябва да
+      # мине през production, дори функцията да е test-only - /project/lokum
+      # (където живее реалният docker-compose.yml) се обновява само от push
+      # към production, deploy-test.yml никога не го пипа.
+      VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY}
+      VAPID_PRIVATE_KEY: ${VAPID_PRIVATE_KEY}
 
     volumes:
       # Същият трик като production lokum-server - npm run seed трябва да
