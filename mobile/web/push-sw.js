@@ -19,6 +19,11 @@ self.addEventListener("push", (event) => {
     body: data.body || "",
     icon: "icons/Icon-192.png",
     badge: "icons/Icon-192.png",
+    // Без изричен vibrate масив Android/Chrome понякога показва известието
+    // напълно тихо (нито звук, нито вибрация), дори каналът да го позволява
+    // - звук от custom файл не е възможен през Web Push стандарта (виж
+    // отговора към Мартин), само вибрацията е директно контролируема оттук.
+    vibrate: [200, 100, 200],
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
