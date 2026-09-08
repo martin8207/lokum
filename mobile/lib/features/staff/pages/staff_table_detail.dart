@@ -479,7 +479,39 @@ class _StaffTableDetailState extends State<StaffTableDetail>
             color: colors.textMain,
           ),
         ),
-        const SizedBox(height: 8),
+        // Количката е ПРЕДИ търсачката, не след - иначе резултатите от
+        // търсенето (могат да са дълъг списък) бутат "Добавени артикули" чак
+        // долу извън погледа, докато пишеш следващия артикул. Персоналът
+        // трябва винаги да вижда какво вече е добавено, на фиксирано място.
+        if (_cart.isNotEmpty) ...[
+          const SizedBox(height: 12),
+          Text(
+            'Добавени артикули',
+            style: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontSize: 12,
+              color: colors.textMuted,
+            ),
+          ),
+          const SizedBox(height: 6),
+          ..._cart.entries.map((e) => _buildCartRow(e.key, e.value, colors)),
+          const SizedBox(height: 12),
+          SizedBox(
+            width: double.infinity,
+            child: FilledButton(
+              onPressed: _submitting ? null : _submitOrder,
+              child: _submitting
+                  ? const SizedBox(
+                      height: 16,
+                      width: 16,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : const Text('Поръчай'),
+            ),
+          ),
+          const SizedBox(height: 16),
+        ] else
+          const SizedBox(height: 8),
         TextField(
           controller: _searchController,
           focusNode: _searchFocusNode,
@@ -510,33 +542,6 @@ class _StaffTableDetailState extends State<StaffTableDetail>
         if (_results.isNotEmpty) ...[
           const SizedBox(height: 10),
           ..._results.map((p) => _buildResultRow(p, colors)),
-        ],
-        if (_cart.isNotEmpty) ...[
-          const SizedBox(height: 16),
-          Text(
-            'Добавени артикули',
-            style: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontSize: 12,
-              color: colors.textMuted,
-            ),
-          ),
-          const SizedBox(height: 6),
-          ..._cart.entries.map((e) => _buildCartRow(e.key, e.value, colors)),
-          const SizedBox(height: 12),
-          SizedBox(
-            width: double.infinity,
-            child: FilledButton(
-              onPressed: _submitting ? null : _submitOrder,
-              child: _submitting
-                  ? const SizedBox(
-                      height: 16,
-                      width: 16,
-                      child: CircularProgressIndicator(strokeWidth: 2),
-                    )
-                  : const Text('Поръчай'),
-            ),
-          ),
         ],
       ],
     );
