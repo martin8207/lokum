@@ -29,15 +29,16 @@ class FeaturedEventCard extends StatelessWidget {
         : AssetPaths.eventImage(event.posterImage!);
     final hasPoster = posterPath != null && BundledAssets.has(posterPath);
     final subtitle = event.cardSubtitle(lang);
-    // На колко от стандартните карти (0.62 childAspectRatio, вижте
-    // events_page.dart) отговаря един "ред" в 2-колонния grid - при
-    // event.featuredFixedHeight картата пази точно тази височина (колкото
-    // 2 стандартни карти една до друга), вместо да варира по снимката.
-    const standardRowAspectRatio = 2 * 0.62;
+    // 0.62 = childAspectRatio на стандартните карти в 2-колонния grid (виж
+    // events_page.dart) - featuredHeightRows казва на колко от тях да
+    // отговаря височината на тази карта (напр. 4 за висок вертикален
+    // постер), вместо да варира по естествените пропорции на снимката.
+    final heightRows = event.featuredHeightRows;
+    final fixedAspectRatio = heightRows == null ? null : heightRows * 0.62;
 
-    // `fill`, не `cover`/`contain` - при featuredFixedHeight искаме снимката
-    // да запълва цялата карта (и хоризонтално, и вертикално), без изрязване
-    // и без празни ленти - приема лека деформация на пропорциите.
+    // `fill`, не `cover`/`contain` - при фиксиран aspect ratio искаме
+    // снимката да запълва цялата карта (и хоризонтално, и вертикално), без
+    // изрязване и без празни ленти - приема лека деформация на пропорциите.
     final poster = hasPoster
         ? Image.asset(posterPath, fit: BoxFit.fill)
         : Icon(Icons.event, size: 56, color: theme.hintColor);
@@ -50,9 +51,9 @@ class FeaturedEventCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (event.featuredFixedHeight)
+            if (fixedAspectRatio != null)
               AspectRatio(
-                aspectRatio: standardRowAspectRatio,
+                aspectRatio: fixedAspectRatio,
                 child: ColoredBox(
                   color: theme.colorScheme.surfaceContainerHighest,
                   child: poster,
