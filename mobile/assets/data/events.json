@@ -28,14 +28,14 @@
       "id": "kartichka_ot_moreto",
       "titleBg": "Картичка от морето",
       "titleEn": "Postcard from the Sea",
-      "cardSubtitleBg": "Изложба на улица „Рибарска“",
-      "cardSubtitleEn": "An exhibition on \"Fishermen's Street\"",
+      "cardSubtitleBg": "Изложба на Емилия Балева",
+      "cardSubtitleEn": "An exhibition by Emilia Baleva",
       "descriptionBg": "На 17 септември пространството пред бар „Локум“ се превръща в улица „Рибарска“! Заповядайте да разгледате една пъстра „Картичка от морето“ - живописна изложба, която прегръща последните мигове от лятото и мами с дъх на узо, блясък на риби и сянка от смокинови листа...",
       "descriptionEn": "On September 17th, the space in front of Bar Lokum turns into \"Fishermen's Street\"! Come see a colorful \"Postcard from the Sea\" - a vivid exhibition that embraces the last moments of summer and lures you with the scent of ouzo, the shimmer of fish and the shade of fig leaves...",
       "date": "2026-09-17T19:00:00",
       "posterImage": "events/kartichka_ot_moreto.jpg",
       "featured": true,
-      "featuredHeightRows": 4
+      "featuredHeightRows": 2
     },
     {
       "id": "sunday-brunch",
