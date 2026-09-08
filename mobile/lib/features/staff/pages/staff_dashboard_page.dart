@@ -101,6 +101,16 @@ class _StaffDashboardPageState extends State<StaffDashboardPage>
           'Бележник на персонала',
           style: TextStyle(fontSize: 18),
         ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Изход',
+            onPressed: () async {
+              await StaffApi.instance.logout();
+              if (context.mounted) Navigator.of(context).pop();
+            },
+          ),
+        ],
       ),
       body: ValueListenableBuilder<List<TableSummary>?>(
         valueListenable: _tablesNotifier,

@@ -141,6 +141,14 @@ class _KitchenBoardPageState extends State<KitchenBoardPage>
                 ),
               ),
             ),
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Изход',
+            onPressed: () async {
+              await StaffApi.instance.logout();
+              if (context.mounted) Navigator.of(context).pop();
+            },
+          ),
         ],
       ),
       body: items == null
