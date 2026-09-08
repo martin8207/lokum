@@ -51,6 +51,9 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <!-- Web Push glue (виж push.js/push-sw.js) - отделен от Flutter-ския
+       service worker (flutter_service_worker.js), не пипа кеширането му. -->
+  <script src="push.js" defer></script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

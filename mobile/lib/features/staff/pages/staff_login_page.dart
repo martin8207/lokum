@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
+import '../../../core/services/push_notification_service.dart';
 import '../../../core/services/staff_api.dart';
 import '../../kitchen/pages/kitchen_board_page.dart';
 import 'staff_dashboard_page.dart';
@@ -41,6 +44,8 @@ class _StaffLoginPageState extends State<StaffLoginPage> {
     });
     try {
       await StaffApi.instance.login(password, _role);
+      // Best-effort, не блокира навигацията - виж PushNotificationService.
+      unawaited(PushNotificationService.instance.trySubscribe());
       if (!mounted) return;
       Navigator.pushReplacement(
         context,

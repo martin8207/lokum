@@ -172,6 +172,11 @@ services:
       JWT_SECRET: ${JWT_SECRET}
       STAFF_PASSWORD_HASH: ${STAFF_PASSWORD_HASH}
       KITCHEN_PASSWORD_HASH: ${KITCHEN_PASSWORD_HASH}
+      # Push нотификации - засега само тук (test), виж .env.example за
+      # генериращата команда. Празни стойности просто изключват push-а мълчаливо
+      # (виж lib/webPush.js) - не чупят нищо друго, докато не бъдат генерирани.
+      VAPID_PUBLIC_KEY: ${VAPID_PUBLIC_KEY}
+      VAPID_PRIVATE_KEY: ${VAPID_PRIVATE_KEY}
 
     volumes:
       # Същият трик като production lokum-server - npm run seed трябва да

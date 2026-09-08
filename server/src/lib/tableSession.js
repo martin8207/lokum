@@ -1,4 +1,5 @@
 const prisma = require("../db");
+const { notifyStaff } = require("./webPush");
 
 // Физическите маси 1-14 + три "виртуални" номера за клиенти, които искат
 // отделна сметка на същата физическа маса (напр. разделена компания) - не са
@@ -85,6 +86,11 @@ async function createOrder(tableNumber, items) {
             include: { items: true }
         });
     });
+
+    // Извън транзакцията, "fire and forget" - push доставката не е част от
+    // гаранцията "поръчката е записана"; неуспешно известие не бива да
+    // проваля отговора към клиента/бележника (виж lib/webPush.js).
+    notifyStaff({ tableNumber }).catch(() => {});
 
     return { order };
 }

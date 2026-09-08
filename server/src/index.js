@@ -10,6 +10,8 @@ const tablesRouter = require("./routes/tables");
 const ordersRouter = require("./routes/orders");
 const customerOrdersRouter = require("./routes/customerOrders");
 const kitchenRouter = require("./routes/kitchen");
+const pushConfigRouter = require("./routes/pushConfig");
+const createPushRouter = require("./routes/push");
 const requireStaffAuth = require("./middleware/requireStaffAuth");
 const requireKitchenAuth = require("./middleware/requireKitchenAuth");
 
@@ -45,6 +47,9 @@ apiRouter.use("/products", requireStaffAuth, productsRouter);
 apiRouter.use("/tables", requireStaffAuth, tablesRouter);
 apiRouter.use("/orders", requireStaffAuth, ordersRouter);
 apiRouter.use("/kitchen", requireKitchenAuth, kitchenRouter);
+apiRouter.use("/push/config", pushConfigRouter);
+apiRouter.use("/staff/push", requireStaffAuth, createPushRouter("staff"));
+apiRouter.use("/kitchen/push", requireKitchenAuth, createPushRouter("kitchen"));
 
 app.use("/api", apiRouter);
 

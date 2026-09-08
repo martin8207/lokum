@@ -242,4 +242,29 @@ class StaffApi {
       ),
     );
   }
+
+  /// Публичен route (виж server/src/routes/pushConfig.js) - null, докато
+  /// VAPID двойката не е генерирана в .env (push-ът е изключен мълчаливо
+  /// дотогава, виж PushNotificationService).
+  Future<String?> fetchPushPublicKey() async {
+    final res = await http.get(_uri('/api/push/config'));
+    _checkOk(res);
+    final body = jsonDecode(res.body) as Map<String, dynamic>;
+    return body['publicKey'] as String?;
+  }
+
+  /// /api/staff/push или /api/kitchen/push според текущата роля (виж
+  /// server/src/index.js) - subscriptionJson е точно каквото push.js връща
+  /// от PushManager.subscribe() (endpoint + keys.p256dh/auth).
+  Future<void> registerPushSubscription(
+    Map<String, dynamic> subscriptionJson,
+  ) async {
+    _checkOk(
+      await http.post(
+        _uri('/api/$role/push/subscribe'),
+        headers: _headers(const {'Content-Type': 'application/json'}),
+        body: jsonEncode(subscriptionJson),
+      ),
+    );
+  }
 }
