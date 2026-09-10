@@ -31,7 +31,6 @@ flutter:
     - assets/events/
     - assets/events/brunch/
     - assets/events/quiz/
-    - assets/events/themed/
     - assets/events/archive/DnD_VIT/
     - assets/events/archive/deestoned/
     - assets/events/archive/bgz/
@@ -51,6 +50,7 @@ flutter:
     - assets/events/archive/dj_party_07082026/
     - assets/events/archive/ishtah/
     - assets/events/archive/sladkodumni_vecheri/
+    - assets/events/archive/sladkodumni_vecheri_09092026/
     - assets/events/archive/igralno_pole/
     - assets/events/archive/greesh_23082026/
     - assets/food/
