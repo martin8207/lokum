@@ -1,5 +1,5 @@
 const prisma = require("../db");
-const { notifyStaff } = require("./webPush");
+const { notifyStaff, notifyKitchen } = require("./webPush");
 
 // Физическите маси 1-14 + три "виртуални" номера за клиенти, които искат
 // отделна сметка на същата физическа маса (напр. разделена компания) - не са
@@ -91,6 +91,16 @@ async function createOrder(tableNumber, items) {
     // гаранцията "поръчката е записана"; неуспешно известие не бива да
     // проваля отговора към клиента/бележника (виж lib/webPush.js).
     notifyStaff({ tableNumber }).catch(() => {});
+
+    // Само ако поръчката съдържа поне един артикул от кухнята - иначе
+    // готвачката получава известие за нещо, което изобщо не й се пада на
+    // таблото (напр. кръг само с напитки).
+    const hasFoodItem = items.some(
+        (it) => productById.get(it.productId)?.categoryId === "food"
+    );
+    if (hasFoodItem) {
+        notifyKitchen({ tableNumber }).catch(() => {});
+    }
 
     return { order };
 }

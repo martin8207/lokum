@@ -18,30 +18,23 @@ if (configured) {
 // едната реплика има/няма VAPID ключовете заредени.
 console.log(`[webPush] configured=${configured} (hostname=${process.env.HOSTNAME || "?"})`);
 
-// Известява ВСИЧКИ активни staff абонаменти (може да са няколко телефона
-// едновременно, логнати със същия staff акаунт - виж PushSubscription в
-// schema.prisma) за нова поръчка. Извиква се от createOrder() в
-// tableSession.js - единствената точка, през която минава ВСЯКА нова
-// поръчка, независимо дали идва от бележника на персонала или директно от
-// клиента (виж routes/customerOrders.js). Само staff, нарочно не и kitchen -
-// кухнята вече вижда новите артикули в реално време на собствения си екран.
-async function notifyStaff({ tableNumber }) {
+// Общ helper за notifyStaff/notifyKitchen по-долу - известява ВСИЧКИ активни
+// абонаменти на дадена роля (може да са няколко телефона едновременно,
+// логнати със същия staff/kitchen акаунт - виж PushSubscription в schema.prisma).
+async function notifyRole(role, title, body) {
     // Без VAPID ключове (все още негенерирани - виж .env.example) push-ът
     // просто мълчи, не хвърля - не бива да чупи самото създаване на поръчка.
     if (!configured) return;
 
     const subscriptions = await prisma.pushSubscription.findMany({
-        where: { role: "staff" }
+        where: { role }
     });
     console.log(
-        `[webPush] notifyStaff: table ${tableNumber}, ${subscriptions.length} staff subscription(s)`
+        `[webPush] notify ${role}: ${subscriptions.length} subscription(s)`
     );
     if (subscriptions.length === 0) return;
 
-    const payload = JSON.stringify({
-        title: "Нова поръчка!",
-        body: `Маса ${tableNumber}`
-    });
+    const payload = JSON.stringify({ title, body });
 
     await Promise.all(
         subscriptions.map(async (sub) => {
@@ -74,4 +67,18 @@ async function notifyStaff({ tableNumber }) {
     );
 }
 
-module.exports = { notifyStaff, pushConfigured: configured };
+// Извиква се от createOrder() в tableSession.js - единствената точка, през
+// която минава ВСЯКА нова поръчка, независимо дали идва от бележника на
+// персонала или директно от клиента (виж routes/customerOrders.js).
+async function notifyStaff({ tableNumber }) {
+    await notifyRole("staff", "Нова поръчка!", `Маса ${tableNumber}`);
+}
+
+// Само когато поръчката съдържа поне един артикул от кухнята (виж createOrder
+// в tableSession.js) - иначе готвачката получава известие за поръчка, която
+// изобщо не минава през кухненското табло (напр. само напитки).
+async function notifyKitchen({ tableNumber }) {
+    await notifyRole("kitchen", "Нова поръчка за кухнята!", `Маса ${tableNumber}`);
+}
+
+module.exports = { notifyStaff, notifyKitchen, pushConfigured: configured };
