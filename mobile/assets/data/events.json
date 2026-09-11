@@ -14,18 +14,6 @@
       "featured": true
     },
     {
-      "id": "rhcp_tribute_10092026",
-      "titleBg": "RHCP Tribute Band",
-      "titleEn": "RHCP Tribute Band",
-      "cardSubtitleBg": "Трибют на Red Hot Chili Peppers",
-      "cardSubtitleEn": "A Red Hot Chili Peppers tribute",
-      "descriptionBg": "Горещ, лют фънк, и цветно калифорнийско настроение с трибют бандата на Red Hot Chili Peppers. Какво по-подходящо място за най-големите хитове на \"Чушките\" в Шумен от пъстрия бар Локум и #нашатаулица\nВход свободен",
-      "descriptionEn": "Hot, spicy funk and colorful Californian vibes with the Red Hot Chili Peppers tribute band. What better place for the \"Peppers'\" biggest hits in Shumen than the colorful Bar Lokum and #ourstreet\nFree entry",
-      "date": "2026-09-10T20:00:00",
-      "posterImage": "events/rhcp_tributejpg.jpg",
-      "featured": true
-    },
-    {
       "id": "kartichka_ot_moreto",
       "titleBg": "Картичка от морето",
       "titleEn": "Postcard from the Sea",
@@ -313,6 +301,16 @@
       "descriptionBg": "Дата: 23.08.2026\nМясто: Бар Локум, Шумен\nЧас: 20:00\nВход: Свободен\n\nГръндж-Фънк вълната ще залее Шумен за първи път.\nGREESH ще са на гребена на лайфа и ще се разбият в бар Локум.\nЕклектичната група ще направи тази неделна вечер малко по-цветна, много по-шумна и силно запомняща се.\nВземете си дъските, ще е як трип.\n\nБандата ще свири в трио състав:\nГриша Георгиев (Greesh) - вокал, китара, бас\nГалатея Мутафова - баритон саксофон, синт, вокал\nНикола Джоков (Nixon) - барабани, синт, вокал\n\nЕла да се запознаеш с музикантите и да станеш част от нашето общество.\n\nПоследвайте групата и я чуйте:",
       "descriptionEn": "Date: August 23, 2026\nVenue: Lokum Bar, Shumen\nTime: 8:00 PM\nAdmission: Free\n\nThe Grunge-Funk wave is hitting Shumen for the very first time.\nGREESH will be riding the wave straight into Lokum Bar. This eclectic trio is about to make your Sunday night brighter, louder, and absolutely unforgettable.\nGrab your boards—it's going to be one hell of a ride.\n\nThe band will perform as a power trio:\nGrisha Georgiev (Greesh) – vocals, guitar, bass\nGalathea Mutafova – baritone saxophone, synthesizer, vocals\nNikola Dzhokov (Nixon) – drums, synthesizer, vocals\n\nCome meet the musicians and become part of our community.\n\nFollow the band and listen here:",
       "logoImage": "events/archive/greesh_23082026/greesh_23082026.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "rhcp_tribute_band_10092026",
+      "titleBg": "RHCP Tribute Band",
+      "titleEn": "RHCP Tribute Band",
+      "date": "2026-09-10T20:00:00",
+      "descriptionBg": "Горещ, лют фънк, и цветно калифорнийско настроение с трибют бандата на Red Hot Chili Peppers. Какво по-подходящо място за най-големите хитове на \"Чушките\" в Шумен от пъстрия бар Локум и #нашатаулица\nВход свободен",
+      "descriptionEn": "Hot, spicy funk and colorful Californian vibes with the Red Hot Chili Peppers tribute band. What better place for the \"Peppers'\" biggest hits in Shumen than the colorful Bar Lokum and #ourstreet\nFree entry",
+      "logoImage": "events/archive/rhcp_tribute_band_10092026/rhcp_tribute_band_10092026.jpg",
       "galleryImages": []
     }
   ]
