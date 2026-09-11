@@ -132,21 +132,23 @@ class TableSessionDetail {
   List<StaffOrder> get activeOrders =>
       orders.where((o) => !o.isCancelled).toList();
 
-  /// Само за бележника (виж StaffTableDetail) - активните поръчки пренаредени
-  /// за видимост: тези, които ВСЕ ОЩЕ имат нужда от внимание (не са едновременно
-  /// сервирани И напълно потвърдени в КА) излизат first, най-новите отгоре;
-  /// напълно приключените слизат най-долу. Без това, натоварена маса с много
-  /// кръгове поръчки погребва най-новата под купчина вече приключени - точно
-  /// голямото скролване, което разговорът за бележника цели да махне.
-  /// Клиентският статус екран НЕ ползва това - той пази чист хронологичен ред
-  /// (виж [activeOrders]).
-  List<StaffOrder> get ordersForStaffDisplay {
-    final unresolved = activeOrders.where((o) => !o.isFullyResolved).toList()
-      ..sort((a, b) => b.submittedAt.compareTo(a.submittedAt));
-    final resolved = activeOrders.where((o) => o.isFullyResolved).toList()
-      ..sort((a, b) => b.submittedAt.compareTo(a.submittedAt));
-    return [...unresolved, ...resolved];
-  }
+  /// Само за бележника (виж StaffTableDetail) - поръчките, които ВСЕ ОЩЕ
+  /// имат нужда от внимание (не са едновременно сервирани И напълно
+  /// потвърдени в КА), най-новите отгоре. Показват се като отделни карти -
+  /// виж [resolvedOrders] за приключените, обединени в едно резюме вместо
+  /// купчина карти. Клиентският статус екран НЕ ползва това - той пази чист
+  /// хронологичен ред (виж [activeOrders]).
+  List<StaffOrder> get unresolvedOrders =>
+      activeOrders.where((o) => !o.isFullyResolved).toList()
+        ..sort((a, b) => b.submittedAt.compareTo(a.submittedAt));
+
+  /// Напълно приключените (сервирани + всяка бройка минала през КА) -
+  /// обединени в едно резюме в бележника (виж StaffTableDetail), не купчина
+  /// отделни карти. Хронологичен ред тук вече няма практическо значение,
+  /// само за стабилно/предвидимо подреждане на резюмето.
+  List<StaffOrder> get resolvedOrders =>
+      activeOrders.where((o) => o.isFullyResolved).toList()
+        ..sort((a, b) => a.submittedAt.compareTo(b.submittedAt));
 
   double get total =>
       activeOrders.fold(0.0, (sum, o) => sum + o.confirmedTotal);

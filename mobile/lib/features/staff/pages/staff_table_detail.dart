@@ -388,8 +388,10 @@ class _StaffTableDetailState extends State<StaffTableDetail>
                   ),
                 ),
                 const SizedBox(height: 10),
-                for (final order in detail.ordersForStaffDisplay)
+                for (final order in detail.unresolvedOrders)
                   _buildOrderCard(order, colors),
+                if (detail.resolvedOrders.isNotEmpty)
+                  _buildResolvedSummary(detail.resolvedOrders, colors),
                 const SizedBox(height: 8),
                 _buildInvoiceSection(detail, colors),
               ],
@@ -692,6 +694,70 @@ class _StaffTableDetailState extends State<StaffTableDetail>
                   ],
                 ),
               ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // Едно обединено резюме за ВСИЧКИ напълно приключени поръчки (сервирани +
+  // всяка бройка минала през КА) вместо купчина отделни карти - виж
+  // TableSessionDetail.resolvedOrders. Само за четене (без бутони/чипове) -
+  // тук вече няма нищо за действие, целта е компактност, не интеракция.
+  Widget _buildResolvedSummary(
+    List<StaffOrder> resolvedOrders,
+    LokumColors colors,
+  ) {
+    final grouped = _groupByProduct(
+      resolvedOrders.expand((o) => o.activeItems).toList(),
+    );
+    final total = resolvedOrders.fold(0.0, (sum, o) => sum + o.confirmedTotal);
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: colors.border),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(
+                  Icons.check_circle,
+                  size: 16,
+                  color: _confirmedColor,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  'Приключени (${resolvedOrders.length})',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: colors.textMain,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            for (final entry in grouped.entries)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Text(
+                  '${entry.value.first.nameBg} ×${entry.value.length}',
+                  style: TextStyle(fontSize: 13, color: colors.textMuted),
+                ),
+              ),
+            const SizedBox(height: 8),
+            Text(
+              '${total.toStringAsFixed(2)} €',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                color: colors.accent,
+                fontSize: 15,
+              ),
             ),
           ],
         ),
