@@ -83,6 +83,12 @@ class StaffOrder {
       .where((it) => it.isConfirmed)
       .fold(0.0, (sum, it) => sum + it.priceEur);
 
+  /// Сервирана И всяка активна бройка минала през КА - вече нищо не чака
+  /// внимание тук, безопасно е да потъне най-долу в бележника (виж
+  /// [TableSessionDetail.ordersForStaffDisplay]).
+  bool get isFullyResolved =>
+      isServed && activeItems.every((it) => it.isConfirmed);
+
   /// Клиентът може сам да откаже поръчката само докато персоналът не я е
   /// докоснал - виж POST /api/customer/tables/:n/orders/:id/cancel, същото
   /// условие е приложено и server-side (409, ако вече е сервирана/потвърдена).
@@ -125,6 +131,22 @@ class TableSessionDetail {
 
   List<StaffOrder> get activeOrders =>
       orders.where((o) => !o.isCancelled).toList();
+
+  /// Само за бележника (виж StaffTableDetail) - активните поръчки пренаредени
+  /// за видимост: тези, които ВСЕ ОЩЕ имат нужда от внимание (не са едновременно
+  /// сервирани И напълно потвърдени в КА) излизат first, най-новите отгоре;
+  /// напълно приключените слизат най-долу. Без това, натоварена маса с много
+  /// кръгове поръчки погребва най-новата под купчина вече приключени - точно
+  /// голямото скролване, което разговорът за бележника цели да махне.
+  /// Клиентският статус екран НЕ ползва това - той пази чист хронологичен ред
+  /// (виж [activeOrders]).
+  List<StaffOrder> get ordersForStaffDisplay {
+    final unresolved = activeOrders.where((o) => !o.isFullyResolved).toList()
+      ..sort((a, b) => b.submittedAt.compareTo(a.submittedAt));
+    final resolved = activeOrders.where((o) => o.isFullyResolved).toList()
+      ..sort((a, b) => b.submittedAt.compareTo(a.submittedAt));
+    return [...unresolved, ...resolved];
+  }
 
   double get total =>
       activeOrders.fold(0.0, (sum, o) => sum + o.confirmedTotal);

@@ -388,7 +388,7 @@ class _StaffTableDetailState extends State<StaffTableDetail>
                   ),
                 ),
                 const SizedBox(height: 10),
-                for (final order in detail.activeOrders)
+                for (final order in detail.ordersForStaffDisplay)
                   _buildOrderCard(order, colors),
                 const SizedBox(height: 8),
                 _buildInvoiceSection(detail, colors),
