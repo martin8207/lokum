@@ -12,7 +12,9 @@ jobs:
       - name: Deploy lokum-web (production)
         run: |
           cd /project/lokum
-          git pull
+          git fetch origin production
+          git checkout production
+          git reset --hard origin/production
           docker compose build lokum-server lokum-server-2 lokum-web
           docker compose up -d lokum-server lokum-server-2 lokum-web
           docker compose run --rm lokum-server npm run seed

@@ -12,7 +12,9 @@ jobs:
       - name: Deploy lokum-web-v2 (test)
         run: |
           cd /project/lokum-test
-          git pull
+          git fetch origin test
+          git checkout test
+          git reset --hard origin/test
           cd /project/lokum
           docker compose build lokum-server-v2 lokum-web-v2
           docker compose up -d lokum-server-v2 lokum-web-v2
