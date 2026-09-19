@@ -14,19 +14,6 @@
       "featured": true
     },
     {
-      "id": "kartichka_ot_moreto",
-      "titleBg": "Картичка от морето",
-      "titleEn": "Postcard from the Sea",
-      "cardSubtitleBg": "Изложба на Емилия Балева",
-      "cardSubtitleEn": "An exhibition by Emilia Baleva",
-      "descriptionBg": "На 17 септември пространството пред бар „Локум“ се превръща в улица „Рибарска“! Заповядайте да разгледате една пъстра „Картичка от морето“ - живописна изложба, която прегръща последните мигове от лятото и мами с дъх на узо, блясък на риби и сянка от смокинови листа...",
-      "descriptionEn": "On September 17th, the space in front of Bar Lokum turns into \"Fishermen's Street\"! Come see a colorful \"Postcard from the Sea\" - a vivid exhibition that embraces the last moments of summer and lures you with the scent of ouzo, the shimmer of fish and the shade of fig leaves...",
-      "date": "2026-09-17T18:30:00",
-      "posterImage": "events/kartichka_ot_moreto_17092026.jpg",
-      "featured": true,
-      "featuredHeightRows": 2
-    },
-    {
       "id": "sunday-brunch",
       "titleBg": "Неделен Брънч",
       "titleEn": "Sunday Brunch",
@@ -311,6 +298,16 @@
       "descriptionBg": "Горещ, лют фънк, и цветно калифорнийско настроение с трибют бандата на Red Hot Chili Peppers. Какво по-подходящо място за най-големите хитове на \"Чушките\" в Шумен от пъстрия бар Локум и #нашатаулица\nВход свободен",
       "descriptionEn": "Hot, spicy funk and colorful Californian vibes with the Red Hot Chili Peppers tribute band. What better place for the \"Peppers'\" biggest hits in Shumen than the colorful Bar Lokum and #ourstreet\nFree entry",
       "logoImage": "events/archive/rhcp_tribute_band_10092026/rhcp_tribute_band_10092026.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "kartichka_ot_moreto_17092026",
+      "titleBg": "Картичка от морето",
+      "titleEn": "Postcard from the Sea",
+      "date": "2026-09-17T18:30:00",
+      "descriptionBg": "На 17 септември пространството пред бар „Локум“ се превръща в улица „Рибарска“! Заповядайте да разгледате една пъстра „Картичка от морето“ - живописна изложба, която прегръща последните мигове от лятото и мами с дъх на узо, блясък на риби и сянка от смокинови листа...",
+      "descriptionEn": "On September 17th, the space in front of Bar Lokum turns into \"Fishermen's Street\"! Come see a colorful \"Postcard from the Sea\" - a vivid exhibition that embraces the last moments of summer and lures you with the scent of ouzo, the shimmer of fish and the shade of fig leaves...",
+      "logoImage": "events/archive/kartichka_ot_moreto_17092026/kartichka_ot_moreto_17092026.jpg",
       "galleryImages": []
     }
   ]

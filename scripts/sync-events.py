@@ -59,13 +59,22 @@ def archive_expired_events(data: dict) -> list[tuple[str, str]]:
             still_upcoming.append(event)
             continue
 
-        title = event.get("titleEn") or event.get("titleBg") or event["id"]
-        folder_name = f"{slugify(title)}_{event_date.strftime('%d%m%Y')}"
+        # Папката се именува по файла на постера/логото (без разширение) -
+        # напр. "kartichka_ot_moreto_17092026.jpg" -> папка
+        # "kartichka_ot_moreto_17092026" - това е договорената конвенция,
+        # снимката се преименува по дата от служителите преди да изтече
+        # събитието. Само ако събитието няма постер/лого, пада се към
+        # заглавие+дата.
+        poster = event.get("posterImage") or event.get("logoImage")
+        if poster:
+            folder_name = os.path.splitext(os.path.basename(poster))[0]
+        else:
+            title = event.get("titleEn") or event.get("titleBg") or event["id"]
+            folder_name = f"{slugify(title)}_{event_date.strftime('%d%m%Y')}"
         folder_path = os.path.join(ARCHIVE_DIR, folder_name)
         os.makedirs(folder_path, exist_ok=True)
 
         cover_rel = None
-        poster = event.get("posterImage") or event.get("logoImage")
         if poster:
             src = os.path.join(ASSETS_ROOT, poster)
             if os.path.isfile(src):
