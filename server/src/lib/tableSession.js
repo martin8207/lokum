@@ -62,14 +62,20 @@ async function createOrder(tableNumber, items) {
         }
     }
 
-    // Напитките от един кръг остават ЕДНА поръчка, но всяко ястие става
-    // отделна поръчка - излизат от кухнята по различно време и всяко трябва
-    // да може да се маркира "Сервирано" само, без да чака останалите.
+    // Напитките от един кръг остават ЕДНА поръчка, но всяка порция храна
+    // (дори 2 еднакви ястия) става отделна поръчка - излизат от кухнята по
+    // различно време и всяка трябва да може да се маркира "Сервирано" сама.
     const isFood = (it) => productById.get(it.productId).categoryId === "food";
     const drinkItems = items.filter((it) => !isFood(it));
     const groups = [
         ...(drinkItems.length > 0 ? [drinkItems] : []),
-        ...items.filter(isFood).map((it) => [it])
+        ...items
+            .filter(isFood)
+            .flatMap((it) =>
+                Array.from({ length: it.quantity }, () => [
+                    { productId: it.productId, quantity: 1 }
+                ])
+            )
     ];
 
     const orders = await prisma.$transaction(async (tx) => {
