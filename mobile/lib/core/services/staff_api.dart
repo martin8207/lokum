@@ -166,7 +166,7 @@ class StaffApi {
     _checkOk(res);
   }
 
-  /// [force] пуска "Сервирано" и без всички бройки да са минали през КА -
+  /// [force] сервира и маркира всички непотвърдени бройки в КА наведнъж -
   /// бележникът го ползва само след двойно потвърждение.
   Future<void> serveOrder(String orderId, {bool force = false}) async {
     _checkOk(

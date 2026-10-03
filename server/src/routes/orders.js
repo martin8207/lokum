@@ -6,9 +6,9 @@ const router = express.Router();
 
 // PATCH /api/orders/:orderId/serve - маркира целия кръг поръчки като занесен
 // на масата. По подразбиране заключено зад КА, огледално на /invoice в
-// tables.js. С body { force: true } се пуска и без КА - при голяма поръчка
-// персоналът сервира веднага и цъка КА после (бележникът иска двойно
-// потвърждение). Сметката пак не се фактурира, докато не мине всичко през КА.
+// tables.js. С body { force: true } (след двойно потвърждение в бележника)
+// персоналът потвърждава, че всичко е чукнато на апарата - всички
+// непотвърдени бройки се маркират в КА наведнъж, вместо една по една.
 router.patch("/:orderId/serve", async (req, res) => {
     const order = await prisma.order.findUnique({
         where: { id: req.params.orderId },
@@ -23,10 +23,17 @@ router.patch("/:orderId/serve", async (req, res) => {
         return res.status(409).json({ error: "items_not_confirmed_in_ka" });
     }
 
-    const updated = await prisma.order.update({
-        where: { id: req.params.orderId },
-        data: { servedAt: new Date() }
-    });
+    const now = new Date();
+    const [, updated] = await prisma.$transaction([
+        prisma.orderItem.updateMany({
+            where: { orderId: order.id, removedAt: null, kaConfirmedAt: null },
+            data: { kaConfirmedAt: now }
+        }),
+        prisma.order.update({
+            where: { id: order.id },
+            data: { servedAt: now }
+        })
+    ]);
     res.json(updated);
 });
 
