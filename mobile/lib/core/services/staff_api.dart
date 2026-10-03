@@ -166,9 +166,15 @@ class StaffApi {
     _checkOk(res);
   }
 
-  Future<void> serveOrder(String orderId) async {
+  /// [force] пуска "Сервирано" и без всички бройки да са минали през КА -
+  /// бележникът го ползва само след двойно потвърждение.
+  Future<void> serveOrder(String orderId, {bool force = false}) async {
     _checkOk(
-      await http.patch(_uri('/api/orders/$orderId/serve'), headers: _headers()),
+      await http.patch(
+        _uri('/api/orders/$orderId/serve'),
+        headers: _headers(const {'Content-Type': 'application/json'}),
+        body: jsonEncode({'force': force}),
+      ),
     );
   }
 

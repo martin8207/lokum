@@ -199,11 +199,29 @@ class _StaffTableDetailState extends State<StaffTableDetail>
     }
   }
 
-  // Сървърът отказва (409), ако има непреминала през КА бройка в поръчката -
-  // виж PATCH /orders/:id/serve.
+  // Ако има непреминала през КА бройка, "Сервирано" е позволено само след
+  // двойно потвърждение (при голяма поръчка се сервира веднага, КА - после).
+  // Фактурирането остава заключено, докато всичко не мине през КА.
   Future<void> _serveOrder(StaffOrder order) async {
+    final pendingKa = order.activeItems.any((it) => it.needsAttention);
+    if (pendingKa) {
+      final first = await _confirmDialog(
+        title: 'Има артикули без КА',
+        message:
+            'Не всички артикули в поръчката са маркирани в КА. Да се маркира ли като сервирана все пак?',
+        confirmLabel: 'Продължи',
+      );
+      if (first != true || !mounted) return;
+      final second = await _confirmDialog(
+        title: 'Сигурен ли си?',
+        message:
+            'Поръчката ще е сервирана, но артикулите трябва да се маркират в КА преди фактуриране.',
+        confirmLabel: 'Да, сервирано',
+      );
+      if (second != true) return;
+    }
     try {
-      await StaffApi.instance.serveOrder(order.id);
+      await StaffApi.instance.serveOrder(order.id, force: pendingKa);
       await _refresh();
       widget.onChanged?.call();
     } catch (e) {
