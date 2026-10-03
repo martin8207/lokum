@@ -30,7 +30,6 @@ flutter:
     - assets/cocktails/
     - assets/events/
     - assets/events/brunch/
-    - assets/events/quiz/
     - assets/events/archive/DnD_VIT/
     - assets/events/archive/deestoned/
     - assets/events/archive/bgz/
@@ -56,6 +55,7 @@ flutter:
     - assets/events/archive/rhcp_tribute_band_10092026/
     - assets/events/archive/kartichka_ot_moreto_17092026/
     - assets/events/archive/futbolen_quiz_30092026/
+    - assets/events/archive/lokumna_viktorina/
     - assets/food/
     - assets/food/brunch/
     - assets/food/desserts/

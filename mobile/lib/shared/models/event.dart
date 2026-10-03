@@ -23,6 +23,10 @@ class BarEvent {
   final String? phone;
 
   final DateTime? date;
+
+  /// Край на еднократно събитие - до него събитието остава в "Предстоящи"
+  /// (иначе изчезва още в началния час).
+  final DateTime? endDate;
   final WeeklySchedule? recurring;
   final String? posterImage;
 
@@ -70,6 +74,7 @@ class BarEvent {
     this.descriptionEn,
     this.phone,
     this.date,
+    this.endDate,
     this.recurring,
     this.posterImage,
     this.logoImage,
@@ -138,8 +143,10 @@ class BarEvent {
     final d = date;
     if (d != null) {
       final months = lang == AppLang.bg ? _monthsBg : _monthsEn;
-      final time =
-          '${d.hour.toString().padLeft(2, '0')}:${d.minute.toString().padLeft(2, '0')}';
+      String hhmm(DateTime t) =>
+          '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}';
+      final end = endDate;
+      final time = end == null ? hhmm(d) : '${hhmm(d)} – ${hhmm(end)}';
       return '${d.day} ${months[d.month - 1]} ${d.year}, $time';
     }
     final schedule = recurring;
@@ -170,6 +177,7 @@ class BarEvent {
       descriptionEn: json['descriptionEn'] as String?,
       phone: json['phone'] as String?,
       date: DateTime.tryParse(json['date'] as String? ?? ''),
+      endDate: DateTime.tryParse(json['endDate'] as String? ?? ''),
       recurring: _recurringFromJson(json),
       posterImage: json['posterImage'] as String?,
       logoImage: json['logoImage'] as String?,

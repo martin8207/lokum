@@ -14,22 +14,28 @@
       "recurringEnd": "16:00"
     },
     {
-      "id": "monday-quiz",
-      "titleBg": "Локумна Викторина",
-      "titleEn": "Lokum Quiz Night",
-      "cardSubtitleBg": "Всяка понеделник вечер",
-      "cardSubtitleEn": "Every Monday evening",
-      "descriptionBg": "Всяка лятна понеделник вечер се събираме в Бар Локум за игра на въпроси и отговори, доза смях и добро настроение. Пък току виж научим и нещо ново.\nДобре дошли в ЛокУмната ВИКторина Лято 2026!",
-      "descriptionEn": "Every summer Monday evening we gather at Bar Lokum for a game of questions and answers, a dose of laughter and good vibes. And who knows, we might even learn something new.\nWelcome to Lokum Quiz Night — Summer 2026!",
-      "phone": "089 615 5141",
-      "posterImage": "events/quiz/lokumna_viktorina.jpg",
-      "logoImage": "events/quiz/FB_IMG_1785125521594.jpg",
-      "recurringWeekday": 1,
-      "recurringStart": "19:30",
-      "recurringEnd": "22:00"
+      "id": "bazar_za_marti_03102026",
+      "titleBg": "Благотворително парти-базар за Марти",
+      "titleEn": "Charity Party & Bazaar for Marti",
+      "cardSubtitleBg": "Базар и DJ вечер",
+      "cardSubtitleEn": "Bazaar and DJ night",
+      "descriptionBg": "Марти е на 5 години и е дете с диагноза ДЦП спастична квадрипареза. Въпреки трудностите, през които преминава от самото си раждане, той е изключително усмихнато, борбено и силно дете. Има зад гърба си вече 5 операции и безброй рехабилитации и терапии, а всеки ден продължава да се бори за най-обикновените неща, които за другите деца са даденост – да стои самостоятелно, да ходи и един ден да бъде по-независим.\nМарти не се отказва. Напротив – с усмивката си показва колко голяма сила може да има едно малко дете. Борбата му продължава, защото за да върви напред, са му нужни постоянни терапии, рехабилитации и средства за предстоящото му лечение.\nЗатова решихме да застанем до Марти и неговото семейство.\nТази събота организираме благотворителен базар и DJ вечер, в която ще се съберем не просто за хубава музика и приятна атмосфера, а за една истински важна кауза.\nНа базара ще можете да откриете различни неща, които ще бъдат предоставени с благотворителна цел, а всички средства, събрани по време на събитието, ще бъдат в помощ на Марти и неговото лечение.\nНека се съберем, да се забавляваме и заедно да помогнем на Марти да направи следващата си крачка.",
+      "descriptionEn": "Marti is 5 years old and has been diagnosed with cerebral palsy (spastic quadriparesis). Despite the hardships he has faced since birth, he is an incredibly smiley, determined and strong child. He has already been through 5 surgeries and countless rehabilitations and therapies, and every day he keeps fighting for the most ordinary things other children take for granted – to stand on his own, to walk, and one day to be more independent.\nMarti doesn't give up. On the contrary – his smile shows how much strength one small child can have. His fight goes on, because to keep moving forward he needs constant therapy, rehabilitation and funds for his upcoming treatment.\nThat's why we decided to stand by Marti and his family.\nThis Saturday we're hosting a charity bazaar and DJ night – we'll gather not just for good music and a great atmosphere, but for a truly important cause.\nAt the bazaar you'll find all sorts of things donated for charity, and all funds raised during the event will go towards Marti and his treatment.\nLet's get together, have fun, and help Marti take his next step.",
+      "date": "2026-10-03T16:00:00",
+      "endDate": "2026-10-03T22:30:00",
+      "posterImage": "events/100pro_vinyl_party.jpg"
     }
   ],
   "past": [
+    {
+      "id": "lokumna_viktorina",
+      "titleBg": "Локумна Викторина",
+      "titleEn": "Lokum Quiz Night",
+      "descriptionBg": "Всяка лятна понеделник вечер се събираме в Бар Локум за игра на въпроси и отговори, доза смях и добро настроение. Пък току виж научим и нещо ново.\nДобре дошли в ЛокУмната ВИКторина Лято 2026!",
+      "descriptionEn": "Every summer Monday evening we gather at Bar Lokum for a game of questions and answers, a dose of laughter and good vibes. And who knows, we might even learn something new.\nWelcome to Lokum Quiz Night — Summer 2026!",
+      "logoImage": "events/archive/lokumna_viktorina/lokumna_viktorina.jpg",
+      "galleryImages": []
+    },
     {
       "id": "sladkodumni_vecheri_3",
       "titleBg": "Сладкодумни вечери",

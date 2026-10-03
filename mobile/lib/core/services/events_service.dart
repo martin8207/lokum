@@ -41,11 +41,11 @@ class Events {
     return Events(upcoming: upcoming, past: past);
   }
 
-  // Еднократно събитие е "предстоящо", докато не мине началният му час.
-  // Повтарящо се (без фиксирана date, само седмично разписание) е винаги
-  // предстоящо - никога не "изтича" в архива.
+  // Еднократно събитие е "предстоящо", докато не мине крайният му час (или
+  // началният, ако няма зададен край). Повтарящо се (без фиксирана date,
+  // само седмично разписание) е винаги предстоящо - никога не "изтича".
   static bool _isUpcoming(BarEvent event, DateTime now) {
-    final date = event.date;
+    final date = event.endDate ?? event.date;
     if (date == null) return event.recurring != null;
     return date.isAfter(now);
   }

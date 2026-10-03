@@ -52,10 +52,11 @@ def archive_expired_events(data: dict) -> list[tuple[str, str]]:
             continue
         try:
             event_date = datetime.fromisoformat(date_str)
+            expires_at = datetime.fromisoformat(event.get("endDate") or date_str)
         except ValueError:
             still_upcoming.append(event)
             continue
-        if event_date >= now:
+        if expires_at >= now:
             still_upcoming.append(event)
             continue
 

@@ -12,10 +12,6 @@ const List<(WeeklySchedule, String)> _scheduledBackgrounds = [
     WeeklySchedule(weekday: DateTime.sunday, startHour: 11, endHour: 16),
     AssetPaths.featuredBackgroundSunday,
   ),
-  (
-    WeeklySchedule(weekday: DateTime.monday, startHour: 19, endHour: 22),
-    AssetPaths.featuredBackgroundMonday,
-  ),
 ];
 
 /// Годишни поводи (изчисляват се динамично всяка година) - проверяват се с
