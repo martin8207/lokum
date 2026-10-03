@@ -210,6 +210,15 @@ class StaffApi {
     );
   }
 
+  Future<void> requestBill(int tableNumber, String paymentMethod) async {
+    final res = await http.patch(
+      _uri('/api/tables/$tableNumber/request-bill'),
+      headers: _headers(const {'Content-Type': 'application/json'}),
+      body: jsonEncode({'paymentMethod': paymentMethod}),
+    );
+    _checkOk(res);
+  }
+
   Future<void> invoiceTable(int tableNumber, String paymentMethod) async {
     final res = await http.patch(
       _uri('/api/tables/$tableNumber/invoice'),

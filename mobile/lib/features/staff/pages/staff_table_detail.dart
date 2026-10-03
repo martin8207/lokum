@@ -53,8 +53,6 @@ class _StaffTableDetailState extends State<StaffTableDetail>
   final Map<String, StaffProduct> _cartProducts = {};
   bool _submitting = false;
 
-  String _paymentMethod = 'CASH';
-
   @override
   void initState() {
     super.initState();
@@ -92,12 +90,6 @@ class _StaffTableDetailState extends State<StaffTableDetail>
       );
       if (!mounted) return;
       setState(() {
-        // Предварително избираме начина на плащане, поискан от клиента -
-        // само при първо зареждане, за да не презаписваме избор, който
-        // персоналът вече е сменил ръчно.
-        if (_detail == null && detail.requestedPaymentMethod != null) {
-          _paymentMethod = detail.requestedPaymentMethod!;
-        }
         _detail = detail;
         _loadError = null;
       });
@@ -274,8 +266,21 @@ class _StaffTableDetailState extends State<StaffTableDetail>
     );
   }
 
-  Future<void> _invoice(double total) async {
-    final payLabel = _paymentMethod == 'CASH' ? 'в брой' : 'с карта';
+  // Изборът на начин на плащане в бележника = "масата иска сметката" -
+  // записва се на сървъра (синьото поле + синя маса в списъка), за да се
+  // вижда коя маса как плаща, докато персоналът обикаля масите.
+  Future<void> _requestBill(String paymentMethod) async {
+    try {
+      await StaffApi.instance.requestBill(widget.tableNumber, paymentMethod);
+      await _refresh();
+      widget.onChanged?.call();
+    } catch (e) {
+      _showError(e.toString());
+    }
+  }
+
+  Future<void> _invoice(double total, String paymentMethod) async {
+    final payLabel = paymentMethod == 'CASH' ? 'в брой' : 'с карта';
     final confirmed = await _confirmDialog(
       title: 'Фактурирай маса ${widget.tableNumber}?',
       message:
@@ -285,7 +290,7 @@ class _StaffTableDetailState extends State<StaffTableDetail>
     if (confirmed != true) return;
 
     try {
-      await StaffApi.instance.invoiceTable(widget.tableNumber, _paymentMethod);
+      await StaffApi.instance.invoiceTable(widget.tableNumber, paymentMethod);
       if (!mounted) return;
       await _refresh();
       widget.onChanged?.call();
@@ -460,7 +465,7 @@ class _StaffTableDetailState extends State<StaffTableDetail>
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              'Клиентът поиска сметката - $methodLabel.',
+              'Сметката е поискана - $methodLabel.',
               style: const TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w800,
@@ -913,6 +918,7 @@ class _StaffTableDetailState extends State<StaffTableDetail>
   }
 
   Widget _buildInvoiceSection(TableSessionDetail detail, LokumColors colors) {
+    final method = detail.requestedPaymentMethod;
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
@@ -938,6 +944,7 @@ class _StaffTableDetailState extends State<StaffTableDetail>
                     'CASH',
                     'В брой',
                     Icons.payments_outlined,
+                    method,
                     colors,
                   ),
                 ),
@@ -947,13 +954,22 @@ class _StaffTableDetailState extends State<StaffTableDetail>
                     'CARD',
                     'Карта',
                     Icons.credit_card,
+                    method,
                     colors,
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 12),
-            if (!detail.readyToInvoice)
+            if (method == null)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: Text(
+                  'Избери начин на плащане - масата се отбелязва, че иска сметката.',
+                  style: TextStyle(fontSize: 12, color: colors.textMuted),
+                ),
+              )
+            else if (!detail.readyToInvoice)
               Padding(
                 padding: const EdgeInsets.only(bottom: 8),
                 child: Text(
@@ -964,8 +980,8 @@ class _StaffTableDetailState extends State<StaffTableDetail>
             SizedBox(
               width: double.infinity,
               child: FilledButton(
-                onPressed: detail.readyToInvoice
-                    ? () => _invoice(detail.total)
+                onPressed: detail.readyToInvoice && method != null
+                    ? () => _invoice(detail.total, method)
                     : null,
                 child: const Text('Фактурирай'),
               ),
@@ -980,12 +996,13 @@ class _StaffTableDetailState extends State<StaffTableDetail>
     String value,
     String label,
     IconData icon,
+    String? currentMethod,
     LokumColors colors,
   ) {
-    final selected = _paymentMethod == value;
+    final selected = currentMethod == value;
     return InkWell(
       borderRadius: BorderRadius.circular(12),
-      onTap: () => setState(() => _paymentMethod = value),
+      onTap: selected ? null : () => _requestBill(value),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 14),
         decoration: BoxDecoration(

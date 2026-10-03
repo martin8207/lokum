@@ -42,7 +42,7 @@ router.post("/tables/:number/orders", async (req, res) => {
         return res.status(400).json(result);
     }
 
-    res.status(201).json(result.order);
+    res.status(201).json(result.orders);
 });
 
 // PATCH /api/customer/tables/:number/orders/:orderId/cancel - клиентът може

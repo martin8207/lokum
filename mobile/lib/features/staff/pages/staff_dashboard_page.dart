@@ -293,13 +293,33 @@ class _RailRow extends StatelessWidget {
             left: BorderSide(color: stripeColor, width: 3),
           ),
         ),
-        child: Text(
-          '${table.tableNumber}',
-          style: TextStyle(
-            fontWeight: isSelected ? FontWeight.w800 : FontWeight.w700,
-            fontSize: 13,
-            color: isSelected ? colors.menuCardText : colors.textMain,
-          ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              '${table.tableNumber}',
+              style: TextStyle(
+                fontWeight: isSelected ? FontWeight.w800 : FontWeight.w700,
+                fontSize: 13,
+                color: isSelected ? colors.menuCardText : colors.textMain,
+              ),
+            ),
+            // Начинът на плащане директно в списъка - за да се вижда с един
+            // поглед коя маса как плаща, без да се отваря всяка поотделно.
+            if (table.state == TableTileState.billRequested &&
+                table.requestedPaymentMethod != null) ...[
+              const SizedBox(width: 2),
+              Icon(
+                table.requestedPaymentMethod == 'CARD'
+                    ? Icons.credit_card
+                    : Icons.payments_outlined,
+                size: 11,
+                color: isSelected
+                    ? colors.menuCardText
+                    : const Color(0xFF2F6FED),
+              ),
+            ],
+          ],
         ),
       ),
     );

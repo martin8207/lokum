@@ -189,8 +189,13 @@ enum TableTileState { free, waiting, needsKa, served, billRequested }
 class TableSummary {
   final int tableNumber;
   final TableTileState state;
+  final String? requestedPaymentMethod;
 
-  const TableSummary({required this.tableNumber, required this.state});
+  const TableSummary({
+    required this.tableNumber,
+    required this.state,
+    this.requestedPaymentMethod,
+  });
 
   factory TableSummary.fromJson(Map<String, dynamic> json) {
     final state = switch (json['state'] as String? ?? 'free') {
@@ -200,7 +205,11 @@ class TableSummary {
       'billRequested' => TableTileState.billRequested,
       _ => TableTileState.free,
     };
-    return TableSummary(tableNumber: json['tableNumber'] as int, state: state);
+    return TableSummary(
+      tableNumber: json['tableNumber'] as int,
+      state: state,
+      requestedPaymentMethod: json['requestedPaymentMethod'] as String?,
+    );
   }
 }
 

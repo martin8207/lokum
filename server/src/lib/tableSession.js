@@ -62,7 +62,17 @@ async function createOrder(tableNumber, items) {
         }
     }
 
-    const order = await prisma.$transaction(async (tx) => {
+    // Напитките от един кръг остават ЕДНА поръчка, но всяко ястие става
+    // отделна поръчка - излизат от кухнята по различно време и всяко трябва
+    // да може да се маркира "Сервирано" само, без да чака останалите.
+    const isFood = (it) => productById.get(it.productId).categoryId === "food";
+    const drinkItems = items.filter((it) => !isFood(it));
+    const groups = [
+        ...(drinkItems.length > 0 ? [drinkItems] : []),
+        ...items.filter(isFood).map((it) => [it])
+    ];
+
+    const orders = await prisma.$transaction(async (tx) => {
         let session = await tx.tableSession.findFirst({
             where: { tableNumber, invoicedAt: null }
         });
@@ -70,21 +80,26 @@ async function createOrder(tableNumber, items) {
             session = await tx.tableSession.create({ data: { tableNumber } });
         }
 
-        const unitRows = items.flatMap((it) => {
-            const product = productById.get(it.productId);
-            return Array.from({ length: it.quantity }, () => ({
-                productId: it.productId,
-                priceEur: product.priceEur ?? 0
-            }));
-        });
-
-        return tx.order.create({
-            data: {
-                tableSessionId: session.id,
-                items: { create: unitRows }
-            },
-            include: { items: true }
-        });
+        const created = [];
+        for (const group of groups) {
+            const unitRows = group.flatMap((it) => {
+                const product = productById.get(it.productId);
+                return Array.from({ length: it.quantity }, () => ({
+                    productId: it.productId,
+                    priceEur: product.priceEur ?? 0
+                }));
+            });
+            created.push(
+                await tx.order.create({
+                    data: {
+                        tableSessionId: session.id,
+                        items: { create: unitRows }
+                    },
+                    include: { items: true }
+                })
+            );
+        }
+        return created;
     });
 
     // Извън транзакцията, "fire and forget" - push доставката не е част от
@@ -95,14 +110,11 @@ async function createOrder(tableNumber, items) {
     // Само ако поръчката съдържа поне един артикул от кухнята - иначе
     // готвачката получава известие за нещо, което изобщо не й се пада на
     // таблото (напр. кръг само с напитки).
-    const hasFoodItem = items.some(
-        (it) => productById.get(it.productId)?.categoryId === "food"
-    );
-    if (hasFoodItem) {
+    if (items.some(isFood)) {
         notifyKitchen({ tableNumber }).catch(() => {});
     }
 
-    return { order };
+    return { orders };
 }
 
 module.exports = { TABLE_NUMBERS, parseTableNumber, findActiveSession, createOrder };

@@ -76,6 +76,7 @@ router.get("/", async (req, res) => {
         tables.push({
             tableNumber: n,
             state: tileState(session),
+            requestedPaymentMethod: session.requestedPaymentMethod,
             sessionId: session.id,
             openedAt: session.openedAt,
             _since: waitingSince(session)
@@ -117,7 +118,41 @@ router.post("/:number/orders", async (req, res) => {
         return res.status(400).json(result);
     }
 
-    res.status(201).json(result.order);
+    res.status(201).json(result.orders);
+});
+
+// PATCH /api/tables/:number/request-bill - персоналът отбелязва, че масата
+// иска сметката и как ще плаща (обикаляйки масите) - същият ефект като
+// клиентското искане (виж customerOrders.js:/request-bill). Повторно
+// извикване само сменя начина на плащане.
+// body: { paymentMethod: "CASH" | "CARD" }
+router.patch("/:number/request-bill", async (req, res) => {
+    const tableNumber = parseTableNumber(req.params.number);
+    if (tableNumber === null) {
+        return res.status(400).json({ error: "invalid_table_number" });
+    }
+
+    const { paymentMethod } = req.body;
+    if (paymentMethod !== "CASH" && paymentMethod !== "CARD") {
+        return res.status(400).json({ error: "invalid_payment_method" });
+    }
+
+    const session = await prisma.tableSession.findFirst({
+        where: { tableNumber, invoicedAt: null }
+    });
+    if (!session) {
+        return res.status(404).json({ error: "no_active_session" });
+    }
+
+    const updated = await prisma.tableSession.update({
+        where: { id: session.id },
+        data: {
+            billRequestedAt: session.billRequestedAt ?? new Date(),
+            requestedPaymentMethod: paymentMethod
+        }
+    });
+
+    res.json(updated);
 });
 
 // PATCH /api/tables/:number/invoice - приключва цялата сесия на масата.
