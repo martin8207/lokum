@@ -27,6 +27,11 @@ class BarEvent {
   /// Край на еднократно събитие - до него събитието остава в "Предстоящи"
   /// (иначе изчезва още в началния час).
   final DateTime? endDate;
+
+  /// Само за подреждане в архива, никъде не се показва - за събития без
+  /// конкретна дата (напр. сезонна поредица), които все пак трябва да
+  /// застанат на точно място в хронологията.
+  final DateTime? sortDate;
   final WeeklySchedule? recurring;
   final String? posterImage;
 
@@ -75,6 +80,7 @@ class BarEvent {
     this.phone,
     this.date,
     this.endDate,
+    this.sortDate,
     this.recurring,
     this.posterImage,
     this.logoImage,
@@ -178,6 +184,7 @@ class BarEvent {
       phone: json['phone'] as String?,
       date: DateTime.tryParse(json['date'] as String? ?? ''),
       endDate: DateTime.tryParse(json['endDate'] as String? ?? ''),
+      sortDate: DateTime.tryParse(json['sortDate'] as String? ?? ''),
       recurring: _recurringFromJson(json),
       posterImage: json['posterImage'] as String?,
       logoImage: json['logoImage'] as String?,

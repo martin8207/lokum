@@ -164,8 +164,8 @@ class _PastTab extends StatelessWidget {
     // Задължително сортиране по дата, най-скорошното най-отгоре - независимо
     // от реда в events.json.
     final sorted = [...events]..sort((a, b) {
-      final aDate = a.date;
-      final bDate = b.date;
+      final aDate = a.date ?? a.sortDate;
+      final bDate = b.date ?? b.sortDate;
       if (aDate == null && bDate == null) return 0;
       if (aDate == null) return 1;
       if (bDate == null) return -1;
