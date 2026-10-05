@@ -75,6 +75,13 @@ class BarEvent {
   /// подразбиране) = естествени пропорции, без изрязване/деформация.
   final int? featuredHeightRows;
 
+  /// Само с [featured]: точни пропорции (ширина/височина) на картата, със
+  /// снимка, която ги запълва чрез `cover` (изрязва се, не се деформира) -
+  /// за постер, чиито собствени пропорции не са тези, в които искаш да стои
+  /// на картата (напр. вертикален постер, който трябва да е пейзажна карта).
+  /// Взема превес над [featuredHeightRows], ако и двете са зададени.
+  final double? featuredAspectRatio;
+
   const BarEvent({
     required this.id,
     required this.titleBg,
@@ -101,6 +108,7 @@ class BarEvent {
     this.squareCard = false,
     this.featured = false,
     this.featuredHeightRows,
+    this.featuredAspectRatio,
   });
 
   String title(AppLang lang) => lang == AppLang.bg ? titleBg : titleEn;
@@ -208,6 +216,7 @@ class BarEvent {
       squareCard: json['squareCard'] as bool? ?? false,
       featured: json['featured'] as bool? ?? false,
       featuredHeightRows: json['featuredHeightRows'] as int?,
+      featuredAspectRatio: (json['featuredAspectRatio'] as num?)?.toDouble(),
     );
   }
 

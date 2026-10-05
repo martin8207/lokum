@@ -4,13 +4,16 @@
       "id": "rot_flower_kopfkino_10102026",
       "titleBg": "Rot Flower & KOPFKINO пред Локум",
       "titleEn": "Rot Flower & KOPFKINO at Lokum",
+      "cardSubtitleBg": "Rot Flower & KOPFKINO пред Локум",
+      "cardSubtitleEn": "Rot Flower & KOPFKINO at Lokum",
       "descriptionBg": "KOPFKINO е хард-рок група основана през 2024 год. в Шумен. Пишат авторска музика. Имат 9 парчета, които предстои да издадат в дебютен албум.\nТекстовете им са предимно на български език. Преобладават темите за човешките отношения и изпитанията, които животът поднася.\nKOPFKINO са:\nДимитър Николов – китара и вокали\nДимитър Димитров – водеща китара\nТеодор Илиев – бас китара и беквокали\nНиколай Великов – Барабани\n\nRot Flower е гръндж-ориентирана тийн група, която иска да възроди и популяризира алтернативната музика в България. Правят авторски парчета главно на английски език.\nВокал е Гери Колева, соло китара е Венцислава Кантарджиева, ритъм китара е Крум Добранов, бас китара е Светлозар Атанасов и зад барабаните стои Николай Георгиев.",
       "descriptionEn": "KOPFKINO is a hard-rock band formed in 2024 in Shumen. They write their own music and have 9 songs soon to be released on a debut album.\nTheir lyrics are mostly in Bulgarian, dwelling on human relationships and the trials life brings.\nKOPFKINO are:\nDimitar Nikolov – guitar and vocals\nDimitar Dimitrov – lead guitar\nTeodor Iliev – bass guitar and backing vocals\nNikolay Velikov – drums\n\nRot Flower is a grunge-oriented teen band set on reviving and popularizing alternative music in Bulgaria. They make original songs mainly in English.\nVocals by Geri Koleva, lead guitar by Ventsislava Kantardzhieva, rhythm guitar by Krum Dobranov, bass guitar by Svetlozar Atanasov, and on drums Nikolay Georgiev.",
       "date": "2026-10-10T19:00:00",
       "endDate": "2026-10-10T23:00:00",
       "posterImage": "events/rot_flower_10102026.jpg",
       "homeButtonImage": "events/rot_flower_10102026_event.jpg",
-      "featured": true
+      "featured": true,
+      "featuredAspectRatio": 1.325
     },
     {
       "id": "sunday-brunch",

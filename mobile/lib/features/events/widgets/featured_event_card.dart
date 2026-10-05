@@ -34,13 +34,20 @@ class FeaturedEventCard extends StatelessWidget {
     // отговаря височината на тази карта (напр. 4 за висок вертикален
     // постер), вместо да варира по естествените пропорции на снимката.
     final heightRows = event.featuredHeightRows;
-    final fixedAspectRatio = heightRows == null ? null : heightRows * 0.62;
+    // featuredAspectRatio взема превес - точни пропорции с `cover` (изрязва,
+    // не деформира), за постер, чиито собствени пропорции не са тези, в които
+    // искаш да стои на картата (напр. вертикален постер -> пейзажна карта).
+    final exactRatio = event.featuredAspectRatio;
+    final fixedAspectRatio =
+        exactRatio ?? (heightRows == null ? null : heightRows * 0.62);
 
-    // `fill`, не `cover`/`contain` - при фиксиран aspect ratio искаме
-    // снимката да запълва цялата карта (и хоризонтално, и вертикално), без
-    // изрязване и без празни ленти - приема лека деформация на пропорциите.
+    // При featuredHeightRows: `fill` (запълва без ленти, приема лека
+    // деформация). При featuredAspectRatio: `cover` (изрязва, пази пропорции).
     final poster = hasPoster
-        ? Image.asset(posterPath, fit: BoxFit.fill)
+        ? Image.asset(
+            posterPath,
+            fit: exactRatio != null ? BoxFit.cover : BoxFit.fill,
+          )
         : Icon(Icons.event, size: 56, color: theme.hintColor);
 
     return Card(
