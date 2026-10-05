@@ -12,8 +12,7 @@
       "endDate": "2026-10-10T23:00:00",
       "posterImage": "events/rot_flower_10102026.jpg",
       "homeButtonImage": "events/rot_flower_10102026_event.jpg",
-      "featured": true,
-      "featuredAspectRatio": 1.325
+      "featured": true
     },
     {
       "id": "sunday-brunch",

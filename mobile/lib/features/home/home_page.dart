@@ -347,7 +347,9 @@ class _HomePageState extends State<HomePage> {
         : null;
     final posterPath = current == null
         ? null
-        : AssetPaths.eventImage(current.homeButtonImage ?? current.posterImage!);
+        : AssetPaths.eventImage(
+            current.homeButtonImage ?? current.posterImage!,
+          );
 
     if (!hasPoster || posterPath == null) {
       return _buildCard(
@@ -359,103 +361,111 @@ class _HomePageState extends State<HomePage> {
       );
     }
 
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: SizedBox(
-        height: 150,
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            onTap: () => _openEvents(context),
-            child: Stack(
-              fit: StackFit.expand,
-              children: [
-                AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 600),
-                  // AnimatedSwitcher-ът подрежда старото/новото дете в
-                  // собствен, ХЛАБАВ (loose fit) вътрешен Stack - без явни
-                  // width/height картинката пада на естествения си пикселен
-                  // размер вместо да разпъне BoxFit.cover върху цялото поле,
-                  // оставяйки празно поле отстрани.
-                  child: SizedBox(
-                    key: ValueKey(posterPath),
-                    width: double.infinity,
-                    height: double.infinity,
-                    child: Image.asset(posterPath, fit: BoxFit.cover),
-                  ),
+    // Специално зададената снимка за бутона се показва ЦЯЛА - височината на
+    // бутона следва нейните пропорции. Иначе (постерът на събитието) -
+    // фиксирана височина 150 с изрязване, както досега.
+    final showWholeImage = current?.homeButtonImage != null;
+
+    final stack = Stack(
+      fit: showWholeImage ? StackFit.loose : StackFit.expand,
+      children: [
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 600),
+          // AnimatedSwitcher-ът подрежда старото/новото дете в собствен,
+          // ХЛАБАВ (loose fit) вътрешен Stack - без явни width/height
+          // картинката пада на естествения си пикселен размер вместо да се
+          // разпъне на цялата ширина.
+          child: showWholeImage
+              ? Image.asset(
+                  posterPath,
+                  key: ValueKey(posterPath),
+                  width: double.infinity,
+                  fit: BoxFit.fitWidth,
+                )
+              : SizedBox(
+                  key: ValueKey(posterPath),
+                  width: double.infinity,
+                  height: double.infinity,
+                  child: Image.asset(posterPath, fit: BoxFit.cover),
                 ),
-                const DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      colors: [
-                        Color.fromRGBO(20, 10, 40, 0.9),
-                        Colors.transparent,
-                      ],
+        ),
+        const Positioned.fill(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [Color.fromRGBO(20, 10, 40, 0.9), Colors.transparent],
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          left: 16,
+          bottom: 14,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(
+                Icons.music_note,
+                color: Colors.white,
+                shadows: [
+                  Shadow(
+                    color: Colors.black54,
+                    blurRadius: 4,
+                    offset: Offset(0, 1),
+                  ),
+                ],
+              ),
+              const SizedBox(width: 8),
+              Text(
+                title,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                  shadows: [
+                    Shadow(
+                      color: Colors.black54,
+                      blurRadius: 4,
+                      offset: Offset(0, 1),
                     ),
-                  ),
+                  ],
                 ),
-                Positioned(
-                  left: 16,
-                  bottom: 14,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Icon(
-                        Icons.music_note,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            color: Colors.black54,
-                            blurRadius: 4,
-                            offset: Offset(0, 1),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w600,
-                          shadows: [
-                            Shadow(
-                              color: Colors.black54,
-                              blurRadius: 4,
-                              offset: Offset(0, 1),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Positioned(
-                  right: 12,
-                  top: 0,
-                  bottom: 0,
-                  child: Center(
-                    child: Icon(
-                      Icons.chevron_right,
-                      color: Color(0xFFF3C94A),
-                      size: 28,
-                      shadows: [
-                        Shadow(
-                          color: Colors.black54,
-                          blurRadius: 4,
-                          offset: Offset(0, 1),
-                        ),
-                      ],
-                    ),
-                  ),
+              ),
+            ],
+          ),
+        ),
+        const Positioned(
+          right: 12,
+          top: 0,
+          bottom: 0,
+          child: Center(
+            child: Icon(
+              Icons.chevron_right,
+              color: Color(0xFFF3C94A),
+              size: 28,
+              shadows: [
+                Shadow(
+                  color: Colors.black54,
+                  blurRadius: 4,
+                  offset: Offset(0, 1),
                 ),
               ],
             ),
           ),
         ),
-      ),
+      ],
+    );
+
+    final button = Material(
+      color: Colors.transparent,
+      child: InkWell(onTap: () => _openEvents(context), child: stack),
+    );
+
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: showWholeImage ? button : SizedBox(height: 150, child: button),
     );
   }
 }
