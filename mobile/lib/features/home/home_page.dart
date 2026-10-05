@@ -56,9 +56,9 @@ class _HomePageState extends State<HomePage> {
     final now = DateTime.now();
     final dated = events.upcoming.where((e) {
       if (e.date == null || !e.date!.isAfter(now)) return false;
-      final poster = e.posterImage;
-      if (poster == null) return false;
-      return BundledAssets.has(AssetPaths.eventImage(poster));
+      final image = e.homeButtonImage ?? e.posterImage;
+      if (image == null) return false;
+      return BundledAssets.has(AssetPaths.eventImage(image));
     }).toList()..sort((a, b) => a.date!.compareTo(b.date!));
     if (!mounted) return;
     setState(() {
@@ -342,12 +342,12 @@ class _HomePageState extends State<HomePage> {
     required String title,
   }) {
     final hasPoster = _upcomingWithPosters.isNotEmpty;
-    final posterPath = hasPoster
-        ? AssetPaths.eventImage(
-            _upcomingWithPosters[_posterIndex % _upcomingWithPosters.length]
-                .posterImage!,
-          )
+    final current = hasPoster
+        ? _upcomingWithPosters[_posterIndex % _upcomingWithPosters.length]
         : null;
+    final posterPath = current == null
+        ? null
+        : AssetPaths.eventImage(current.homeButtonImage ?? current.posterImage!);
 
     if (!hasPoster || posterPath == null) {
       return _buildCard(

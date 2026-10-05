@@ -35,6 +35,12 @@ class BarEvent {
   final WeeklySchedule? recurring;
   final String? posterImage;
 
+  /// Отделна снимка само за фона на бутона "Събития" на началния екран (виж
+  /// home_page.dart). Ако липсва, бутонът пада обратно към [posterImage] -
+  /// задаваш я само когато искаш на бутона да стои различен кадър от този в
+  /// самото събитие.
+  final String? homeButtonImage;
+
   /// По-голямо лого/изображение на самото събитие, показвано в detail
   /// екрана (отделно от [posterImage], който е за картата в списъка).
   final String? logoImage;
@@ -83,6 +89,7 @@ class BarEvent {
     this.sortDate,
     this.recurring,
     this.posterImage,
+    this.homeButtonImage,
     this.logoImage,
     this.galleryImages = const [],
     this.instagramUrl,
@@ -187,6 +194,7 @@ class BarEvent {
       sortDate: DateTime.tryParse(json['sortDate'] as String? ?? ''),
       recurring: _recurringFromJson(json),
       posterImage: json['posterImage'] as String?,
+      homeButtonImage: json['homeButtonImage'] as String?,
       logoImage: json['logoImage'] as String?,
       galleryImages:
           (json['galleryImages'] as List?)?.map((e) => e.toString()).toList() ??
