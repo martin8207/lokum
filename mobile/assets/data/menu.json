@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-10T05:40:29.266355+00:00",
+  "generatedAt": "2026-10-10T05:45:34.314237+00:00",
   "productCount": 192,
   "categories": [
     {
@@ -26,6 +26,29 @@
               "quantity": 500.0,
               "unit": "ml",
               "image": "shoferhofer_500.webp",
+              "featured": false,
+              "isNew": false,
+              "isRecommended": false,
+              "available": true,
+              "tags": [
+                "alcohol"
+              ],
+              "allergens": []
+            },
+            {
+              "id": "benediktiner_500",
+              "categoryId": "october_sbor",
+              "subcategoryId": "special_offers",
+              "brand": "benediktiner",
+              "variant": "wheat_beer",
+              "nameBg": "Бенедиктер 0,5 л",
+              "nameEn": "Benediktiner 0,5 l",
+              "descriptionBg": null,
+              "descriptionEn": null,
+              "priceEur": 4.2,
+              "quantity": 500.0,
+              "unit": "ml",
+              "image": "benediktiner_500.webp",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
@@ -147,29 +170,6 @@
               "available": true,
               "tags": [
                 "food"
-              ],
-              "allergens": []
-            },
-            {
-              "id": "benediktiner_500",
-              "categoryId": "october_sbor",
-              "subcategoryId": "special_offers",
-              "brand": "benediktiner",
-              "variant": "wheat_beer",
-              "nameBg": "Бенедиктер 0,5 л",
-              "nameEn": "Benediktiner 0,5 l",
-              "descriptionBg": null,
-              "descriptionEn": null,
-              "priceEur": 4.2,
-              "quantity": 500.0,
-              "unit": "ml",
-              "image": "benediktiner_500.webp",
-              "featured": false,
-              "isNew": false,
-              "isRecommended": false,
-              "available": true,
-              "tags": [
-                "alcohol"
               ],
               "allergens": []
             }
