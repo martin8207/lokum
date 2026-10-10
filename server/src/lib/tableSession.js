@@ -65,7 +65,12 @@ async function createOrder(tableNumber, items) {
     // Напитките от един кръг остават ЕДНА поръчка, но всяка порция храна
     // (дори 2 еднакви ястия) става отделна поръчка - излизат от кухнята по
     // различно време и всяка трябва да може да се маркира "Сервирано" сама.
-    const isFood = (it) => productById.get(it.productId).categoryId === "food";
+    // "Храна" за кухнята/разделянето = категория "food" ИЛИ таг "food" (напр.
+    // скара/кебапче от събитийно меню в отделна категория като "Октобър Сбор").
+    const isFood = (it) => {
+        const p = productById.get(it.productId);
+        return p.categoryId === "food" || (p.tags || []).includes("food");
+    };
     const drinkItems = items.filter((it) => !isFood(it));
     const groups = [
         ...(drinkItems.length > 0 ? [drinkItems] : []),

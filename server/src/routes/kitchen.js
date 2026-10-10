@@ -24,7 +24,18 @@ router.get("/items", async (req, res) => {
                 where: { cancelledAt: null },
                 include: {
                     items: {
-                        where: { removedAt: null, product: { categoryId: "food" } },
+                        // Кухнята готви категория "food" + всеки артикул с таг
+                        // "food" (напр. скара/кебапче от събитийно меню като
+                        // "Октобър Сбор", което е отделна категория, не "food").
+                        where: {
+                            removedAt: null,
+                            product: {
+                                OR: [
+                                    { categoryId: "food" },
+                                    { tags: { has: "food" } }
+                                ]
+                            }
+                        },
                         orderBy: { createdAt: "asc" },
                         include: {
                             product: { select: { nameBg: true, nameEn: true } }
