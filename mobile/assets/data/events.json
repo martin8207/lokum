@@ -1,6 +1,20 @@
 {
   "upcoming": [
     {
+      "id": "oktober_sbor_10102026",
+      "titleBg": "Октобър Сбор",
+      "titleEn": "October Gathering",
+      "cardSubtitleBg": "Октобър Сбор",
+      "cardSubtitleEn": "October Gathering",
+      "descriptionBg": "Есента е тук, а циганското лято още напомня за топлите вечери пред Локума, за това ще се съберем за пореден път и ще надигнем чашите, за да изпратим топлите дни с усмивка. Този път ще е малко нетипично за нас - с еднолитрови халби и мезета на скара, два дни - събота и неделя, а събота в 19:00 забиват две шуменски банди Rot Flower и Kopf Kino.\nДа видим как се празнува Октомври в Шумен пред бар Локум.",
+      "descriptionEn": "Autumn is here, but the Indian summer still brings to mind the warm evenings in front of Lokum, so we'll gather once more and raise our glasses to send off the warm days with a smile. This time it'll be a little unusual for us - with one-litre steins and grilled mezze, two days, Saturday and Sunday, and on Saturday at 19:00 two Shumen bands, Rot Flower and Kopf Kino, take the stage.\nLet's see how October is celebrated in Shumen in front of Bar Lokum.",
+      "date": "2026-10-10T16:00:00",
+      "endDate": "2026-10-11T00:00:00",
+      "posterImage": "events/oktober_cbor.jpg",
+      "homeButtonImage": "events/oktober_cbor.jpg",
+      "featured": true
+    },
+    {
       "id": "rot_flower_kopfkino_10102026",
       "titleBg": "Rot Flower & KOPFKINO пред Локум",
       "titleEn": "Rot Flower & KOPFKINO at Lokum",
