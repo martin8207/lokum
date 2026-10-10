@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-10-10T05:06:50.663573+00:00",
-  "productCount": 191,
+  "generatedAt": "2026-10-10T05:40:29.266355+00:00",
+  "productCount": 192,
   "categories": [
     {
       "id": "october_sbor",
@@ -147,6 +147,29 @@
               "available": true,
               "tags": [
                 "food"
+              ],
+              "allergens": []
+            },
+            {
+              "id": "benediktiner_500",
+              "categoryId": "october_sbor",
+              "subcategoryId": "special_offers",
+              "brand": "benediktiner",
+              "variant": "wheat_beer",
+              "nameBg": "Бенедиктер 0,5 л",
+              "nameEn": "Benediktiner 0,5 l",
+              "descriptionBg": null,
+              "descriptionEn": null,
+              "priceEur": 4.2,
+              "quantity": 500.0,
+              "unit": "ml",
+              "image": "benediktiner_500.webp",
+              "featured": false,
+              "isNew": false,
+              "isRecommended": false,
+              "available": true,
+              "tags": [
+                "alcohol"
               ],
               "allergens": []
             }
