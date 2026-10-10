@@ -44,6 +44,9 @@ import pandas as pd
 # (Нещо за хапване / Коктейли / Напитки). Редът тук определя реда в менюто.
 # ---------------------------------------------------------------------------
 CANONICAL_TREE = [
+    ("october_sbor", "Октобър Сбор", "October Gathering", [
+        ("special_offers", "СПЕЦИАЛНИ ПРЕДЛОЖЕНИЯ", "Special Offers"),
+    ]),
     ("food", "Нещо за хапване", "Food", [
         ("brunch", "БРЪНЧ", "Brunch"),
         ("a_la_minute_dishes", "АЛАМИНУТИ", "A La Minute Dishes"),

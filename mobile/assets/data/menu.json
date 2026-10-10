@@ -1,7 +1,159 @@
 {
-  "generatedAt": "2026-10-04T16:43:22.506895+00:00",
-  "productCount": 185,
+  "generatedAt": "2026-10-10T05:06:50.663573+00:00",
+  "productCount": 191,
   "categories": [
+    {
+      "id": "october_sbor",
+      "nameBg": "Октобър Сбор",
+      "nameEn": "October Gathering",
+      "subcategories": [
+        {
+          "id": "special_offers",
+          "nameBg": "СПЕЦИАЛНИ ПРЕДЛОЖЕНИЯ",
+          "nameEn": "Special Offers",
+          "products": [
+            {
+              "id": "shoferhofer_500",
+              "categoryId": "october_sbor",
+              "subcategoryId": "special_offers",
+              "brand": "schofferhofer",
+              "variant": "wheat_beer",
+              "nameBg": "Шьоферхофер 0,5 л",
+              "nameEn": "Schöfferhofer 0,5 l",
+              "descriptionBg": null,
+              "descriptionEn": null,
+              "priceEur": 4.8,
+              "quantity": 500.0,
+              "unit": "ml",
+              "image": "shoferhofer_500.webp",
+              "featured": false,
+              "isNew": false,
+              "isRecommended": false,
+              "available": true,
+              "tags": [
+                "alcohol"
+              ],
+              "allergens": []
+            },
+            {
+              "id": "san_migel_1000",
+              "categoryId": "october_sbor",
+              "subcategoryId": "special_offers",
+              "brand": "san_miguel",
+              "variant": "lager",
+              "nameBg": "Сан Мигел 1 л",
+              "nameEn": "San Miguel 1 l",
+              "descriptionBg": null,
+              "descriptionEn": null,
+              "priceEur": 7.4,
+              "quantity": 1000.0,
+              "unit": "ml",
+              "image": "san_migel_1000.webp",
+              "featured": false,
+              "isNew": false,
+              "isRecommended": false,
+              "available": true,
+              "tags": [
+                "alcohol"
+              ],
+              "allergens": []
+            },
+            {
+              "id": "benediktiner_bure_5l",
+              "categoryId": "october_sbor",
+              "subcategoryId": "special_offers",
+              "brand": "benediktiner",
+              "variant": "wheat_beer",
+              "nameBg": "Бенедиктер буре 5 л",
+              "nameEn": "Benediktiner keg 5 l",
+              "descriptionBg": null,
+              "descriptionEn": null,
+              "priceEur": 39.0,
+              "quantity": 5000.0,
+              "unit": "ml",
+              "image": "benediktiner_bure_5l.webp",
+              "featured": false,
+              "isNew": false,
+              "isRecommended": false,
+              "available": true,
+              "tags": [
+                "alcohol"
+              ],
+              "allergens": []
+            },
+            {
+              "id": "meshana_skara_sbor",
+              "categoryId": "october_sbor",
+              "subcategoryId": "special_offers",
+              "brand": null,
+              "variant": null,
+              "nameBg": "Мешана скара",
+              "nameEn": "Mixed grill",
+              "descriptionBg": null,
+              "descriptionEn": null,
+              "priceEur": 9.5,
+              "quantity": null,
+              "unit": null,
+              "image": "meshana_skara_sbor.webp",
+              "featured": false,
+              "isNew": false,
+              "isRecommended": false,
+              "available": true,
+              "tags": [
+                "food"
+              ],
+              "allergens": []
+            },
+            {
+              "id": "kebapche_sbor",
+              "categoryId": "october_sbor",
+              "subcategoryId": "special_offers",
+              "brand": null,
+              "variant": null,
+              "nameBg": "Кебапче",
+              "nameEn": "Kebapche",
+              "descriptionBg": null,
+              "descriptionEn": null,
+              "priceEur": 1.5,
+              "quantity": null,
+              "unit": null,
+              "image": "kebapche_sbor.webp",
+              "featured": false,
+              "isNew": false,
+              "isRecommended": false,
+              "available": true,
+              "tags": [
+                "food"
+              ],
+              "allergens": []
+            },
+            {
+              "id": "kyufte_sbor",
+              "categoryId": "october_sbor",
+              "subcategoryId": "special_offers",
+              "brand": null,
+              "variant": null,
+              "nameBg": "Кюфте",
+              "nameEn": "Kyufte",
+              "descriptionBg": null,
+              "descriptionEn": null,
+              "priceEur": 1.5,
+              "quantity": null,
+              "unit": null,
+              "image": "kyufte_sbor.webp",
+              "featured": false,
+              "isNew": false,
+              "isRecommended": false,
+              "available": true,
+              "tags": [
+                "food"
+              ],
+              "allergens": []
+            }
+          ]
+        }
+      ]
+    },
     {
       "id": "food",
       "nameBg": "Нещо за хапване",
