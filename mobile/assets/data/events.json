@@ -1,34 +1,6 @@
 {
   "upcoming": [
     {
-      "id": "oktober_sbor_10102026",
-      "titleBg": "Октобър Сбор",
-      "titleEn": "October Gathering",
-      "cardSubtitleBg": "Октобър Сбор",
-      "cardSubtitleEn": "October Gathering",
-      "descriptionBg": "Есента е тук, а циганското лято още напомня за топлите вечери пред Локума, за това ще се съберем за пореден път и ще надигнем чашите, за да изпратим топлите дни с усмивка. Този път ще е малко нетипично за нас - с еднолитрови халби и мезета на скара, два дни - събота и неделя, а събота в 19:00 забиват две шуменски банди Rot Flower и Kopf Kino.\nДа видим как се празнува Октомври в Шумен пред бар Локум.",
-      "descriptionEn": "Autumn is here, but the Indian summer still brings to mind the warm evenings in front of Lokum, so we'll gather once more and raise our glasses to send off the warm days with a smile. This time it'll be a little unusual for us - with one-litre steins and grilled mezze, two days, Saturday and Sunday, and on Saturday at 19:00 two Shumen bands, Rot Flower and Kopf Kino, take the stage.\nLet's see how October is celebrated in Shumen in front of Bar Lokum.",
-      "date": "2026-10-10T16:00:00",
-      "endDate": "2026-10-11T00:00:00",
-      "posterImage": "events/oktober_cbor.jpg",
-      "homeButtonImage": "events/oktober_cbor.jpg",
-      "featured": true
-    },
-    {
-      "id": "rot_flower_kopfkino_10102026",
-      "titleBg": "Rot Flower & KOPFKINO пред Локум",
-      "titleEn": "Rot Flower & KOPFKINO at Lokum",
-      "cardSubtitleBg": "Rot Flower & KOPFKINO пред Локум",
-      "cardSubtitleEn": "Rot Flower & KOPFKINO at Lokum",
-      "descriptionBg": "KOPFKINO е хард-рок група основана през 2024 год. в Шумен. Пишат авторска музика. Имат 9 парчета, които предстои да издадат в дебютен албум.\nТекстовете им са предимно на български език. Преобладават темите за човешките отношения и изпитанията, които животът поднася.\nKOPFKINO са:\nДимитър Николов – китара и вокали\nДимитър Димитров – водеща китара\nТеодор Илиев – бас китара и беквокали\nНиколай Великов – Барабани\n\nRot Flower е гръндж-ориентирана тийн група, която иска да възроди и популяризира алтернативната музика в България. Правят авторски парчета главно на английски език.\nВокал е Гери Колева, соло китара е Венцислава Кантарджиева, ритъм китара е Крум Добранов, бас китара е Светлозар Атанасов и зад барабаните стои Николай Георгиев.",
-      "descriptionEn": "KOPFKINO is a hard-rock band formed in 2024 in Shumen. They write their own music and have 9 songs soon to be released on a debut album.\nTheir lyrics are mostly in Bulgarian, dwelling on human relationships and the trials life brings.\nKOPFKINO are:\nDimitar Nikolov – guitar and vocals\nDimitar Dimitrov – lead guitar\nTeodor Iliev – bass guitar and backing vocals\nNikolay Velikov – drums\n\nRot Flower is a grunge-oriented teen band set on reviving and popularizing alternative music in Bulgaria. They make original songs mainly in English.\nVocals by Geri Koleva, lead guitar by Ventsislava Kantardzhieva, rhythm guitar by Krum Dobranov, bass guitar by Svetlozar Atanasov, and on drums Nikolay Georgiev.",
-      "date": "2026-10-10T19:00:00",
-      "endDate": "2026-10-10T23:00:00",
-      "posterImage": "events/rot_flower_10102026.jpg",
-      "homeButtonImage": "events/rot_flower_10102026_event.jpg",
-      "featured": true
-    },
-    {
       "id": "sunday-brunch",
       "titleBg": "Неделен Брънч",
       "titleEn": "Sunday Brunch",
@@ -355,6 +327,26 @@
       "descriptionBg": "Марти е на 5 години и е дете с диагноза ДЦП спастична квадрипареза. Въпреки трудностите, през които преминава от самото си раждане, той е изключително усмихнато, борбено и силно дете. Има зад гърба си вече 5 операции и безброй рехабилитации и терапии, а всеки ден продължава да се бори за най-обикновените неща, които за другите деца са даденост – да стои самостоятелно, да ходи и един ден да бъде по-независим.\nМарти не се отказва. Напротив – с усмивката си показва колко голяма сила може да има едно малко дете. Борбата му продължава, защото за да върви напред, са му нужни постоянни терапии, рехабилитации и средства за предстоящото му лечение.\nЗатова решихме да застанем до Марти и неговото семейство.\nТази събота организираме благотворителен базар и DJ вечер, в която ще се съберем не просто за хубава музика и приятна атмосфера, а за една истински важна кауза.\nНа базара ще можете да откриете различни неща, които ще бъдат предоставени с благотворителна цел, а всички средства, събрани по време на събитието, ще бъдат в помощ на Марти и неговото лечение.\nНека се съберем, да се забавляваме и заедно да помогнем на Марти да направи следващата си крачка.",
       "descriptionEn": "Marti is 5 years old and has been diagnosed with cerebral palsy (spastic quadriparesis). Despite the hardships he has faced since birth, he is an incredibly smiley, determined and strong child. He has already been through 5 surgeries and countless rehabilitations and therapies, and every day he keeps fighting for the most ordinary things other children take for granted – to stand on his own, to walk, and one day to be more independent.\nMarti doesn't give up. On the contrary – his smile shows how much strength one small child can have. His fight goes on, because to keep moving forward he needs constant therapy, rehabilitation and funds for his upcoming treatment.\nThat's why we decided to stand by Marti and his family.\nThis Saturday we're hosting a charity bazaar and DJ night – we'll gather not just for good music and a great atmosphere, but for a truly important cause.\nAt the bazaar you'll find all sorts of things donated for charity, and all funds raised during the event will go towards Marti and his treatment.\nLet's get together, have fun, and help Marti take his next step.",
       "logoImage": "events/archive/100pro_vinyl_party/100pro_vinyl_party.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "oktober_cbor",
+      "titleBg": "Октобър Сбор",
+      "titleEn": "October Gathering",
+      "date": "2026-10-10T16:00:00",
+      "descriptionBg": "Есента е тук, а циганското лято още напомня за топлите вечери пред Локума, за това ще се съберем за пореден път и ще надигнем чашите, за да изпратим топлите дни с усмивка. Този път ще е малко нетипично за нас - с еднолитрови халби и мезета на скара, два дни - събота и неделя, а събота в 19:00 забиват две шуменски банди Rot Flower и Kopf Kino.\nДа видим как се празнува Октомври в Шумен пред бар Локум.",
+      "descriptionEn": "Autumn is here, but the Indian summer still brings to mind the warm evenings in front of Lokum, so we'll gather once more and raise our glasses to send off the warm days with a smile. This time it'll be a little unusual for us - with one-litre steins and grilled mezze, two days, Saturday and Sunday, and on Saturday at 19:00 two Shumen bands, Rot Flower and Kopf Kino, take the stage.\nLet's see how October is celebrated in Shumen in front of Bar Lokum.",
+      "logoImage": "events/archive/oktober_cbor/oktober_cbor.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "rot_flower_10102026",
+      "titleBg": "Rot Flower & KOPFKINO пред Локум",
+      "titleEn": "Rot Flower & KOPFKINO at Lokum",
+      "date": "2026-10-10T19:00:00",
+      "descriptionBg": "KOPFKINO е хард-рок група основана през 2024 год. в Шумен. Пишат авторска музика. Имат 9 парчета, които предстои да издадат в дебютен албум.\nТекстовете им са предимно на български език. Преобладават темите за човешките отношения и изпитанията, които животът поднася.\nKOPFKINO са:\nДимитър Николов – китара и вокали\nДимитър Димитров – водеща китара\nТеодор Илиев – бас китара и беквокали\nНиколай Великов – Барабани\n\nRot Flower е гръндж-ориентирана тийн група, която иска да възроди и популяризира алтернативната музика в България. Правят авторски парчета главно на английски език.\nВокал е Гери Колева, соло китара е Венцислава Кантарджиева, ритъм китара е Крум Добранов, бас китара е Светлозар Атанасов и зад барабаните стои Николай Георгиев.",
+      "descriptionEn": "KOPFKINO is a hard-rock band formed in 2024 in Shumen. They write their own music and have 9 songs soon to be released on a debut album.\nTheir lyrics are mostly in Bulgarian, dwelling on human relationships and the trials life brings.\nKOPFKINO are:\nDimitar Nikolov – guitar and vocals\nDimitar Dimitrov – lead guitar\nTeodor Iliev – bass guitar and backing vocals\nNikolay Velikov – drums\n\nRot Flower is a grunge-oriented teen band set on reviving and popularizing alternative music in Bulgaria. They make original songs mainly in English.\nVocals by Geri Koleva, lead guitar by Ventsislava Kantardzhieva, rhythm guitar by Krum Dobranov, bass guitar by Svetlozar Atanasov, and on drums Nikolay Georgiev.",
+      "logoImage": "events/archive/rot_flower_10102026/rot_flower_10102026.jpg",
       "galleryImages": []
     }
   ]
