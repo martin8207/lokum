@@ -6,6 +6,7 @@ import '../../../shared/models/product.dart';
 import '../../../shared/widgets/theme_toggle.dart';
 import '../../order/widgets/order_bar.dart';
 import '../widgets/category_card.dart';
+import 'product_list_page.dart';
 import 'subcategory_page.dart';
 
 /// Начална страница на менюто – показва категориите от най-високо ниво
@@ -72,9 +73,19 @@ class _MenuPageState extends State<MenuPage> {
                   return CategoryCard(
                     category: category,
                     onTap: () {
+                      // Категория с една-единствена подкатегория (напр.
+                      // „Октобър Сбор" само със „Специални предложения") -
+                      // прескачаме излишната средна страница и отваряме
+                      // директно продуктите, за да не е на две нива.
+                      final subs = category.subcategories;
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (_) => SubcategoryPage(category: category),
+                          builder: (_) => subs.length == 1
+                              ? ProductListPage(
+                                  category: category,
+                                  subcategory: subs.first,
+                                )
+                              : SubcategoryPage(category: category),
                         ),
                       );
                     },
