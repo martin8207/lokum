@@ -158,9 +158,21 @@ class BarEvent {
       final months = lang == AppLang.bg ? _monthsBg : _monthsEn;
       String hhmm(DateTime t) =>
           '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}';
+      String dayMonthYear(DateTime t) =>
+          '${t.day} ${months[t.month - 1]} ${t.year}';
       final end = endDate;
-      final time = end == null ? hhmm(d) : '${hhmm(d)} – ${hhmm(end)}';
-      return '${d.day} ${months[d.month - 1]} ${d.year}, $time';
+      if (end == null) {
+        return '${dayMonthYear(d)}, ${hhmm(d)}';
+      }
+      // Различен календарен ден (напр. двудневно, край в 00:00 на следващия
+      // ден) - показваме и двете дати, иначе "16:00 – 00:00" подвежда, че
+      // свършва същия ден.
+      final sameDay =
+          d.year == end.year && d.month == end.month && d.day == end.day;
+      if (sameDay) {
+        return '${dayMonthYear(d)}, ${hhmm(d)} – ${hhmm(end)}';
+      }
+      return '${dayMonthYear(d)}, ${hhmm(d)} – ${dayMonthYear(end)}, ${hhmm(end)}';
     }
     final schedule = recurring;
     if (schedule != null) {
