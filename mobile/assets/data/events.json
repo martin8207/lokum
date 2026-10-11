@@ -1,20 +1,6 @@
 {
   "upcoming": [
     {
-      "id": "oktober_sbor_10102026",
-      "titleBg": "Октобър Сбор",
-      "titleEn": "October Gathering",
-      "cardSubtitleBg": "Октобър Сбор",
-      "cardSubtitleEn": "October Gathering",
-      "descriptionBg": "Есента е тук, а циганското лято още напомня за топлите вечери пред Локума, за това ще се съберем за пореден път и ще надигнем чашите, за да изпратим топлите дни с усмивка. Този път ще е малко нетипично за нас - с еднолитрови халби и мезета на скара, два дни - събота и неделя, а събота в 19:00 забиват две шуменски банди Rot Flower и Kopf Kino.\nДа видим как се празнува Октомври в Шумен пред бар Локум.",
-      "descriptionEn": "Autumn is here, but the Indian summer still brings to mind the warm evenings in front of Lokum, so we'll gather once more and raise our glasses to send off the warm days with a smile. This time it'll be a little unusual for us - with one-litre steins and grilled mezze, two days, Saturday and Sunday, and on Saturday at 19:00 two Shumen bands, Rot Flower and Kopf Kino, take the stage.\nLet's see how October is celebrated in Shumen in front of Bar Lokum.",
-      "date": "2026-10-10T16:00:00",
-      "endDate": "2026-10-12T00:01:00",
-      "posterImage": "events/oktober_cbor.jpg",
-      "homeButtonImage": "events/oktober_cbor.jpg",
-      "featured": true
-    },
-    {
       "id": "sunday-brunch",
       "titleBg": "Неделен Брънч",
       "titleEn": "Sunday Brunch",
@@ -351,6 +337,16 @@
       "descriptionBg": "KOPFKINO е хард-рок група основана през 2024 год. в Шумен. Пишат авторска музика. Имат 9 парчета, които предстои да издадат в дебютен албум.\nТекстовете им са предимно на български език. Преобладават темите за човешките отношения и изпитанията, които животът поднася.\nKOPFKINO са:\nДимитър Николов – китара и вокали\nДимитър Димитров – водеща китара\nТеодор Илиев – бас китара и беквокали\nНиколай Великов – Барабани\n\nRot Flower е гръндж-ориентирана тийн група, която иска да възроди и популяризира алтернативната музика в България. Правят авторски парчета главно на английски език.\nВокал е Гери Колева, соло китара е Венцислава Кантарджиева, ритъм китара е Крум Добранов, бас китара е Светлозар Атанасов и зад барабаните стои Николай Георгиев.",
       "descriptionEn": "KOPFKINO is a hard-rock band formed in 2024 in Shumen. They write their own music and have 9 songs soon to be released on a debut album.\nTheir lyrics are mostly in Bulgarian, dwelling on human relationships and the trials life brings.\nKOPFKINO are:\nDimitar Nikolov – guitar and vocals\nDimitar Dimitrov – lead guitar\nTeodor Iliev – bass guitar and backing vocals\nNikolay Velikov – drums\n\nRot Flower is a grunge-oriented teen band set on reviving and popularizing alternative music in Bulgaria. They make original songs mainly in English.\nVocals by Geri Koleva, lead guitar by Ventsislava Kantardzhieva, rhythm guitar by Krum Dobranov, bass guitar by Svetlozar Atanasov, and on drums Nikolay Georgiev.",
       "logoImage": "events/archive/rot_flower_10102026/rot_flower_10102026.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "oktober_cbor",
+      "titleBg": "Октобър Сбор",
+      "titleEn": "October Gathering",
+      "date": "2026-10-10T16:00:00",
+      "descriptionBg": "Есента е тук, а циганското лято още напомня за топлите вечери пред Локума, за това ще се съберем за пореден път и ще надигнем чашите, за да изпратим топлите дни с усмивка. Този път ще е малко нетипично за нас - с еднолитрови халби и мезета на скара, два дни - събота и неделя, а събота в 19:00 забиват две шуменски банди Rot Flower и Kopf Kino.\nДа видим как се празнува Октомври в Шумен пред бар Локум.",
+      "descriptionEn": "Autumn is here, but the Indian summer still brings to mind the warm evenings in front of Lokum, so we'll gather once more and raise our glasses to send off the warm days with a smile. This time it'll be a little unusual for us - with one-litre steins and grilled mezze, two days, Saturday and Sunday, and on Saturday at 19:00 two Shumen bands, Rot Flower and Kopf Kino, take the stage.\nLet's see how October is celebrated in Shumen in front of Bar Lokum.",
+      "logoImage": "events/archive/oktober_cbor/oktober_cbor.jpg",
       "galleryImages": []
     }
   ]
