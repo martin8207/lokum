@@ -1,6 +1,6 @@
 {
   "generatedAt": "2026-10-10T05:45:34.314237+00:00",
-  "productCount": 192,
+  "productCount": 193,
   "categories": [
     {
       "id": "october_sbor",
@@ -49,6 +49,29 @@
               "quantity": 500.0,
               "unit": "ml",
               "image": "benediktiner_500.webp",
+              "featured": false,
+              "isNew": false,
+              "isRecommended": false,
+              "available": true,
+              "tags": [
+                "alcohol"
+              ],
+              "allergens": []
+            },
+            {
+              "id": "draft_glarus_1000_sbor",
+              "categoryId": "october_sbor",
+              "subcategoryId": "special_offers",
+              "brand": "nalivna_glarus",
+              "variant": "draft",
+              "nameBg": "Наливна бира Гларус 1 л",
+              "nameEn": "Draft beer Glarus 1 l",
+              "descriptionBg": null,
+              "descriptionEn": null,
+              "priceEur": 6.5,
+              "quantity": 1000.0,
+              "unit": "ml",
+              "image": "draft_glarus_1000_sbor.webp",
               "featured": false,
               "isNew": false,
               "isRecommended": false,
