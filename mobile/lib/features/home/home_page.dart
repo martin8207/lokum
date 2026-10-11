@@ -55,7 +55,11 @@ class _HomePageState extends State<HomePage> {
     final events = await EventsService.instance.loadEvents();
     final now = DateTime.now();
     final dated = events.upcoming.where((e) {
-      if (e.date == null || !e.date!.isAfter(now)) return false;
+      // Докато събитието тече (до endDate), постерът остава на бутона -
+      // не само до началния час.
+      if (e.date == null || !(e.endDate ?? e.date!).isAfter(now)) {
+        return false;
+      }
       final image = e.homeButtonImage ?? e.posterImage;
       if (image == null) return false;
       return BundledAssets.has(AssetPaths.eventImage(image));
