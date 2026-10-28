@@ -1,21 +1,6 @@
 {
   "upcoming": [
     {
-      "id": "kuiz_i_polovina_heloween_28102026",
-      "titleBg": "Куиз и половина с Влади и Марина: Хелоуинско издание",
-      "titleEn": "Quiz and a Half with Vladi and Marina: Halloween Edition",
-      "cardSubtitleBg": "Куиз и половина: Хелоуинско издание",
-      "cardSubtitleEn": "Quiz and a Half: Halloween Edition",
-      "descriptionBg": "Какво ви очаква?\nОсвен стандартните въпроси от всевъзможни теми, Влади и Марина са подготвили и един кръг с въпроси, от които може да ви побият тръпки.\nЛюбопитни загадки и знания от отвъдното… или просто от Wikipedia\nСтрашно добра атмосфера, напитки и вкусна храна\nНагради за най-умните създания в Локум\n\nСряда от 19:30 ч.\nБар Локум\nПредварителна резервация — местата са ограничени!\n\nСъберете бандата, наточете зъбите и мозъците и елате да разберем кой е най-страшно умен!\nОчакваме ви!",
-      "descriptionEn": "What to expect?\nBesides the usual questions on all sorts of topics, Vladi and Marina have prepared a round of questions that might send shivers down your spine.\nCurious riddles and knowledge from the other side… or just from Wikipedia\nA frightfully good atmosphere, drinks and tasty food\nPrizes for the smartest creatures at Lokum\n\nWednesday from 19:30\nBar Lokum\nReservations required — places are limited!\n\nGather your gang, sharpen your teeth and your brains, and come find out who is the most frighteningly smart!\nSee you there!",
-      "phone": "0896155141",
-      "date": "2026-10-28T19:30:00",
-      "endDate": "2026-10-28T22:30:00",
-      "posterImage": "events/kuiz_ipolowina_heloween.jpg",
-      "homeButtonImage": "events/kuiz_ipolowina_heloween.jpg",
-      "featured": true
-    },
-    {
       "id": "kuiz_i_polovina",
       "titleBg": "Куиз и половина с Влади и Марина",
       "titleEn": "Quiz and a Half with Vladi and Marina",
@@ -377,6 +362,16 @@
       "descriptionBg": "Есента е тук, а циганското лято още напомня за топлите вечери пред Локума, за това ще се съберем за пореден път и ще надигнем чашите, за да изпратим топлите дни с усмивка. Този път ще е малко нетипично за нас - с еднолитрови халби и мезета на скара, два дни - събота и неделя, а събота в 19:00 забиват две шуменски банди Rot Flower и Kopf Kino.\nДа видим как се празнува Октомври в Шумен пред бар Локум.",
       "descriptionEn": "Autumn is here, but the Indian summer still brings to mind the warm evenings in front of Lokum, so we'll gather once more and raise our glasses to send off the warm days with a smile. This time it'll be a little unusual for us - with one-litre steins and grilled mezze, two days, Saturday and Sunday, and on Saturday at 19:00 two Shumen bands, Rot Flower and Kopf Kino, take the stage.\nLet's see how October is celebrated in Shumen in front of Bar Lokum.",
       "logoImage": "events/archive/oktober_cbor/oktober_cbor.jpg",
+      "galleryImages": []
+    },
+    {
+      "id": "kuiz_ipolowina_heloween",
+      "titleBg": "Куиз и половина с Влади и Марина: Хелоуинско издание",
+      "titleEn": "Quiz and a Half with Vladi and Marina: Halloween Edition",
+      "date": "2026-10-28T19:30:00",
+      "descriptionBg": "Какво ви очаква?\nОсвен стандартните въпроси от всевъзможни теми, Влади и Марина са подготвили и един кръг с въпроси, от които може да ви побият тръпки.\nЛюбопитни загадки и знания от отвъдното… или просто от Wikipedia\nСтрашно добра атмосфера, напитки и вкусна храна\nНагради за най-умните създания в Локум\n\nСряда от 19:30 ч.\nБар Локум\nПредварителна резервация — местата са ограничени!\n\nСъберете бандата, наточете зъбите и мозъците и елате да разберем кой е най-страшно умен!\nОчакваме ви!",
+      "descriptionEn": "What to expect?\nBesides the usual questions on all sorts of topics, Vladi and Marina have prepared a round of questions that might send shivers down your spine.\nCurious riddles and knowledge from the other side… or just from Wikipedia\nA frightfully good atmosphere, drinks and tasty food\nPrizes for the smartest creatures at Lokum\n\nWednesday from 19:30\nBar Lokum\nReservations required — places are limited!\n\nGather your gang, sharpen your teeth and your brains, and come find out who is the most frighteningly smart!\nSee you there!",
+      "logoImage": "events/archive/kuiz_ipolowina_heloween/kuiz_ipolowina_heloween.jpg",
       "galleryImages": []
     }
   ]
